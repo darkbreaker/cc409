@@ -18,6 +18,7 @@ tambien mover las citas y registrar cuando terminan.
 
 
 Cuentas y Clientes
+
 La veterinaria cuenta con varios clientes y cada cliente puede tener
 al menos una cuenta en la cual pueda acceder a la informacion de
 productos, asi como para realizar citas y consultar su estado.
@@ -34,6 +35,7 @@ y el estado de los productos, tambien tiene acceso a cambiar la hora
 de las citas o moverlas y registrar el inicio o fin de cada una.
 
 Cobros
+
 El control de los gastos y cobros esta ligado a la informacion
 del usuario pero, entrara en el sistema de tickets, el cual almacena
 la informacion de los precios de los productos comprados por el 
@@ -42,6 +44,7 @@ para su posible consulta, misma que se realiza por el superusuario o
 encargado de la veterinaria.
 
 Reportes
+
 consultas del cliente:
 Estado de cuenta del cliente
 Horario de Cita del cliente
