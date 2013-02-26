@@ -1,7 +1,5 @@
 veterinaria
 ===========
-pagina web para una veterinaria
-
 
 Control de Cobros, Citas y Catalogo de una Veterinaria
 
@@ -63,5 +61,7 @@ control de informacion.
 
 
 Integrantes de Equipo
+
 Hinojosa Valadez Juan Alejandro sección:D04
+
 Navarro  Espinoza Francisco Fernando sección:D03
