@@ -60,7 +60,9 @@ Superusuario:
 control de informacion.
 
 
+
 Integrantes de Equipo
+
 
 Hinojosa Valadez Juan Alejandro sección:D04
 
