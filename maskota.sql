@@ -12,7 +12,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`Usuario` (
   `idPersona` INT NOT NULL AUTO_INCREMENT ,
   `nombre` TEXT NOT NULL ,
   `calle` TEXT NOT NULL ,
-  `password` TEXT NOT NULL  ,
+  `password` TEXT NOT NULL ,
   `email` VARCHAR(45) NOT NULL ,
   `telefono` VARCHAR(10) NOT NULL ,
   `privilegios` INT NULL ,
@@ -85,28 +85,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`articulo` (
   `nombre` VARCHAR(45) NULL ,
   `descripcion` VARCHAR(45) NULL ,
   `precio` FLOAT NULL ,
-  `cantidad` INT NULL ,
-  `articulocol` VARCHAR(45) NULL ,
   PRIMARY KEY (`idarticulo`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`detalle_perecedero`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `mydb`.`detalle_perecedero` (
-  `fecha_compra` DATE NOT NULL ,
-  `fecha_caducidad` DATE NOT NULL ,
-  `cantidad` INT NULL ,
-  `detalle_perecederocol` VARCHAR(45) NULL ,
-  `articulo_idarticulo` INT NOT NULL ,
-  INDEX `fk_detalle_perecedero_articulo1_idx` (`articulo_idarticulo` ASC) ,
-  PRIMARY KEY (`fecha_caducidad`, `fecha_compra`) ,
-  CONSTRAINT `fk_detalle_perecedero_articulo1`
-    FOREIGN KEY (`articulo_idarticulo` )
-    REFERENCES `mydb`.`articulo` (`idarticulo` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -152,8 +131,10 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`pedido` (
   `estado` TEXT NULL ,
   `Persona_idPersona1` INT NOT NULL ,
   `articulo_idarticulo` INT NOT NULL ,
+  `idpedido` INT NOT NULL ,
   INDEX `fk_pedido_Persona1_idx` (`Persona_idPersona1` ASC) ,
   INDEX `fk_pedido_articulo1_idx` (`articulo_idarticulo` ASC) ,
+  PRIMARY KEY (`idpedido`) ,
   CONSTRAINT `fk_pedido_Persona1`
     FOREIGN KEY (`Persona_idPersona1` )
     REFERENCES `mydb`.`Usuario` (`idPersona` )
