@@ -1,6 +1,6 @@
 <?php
   class UsuarioBSS{
-  	public $id;
+		public $id;
 		public $nombre;
 		public $telefono;
 		public $direccion;

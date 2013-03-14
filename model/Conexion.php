@@ -36,15 +36,17 @@
 		/**
 		*@return mixed en caso de resultado regrese arreglo
 		*/
-		function consulta($query){
-			$resultado = $this->cn ->query($query);
-			if($this->cn->errno)
-				return FALSE;
+		function consulta($con){
+			$resultado = $this->cn ->query($con);
+			if($this->cn->errno){
+				return FALSE;}
 			if(is_object($resultado)){
 				if($resultado->num_rows>0){
-				while($fila=$resultado->fetch_assoc())
-					$resultado_array[] =$fila;
-				return $resultado_array;}
+					while($fila=$resultado->fetch_assoc())
+						$resultado_array[] =$fila;
+					return $resultado_array;
+				}else
+					return FALSE;
 				
 			}
 			$pos = strpos($query,'INSERT');
@@ -60,8 +62,8 @@
 	
 		}
 	
-		function cerrar($cn){
-			return $this->cn-> close();
+		function cerrar(){
+			return $this->cn->close();
 		}
 	}
 	
