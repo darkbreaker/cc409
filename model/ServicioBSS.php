@@ -1,11 +1,5 @@
 <?php
   class ServicioBSS{
-		public $id;
-		public $tiempo;
-		public $descripcion;
-		public $precio;
-
-		
 		function buscarServicio($id){
 		$con= new Conexion ('localhost', 'root', 'root','maskota');
 		if($con->conecta()==false)
