@@ -86,7 +86,18 @@
 		return $this->id;
 	}
 		
-		
+		function_filtrarUsuario($descripcion){
+		$con= new Conexion ('localhost', 'root', 'root','maskota');
+		if($con->conecta()==false)
+			die('error de conexion');
+		$sql="SELECT * FROM usuario WHERE CONCAT(tiempo,precio,descripcion) LIKE '%".$descripcion."%'";
+		//ejecutar el query
+		$fila = $con->consulta($sql);	
+		if($fila==false){
+			die('error al consultar');
+			$con->cerrar();
+			return FALSE;
+			}
 		
 		
 	}
