@@ -79,7 +79,20 @@
 			return $this->id;
 		 
          }
-		 
+	
+	filtrarArticulo($descripcion){
+		$con= new Conexion ('localhost', 'root', 'root','maskota');
+		if($con->conecta()==false)
+			die('error de conexion');
+		$sql="SELECT * FROM usuario WHERE CONCAT(nombre,descripcion,precio_venta) LIKE '%".$descripcion."%'";
+		//ejecutar el query
+		$fila = $con->consulta($sql);	
+		if($fila==false){
+			die('error al consultar');
+			$con->cerrar();
+			return FALSE;
+			}
+	
          listar(){
 			$conexion= new Conexion ('localhost', 'root', 'root','maskota');
 			if($conexion->conecta()==false){
