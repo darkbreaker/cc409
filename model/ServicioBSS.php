@@ -86,7 +86,7 @@
 		return $this->id;
 	}
 		
-		function_filtrarUsuario($descripcion){
+		function filtrarUsuario($descripcion){
 		$con= new Conexion ('localhost', 'root', 'root','maskota');
 		if($con->conecta()==false)
 			die('error de conexion');
