@@ -89,7 +89,19 @@
 				}
 
 			return $resultado;
-		 
+			
+        function filtrarCita($descripcion){
+		$con= new Conexion ('localhost', 'root', 'root','maskota');
+		if($con->conecta()==false)
+			die('error de conexion');
+		$sql="SELECT * FROM usuario WHERE CONCAT(fecha,detalles,hora_reserva) LIKE '%".$descripcion."%'";
+		//ejecutar el query
+		$fila = $con->consulta($sql);	
+		if($fila==false){
+			die('error al consultar');
+			$con->cerrar();
+			return FALSE;
+			}
          }
          listar(){
 			$conexion= new Conexion ('localhost', 'root', 'root','maskota');
@@ -109,6 +121,8 @@
 			return $resultado;
          }
 			
+
+
 
 	}
 ?>
