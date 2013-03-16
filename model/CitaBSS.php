@@ -90,7 +90,7 @@
 
 			return $resultado;
 			
-        function filtrarCita($descripcion){
+       filtrarCita($descripcion){
 		$con= new Conexion ('localhost', 'root', 'root','maskota');
 		if($con->conecta()==false)
 			die('error de conexion');
