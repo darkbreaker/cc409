@@ -1,4 +1,6 @@
 <?php
+	include_once('Conexion.php');
+include_once('Pedido.php');
   class PedidoBSS{
   	public $idReservacion;
 		public $idArticulo;

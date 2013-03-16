@@ -1,4 +1,6 @@
 <?php
+	include_once('Conexion.php');
+	include_once('NotaVenta.php');
   class NotaVentaBSS{
 		public $total;
 		public $fecha;

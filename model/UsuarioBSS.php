@@ -1,4 +1,6 @@
 <?php
+	include_once('Conexion.php');
+include_once('Usuario.php');
   class UsuarioBSS{
 		public $id;
 		public $nombre;

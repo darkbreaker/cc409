@@ -1,4 +1,6 @@
 <?php
+	include_once('Conexion.php');
+include_once('Servicio.php');
   class ServicioBSS{
 		function buscarServicio($id){
 		$con= new Conexion ('localhost', 'root', 'root','maskota');

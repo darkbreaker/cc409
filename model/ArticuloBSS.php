@@ -1,4 +1,7 @@
 <?php
+
+include_once('Conexion.php');
+include_once('Articulo.php');
   class ArticuloBSS{
 		public $id;
 		public $nombre;

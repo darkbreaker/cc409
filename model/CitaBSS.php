@@ -1,4 +1,6 @@
 <?php
+include_once('Conexion.php');
+include_once('Cita.php');
   class CitaBSS{
 		public $id;
 		public $fecha;
