@@ -21,19 +21,19 @@ include_once('model/PedidoBss.php');
 					include('view/PedidoView.php');
 					break;
 				case 'buscarReservacion':
-					$Pedido=$this->modelo->;
+					$Pedido=$this->modelo->buscarReservacion($_REQUEST['idReservacion'],$_REQUEST['idUsuario']);
 					include('view/PedidoView.php');
 					break;
 				case 'eliminarReservacion':
-				$Pedido=$this->modelo->;
+				$Pedido=$this->modelo->eliminarReservacion($_REQUEST['idReservacion']);
 					include('view/PedidoView.php');
 					break;
 				case 'ActualizarReservacion':
-					$Pedido=$this->modelo-> ;
+					$Pedido=$this->modelo-> ActualizarReservacion($_REQUEST['idReservacion'],$_REQUEST['estado']);
 					include('view/PedidoView.php');
 					break;
 				case 'filtrarPedido':
-					$Pedido=$this->modelo-> ;
+					$Pedido=$this->modelo->filtrarPedido($_REQUEST['descripcion']) ;
 					include('view/PedidoView.php');
 					break;
 			}
