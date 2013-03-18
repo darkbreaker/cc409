@@ -13,7 +13,6 @@ include_once('model/NotaVentaBss.php');
 			
 			if(isset($_REQUEST['accion']) ){
 				$NotaVenta = $this->modelo-> listar();
-			
 				include('view/NotaVentaView.php');
 			}
 			
