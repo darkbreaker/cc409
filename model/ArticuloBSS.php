@@ -12,7 +12,7 @@ include_once('Articulo.php');
 			$this->nombre=$nombre;
 			$this->descripcion=$descripcion;
 			$this->precio_venta=$precio_venta;
-			$con= new Conexion ('localhost', 'root', 'root','maskota');
+			$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
 			if(!$con->conecta())
 				die('error conexion');
 			$sql="INSERT INTO articulo(nombre,descripcion,precio) VALUES ('$this->nombre','$this->descripcion','$this->precio_venta') ";
@@ -28,7 +28,7 @@ include_once('Articulo.php');
         }
 		
          buscarArticulo($idArticulo){
-			$con= new Conexion ('localhost', 'root', 'root','maskota');
+			$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql='SELECT * FROM articulo WHERE idarticulo= '.$id;
@@ -49,7 +49,7 @@ include_once('Articulo.php');
          }
 		 
          eliminarArticulo($idArticulo){
-			$con= new Conexion ('localhost', 'root', 'root','maskota');
+			$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql='DELETE FROM servicio WHERE idarticulo= '.$id;
@@ -68,7 +68,7 @@ include_once('Articulo.php');
 		 
          ReservarArticulo($idArticulo, $idUsuario){
 		
-			$con= new Conexion ('localhost', 'root', 'root','maskota');
+			$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
 			if(!$con->conecta())
 				die('error conexion');
 			$sql="INSERT INTO pedido(idArticulo,idUSuario,fechaReservacion,estado) VALUES ('$idArticulo','$idUsuario',CURDATE(),'pendiente') ";
@@ -84,7 +84,7 @@ include_once('Articulo.php');
          }
 	
 	filtrarArticulo($descripcion){
-		$con= new Conexion ('localhost', 'root', 'root','maskota');
+		$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql="SELECT * FROM usuario WHERE CONCAT(nombre,descripcion,precio_venta) LIKE '%".$descripcion."%'";
@@ -97,7 +97,7 @@ include_once('Articulo.php');
 			}
 	
          listar(){
-			$conexion= new Conexion ('localhost', 'root', 'root','maskota');
+			$conexion= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
 			if($conexion->conecta()==false){
 				$conexion->cerrar();
 				die('error al conectar');
