@@ -17,7 +17,7 @@ include_once('model/ArticuloBss.php');
 				include('view/ArticuloView.php');
 			} else switch($_REQUEST['accion']){
 				case 'agregarUsuario':
-					$Articulo=$this->modelo->agregarArticulo($_REQUEST['id'],$_REQUEST['nombre'],$_REQUEST['descripcion'],$_REQUEST['precio_venta']) ;
+					$Articulo=$this->modelo->agregarArticulo($_REQUEST['nombre'],$_REQUEST['descripcion'],$_REQUEST['precio_venta']) ;
 					include('view/ArticuloView.php');
 					break;
 				case 'buscarUsuario':
