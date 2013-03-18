@@ -36,6 +36,10 @@ include_once('model/ArticuloBss.php');
 			$Articulo=$this->modelo->filtrarArticulo($_REQUEST['descripcion']);
 					include('view/ArticuloView.php');
 					break;
+				case 'listar':
+			$Articulo=$this->modelo->listar();
+					include('view/ArticuloView.php');
+					break;
 			}
 			
 		}
