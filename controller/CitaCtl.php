@@ -32,6 +32,7 @@ include_once('model/CitaBss.php');
 					$Cita=$this->modelo->listar() ;
 					include('view/CitaView.php');
 					break;
+<<<<<<< HEAD
 				case 'servicioCita'
 			               $Cita=$this->modelo->servicioCita($_REQUEST['idcita']) ;
 					include('view/CitaView.php');
@@ -40,6 +41,21 @@ include_once('model/CitaBss.php');
 			               $Cita=$this->modelo->ActualizarCita($_REQUEST['idcita'],$_REQUEST['hora_termino'],$_REQUEST['estado']) ;
 					include('view/CitaView.php');
 					break;
+=======
+				case 'ServiciosCita':
+					$Cita=$this->modelo->ServiciosCita($_REQUEST['idCita']) ;
+					include('view/CitaView.php');
+					break;
+				case 'ActulizarCita':
+					$Cita=$this->modelo->ActualizarCita() ;
+					include('view/CitaView.php');
+					break;
+				case 'filtrarCita':
+					$Cita=$this->modelo->filtrarCita($_REQUEST['descripcion']) ;
+					include('view/CitaView.php');
+					break;
+				
+>>>>>>> cita mejorado
 			}
 			
 		}
