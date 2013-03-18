@@ -16,20 +16,20 @@ include_once('model/CitaBss.php');
 				//vista del resultado
 				include('view/CitaView.php');
 			} else switch($_REQUEST['accion']){
-				case 'insertar':
-					$Cita=$this->modelo->agregarCita($_REQUEST['nombre'],$_REQUEST['email'],$_REQUEST['password'],$_REQUEST['calle'],$_REQUEST['telefono']) ;
+				case 'agregarCita':
+					$Cita=$this->modelo->agregarCita() ;
 					include('view/CitaView.php');
 					break;
-				case 'buscar':
-					$Cita=$this->modelo->consultarCita($_REQUEST['id']);
+				case 'buscarCita':
+					$Cita=$this->modelo->buscarCita($_REQUEST['idCita']);
 					include('view/CitaView.php');
 					break;
-				case 'filtro':
-				$Cita=$this->modelo->filtrarCita($_REQUEST['descripcion']);
+				case 'eliminarCita':
+				$Cita=$this->modelo->eliminarCita($_REQUEST['idcita']);
 					include('view/CitaView.php');
 					break;
-				case 'modificar':
-					$Cita=$this->modelo->modificar($_REQUEST['nombre'],$_REQUEST['telefono'],$_REQUEST['calle'],$_REQUEST['password'],$_REQUEST['email'],$_REQUEST['idPersona']) ;
+				case 'listar':
+					$Cita=$this->modelo->listar() ;
 					include('view/CitaView.php');
 					break;
 				

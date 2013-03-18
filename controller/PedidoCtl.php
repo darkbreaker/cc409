@@ -12,27 +12,30 @@ include_once('model/PedidoBss.php');
 		function ejecutar(){
 			//si no tengo parametros se listan los Pedidos
 			if(!isset($_REQUEST['accion']) ){
-				$Pedido = $this->modelo-> listar();
+				$Pedido = $this->modelo-> Listar();
 				//vista del resultado
 				include('view/PedidoView.php');
 			} else switch($_REQUEST['accion']){
-				case 'insertar':
-					$Pedido=$this->modelo->agregarPedido($_REQUEST['nombre'],$_REQUEST['email'],$_REQUEST['password'],$_REQUEST['calle'],$_REQUEST['telefono']) ;
+				case 'listar':
+					$Pedido=$this->modelo->Listar();
 					include('view/PedidoView.php');
 					break;
-				case 'buscar':
-					$Pedido=$this->modelo->consultarPedido($_REQUEST['id']);
+				case 'buscarReservacion':
+					$Pedido=$this->modelo->;
 					include('view/PedidoView.php');
 					break;
-				case 'filtro':
-				$Pedido=$this->modelo->filtrarPedido($_REQUEST['descripcion']);
+				case 'eliminarReservacion':
+				$Pedido=$this->modelo->;
 					include('view/PedidoView.php');
 					break;
-				case 'modificar':
-					$Pedido=$this->modelo->modificar($_REQUEST['nombre'],$_REQUEST['telefono'],$_REQUEST['calle'],$_REQUEST['password'],$_REQUEST['email'],$_REQUEST['idPersona']) ;
+				case 'ActualizarReservacion':
+					$Pedido=$this->modelo-> ;
 					include('view/PedidoView.php');
 					break;
-				
+				case 'filtrarPedido':
+					$Pedido=$this->modelo-> ;
+					include('view/PedidoView.php');
+					break;
 			}
 			
 		}
