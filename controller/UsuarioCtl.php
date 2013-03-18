@@ -33,7 +33,7 @@ include_once('model/UsuarioBss.php');
 					include('view/UsuarioView.php');
 					break;
 				case 'listar':
-					$Usuario=$this->modelo->agregarServicio($_REQUEST['id']$_REQUEST['nombre'],$_REQUEST['telefono'],$_REQUEST['calle'],$_REQUEST['password'],$_REQUEST['tipo'],$_REQUEST['email']) ;
+					$Usuario=$this->modelo->listar($_REQUEST['id']$_REQUEST['nombre'],$_REQUEST['telefono'],$_REQUEST['calle'],$_REQUEST['password'],$_REQUEST['tipo'],$_REQUEST['email']) ;
 					include('view/UsuarioView.php');
 					break;
 			}
