@@ -39,8 +39,18 @@ ha sido surtido.
 Cobros
 
 El control de los gastos y cobros esta ligado a la informacion
-del usuario pero, entrara en el sistema de tickets, el cual almacena
+del usuario pero, entrara en el sistema de notas de venta, el cual almacena
 la informacion de las ventas del dia de forma remota para el dueño.
+
+Servicios
+
+Para llevar un control total de los diferentes servicios que 
+proporcionará la veterinaria, se asignara un tiempo y una
+descripcion de un servicio requerido por el cliente
+asi como un precio, que tambien se ligara al sistema de 
+notas de venta.
+
+
 
 Reportes
 
@@ -54,6 +64,7 @@ Control de ventas
 Existencia de productos
 actulizar productos
 actualizar pedidos
+
 
 Niveles de Usuario
 cliente:
