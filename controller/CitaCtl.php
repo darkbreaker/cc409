@@ -17,7 +17,7 @@ include_once('model/CitaBss.php');
 				include('view/CitaView.php');
 			} else switch($_REQUEST['accion']){
 				case 'agregarCita':
-					$Cita=$this->modelo->agregarCita() ;
+					$Cita=$this->modelo->agregarCita($_REQUEST['idUsuario'],$_REQUEST['fecha'],$_REQUEST['detalles'],$_REQUEST['hora_reserva']) ;
 					include('view/CitaView.php');
 					break;
 				case 'buscarCita':
@@ -32,7 +32,14 @@ include_once('model/CitaBss.php');
 					$Cita=$this->modelo->listar() ;
 					include('view/CitaView.php');
 					break;
-				
+				case 'servicioCita'
+			               $Cita=$this->modelo->servicioCita($_REQUEST['idcita']) ;
+					include('view/CitaView.php');
+					break;
+		            	case 'ActualizarCita'
+			               $Cita=$this->modelo->ActualizarCita($_REQUEST['idcita'],$_REQUEST['hora_termino'],$_REQUEST['estado']) ;
+					include('view/CitaView.php');
+					break;
 			}
 			
 		}
