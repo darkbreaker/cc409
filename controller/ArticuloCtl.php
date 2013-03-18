@@ -16,23 +16,24 @@ include_once('model/ArticuloBss.php');
 				//vista del resultado
 				include('view/ArticuloView.php');
 			} else switch($_REQUEST['accion']){
-				case 'insertar':
+				case 'agregarUsuario':
 					$Articulo=$this->modelo->agregarArticulo($_REQUEST['nombre'],$_REQUEST['email'],$_REQUEST['password'],$_REQUEST['calle'],$_REQUEST['telefono']) ;
 					include('view/ArticuloView.php');
 					break;
-				case 'buscar':
+				case 'buscarUsuario':
 					$Articulo=$this->modelo->consultarArticulo($_REQUEST['id']);
 					include('view/ArticuloView.php');
 					break;
-				case 'filtro':
+				case 'eliminarUsuario':
 				$Articulo=$this->modelo->filtrarArticulo($_REQUEST['descripcion']);
 					include('view/ArticuloView.php');
 					break;
-				case 'modificar':
-					$Articulo=$this->modelo->modificar($_REQUEST['nombre'],$_REQUEST['telefono'],$_REQUEST['calle'],$_REQUEST['password'],$_REQUEST['email'],$_REQUEST['idPersona']) ;
-					include('view/ArticuloView.php');
+				case 'modificarUsuario':
+					
 					break;
-				
+				case 'filtrarUsuario':
+					
+					break;
 			}
 			
 		}
