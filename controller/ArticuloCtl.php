@@ -29,7 +29,7 @@ include_once('model/ArticuloBss.php');
 					include('view/ArticuloView.php');
 					break;
 				case 'modificarUsuario':
-					$Articulo=$this->modelo->modificarArticulo($_REQUEST['id'],$_REQUEST['nombre'],$_REQUEST['descripcion'],$_REQUEST['precio_venta']) ;
+					$Articulo=$this->modelo->modificarArticulo($_REQUEST['nombre'],$_REQUEST['descripcion'],$_REQUEST['precio_venta']) ;
 					include('view/ArticuloView.php');
 					break;
 				case 'filtrarUsuario':
