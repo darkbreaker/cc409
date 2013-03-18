@@ -14,23 +14,23 @@ include_once('model/ServicioBss.php');
 			if(!isset($_REQUEST['accion']) ){
 				$Servicio = $this->modelo-> listar();
 				//vista del resultado
-				include('view/ServicioView.php');
+				include('view/listarServicioView.php');
 			} else switch($_REQUEST['accion']){
 				case 'buscarServicio':
 					$Servicio=$this->modelo->buscarServicio($_REQUEST['idServicio']);
-					include('view/ServicioView.php');
+					include('view/buscarServicioView.php');
 					break;
 				case 'listar':
 					$Servicio=$this->modelo->listar();
-					include('view/ServicioView.php');
+					include('view/listarServicioView.php');
 					break;
 				case 'agregar':
 				$Servicio=$this->modelo->agregar($_REQUEST['precio'],$_REQUEST['tiempo'],$_REQUEST['descripcion']);
-					include('view/ServicioView.php');
+					include('view/agregarServicioView.php');
 					break;
 				case 'eliminar':
 					$Servicio=$this->modelo->eliminar($_REQUEST['idServicio']) ;
-					include('view/ServicioView.php');
+					include('view/eliminarServicioView.php');
 					break;
 				
 			}

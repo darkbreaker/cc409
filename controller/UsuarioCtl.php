@@ -14,27 +14,27 @@ include_once('model/UsuarioBss.php');
 			if(!isset($_REQUEST['accion']) ){
 				$Usuario = $this->modelo-> listar();
 				//vista del resultado
-				include('view/UsuarioView.php');
+				include('view/listarUsuarioView.php');
 			} else switch($_REQUEST['accion']){
-				case 'insertar':
+				case 'agregarUsuario':
 					$Usuario=$this->modelo->agregarUsuario($_REQUEST['nombre'],$_REQUEST['email'],$_REQUEST['password'],$_REQUEST['calle'],$_REQUEST['telefono']) ;
-					include('view/UsuarioView.php');
+					include('view/agregarUsuarioView.php');
 					break;
-				case 'buscar':
+				case 'consultarUsuario':
 					$Usuario=$this->modelo->consultarUsuario($_REQUEST['id']);
-					include('view/UsuarioView.php');
+					include('view/consultarUsuarioView.php');
 					break;
-				case 'filtro':
+				case 'filtrar':
 				$Usuario=$this->modelo->filtrarUsuario($_REQUEST['descripcion']);
-					include('view/UsuarioView.php');
+					include('view/filtrarUsuarioView.php');
 					break;
 				case 'modificar':
 					$Usuario=$this->modelo->modificar($_REQUEST['nombre'],$_REQUEST['telefono'],$_REQUEST['calle'],$_REQUEST['password'],$_REQUEST['email'],$_REQUEST['idPersona']) ;
-					include('view/UsuarioView.php');
+					include('view/modificarUsuarioView.php');
 					break;
 				case 'listar':
 					$Usuario=$this->modelo->listar() ;
-					include('view/UsuarioView.php');
+					include('view/listarUsuarioView.php');
 					break;
 			}
 			

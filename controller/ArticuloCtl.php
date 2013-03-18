@@ -14,31 +14,31 @@ include_once('model/ArticuloBss.php');
 			if(!isset($_REQUEST['accion']) ){
 				$Articulo = $this->modelo-> listar();
 				//vista del resultado
-				include('view/ArticuloView.php');
+				include('view/listarArticuloView.php');
 			} else switch($_REQUEST['accion']){
-				case 'agregarUsuario':
+				case 'agregar':
 					$Articulo=$this->modelo->agregarArticulo($_REQUEST['nombre'],$_REQUEST['descripcion'],$_REQUEST['precio_venta']) ;
-					include('view/ArticuloView.php');
+					include('view/agregarArticuloView.php');
 					break;
-				case 'buscarUsuario':
+				case 'consultar':
 					$Articulo=$this->modelo->consultarArticulo($_REQUEST['id']);
-					include('view/ArticuloView.php');
+					include('view/consultarArticuloView.php');
 					break;
-				case 'eliminarUsuario':
-				$Articulo=$this->modelo->filtrarArticulo($_REQUEST['descripcion']);
-					include('view/ArticuloView.php');
+				case 'eliminar':
+				$Articulo=$this->modelo->eliminarArticulo($_REQUEST['idUsuario']);
+					include('view/eliminarArticuloView.php');
 					break;
-				case 'modificarUsuario':
+				case 'modificar':
 					$Articulo=$this->modelo->modificarArticulo($_REQUEST['nombre'],$_REQUEST['descripcion'],$_REQUEST['precio_venta']) ;
-					include('view/ArticuloView.php');
+					include('view/modificarArticuloView.php');
 					break;
-				case 'filtrarUsuario':
+				case 'filtrar':
 			$Articulo=$this->modelo->filtrarArticulo($_REQUEST['descripcion']);
-					include('view/ArticuloView.php');
+					include('view/filtrarArticuloView.php');
 					break;
 				case 'listar':
 			$Articulo=$this->modelo->listar();
-					include('view/ArticuloView.php');
+					include('view/listarArticuloView.php');
 					break;
 			}
 			

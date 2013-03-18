@@ -14,48 +14,38 @@ include_once('model/CitaBss.php');
 			if(!isset($_REQUEST['accion']) ){
 				$Cita = $this->modelo-> listar();
 				//vista del resultado
-				include('view/CitaView.php');
+				include('view/listarCitaView.php');
 			} else switch($_REQUEST['accion']){
 				case 'agregarCita':
 					$Cita=$this->modelo->agregarCita($_REQUEST['idUsuario'],$_REQUEST['fecha'],$_REQUEST['detalles'],$_REQUEST['hora_reserva']) ;
-					include('view/CitaView.php');
+					include('view/agregarCitaView.php');
 					break;
 				case 'buscarCita':
 					$Cita=$this->modelo->buscarCita($_REQUEST['idCita']);
-					include('view/CitaView.php');
+					include('view/buscarCitaView.php');
 					break;
 				case 'eliminarCita':
 				$Cita=$this->modelo->eliminarCita($_REQUEST['idcita']);
-					include('view/CitaView.php');
+					include('eliminarview/CitaView.php');
 					break;
 				case 'listar':
 					$Cita=$this->modelo->listar() ;
-					include('view/CitaView.php');
+					include('view/listarCitaView.php');
 					break;
-<<<<<<< HEAD
 				case 'servicioCita'
 			               $Cita=$this->modelo->servicioCita($_REQUEST['idcita']) ;
-					include('view/CitaView.php');
+					include('view/serviciosCitaView.php');
 					break;
-		            	case 'ActualizarCita'
+		        case 'ActualizarCita'
 			               $Cita=$this->modelo->ActualizarCita($_REQUEST['idcita'],$_REQUEST['hora_termino'],$_REQUEST['estado']) ;
-					include('view/CitaView.php');
+					include('view/ActulizarCitaView.php');
 					break;
-=======
-				case 'ServiciosCita':
-					$Cita=$this->modelo->ServiciosCita($_REQUEST['idCita']) ;
-					include('view/CitaView.php');
-					break;
-				case 'ActulizarCita':
-					$Cita=$this->modelo->ActualizarCita() ;
-					include('view/CitaView.php');
-					break;
+
 				case 'filtrarCita':
 					$Cita=$this->modelo->filtrarCita($_REQUEST['descripcion']) ;
-					include('view/CitaView.php');
+					include('view/filtrarCitaView.php');
 					break;
 				
->>>>>>> cita mejorado
 			}
 			
 		}

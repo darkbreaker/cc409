@@ -14,27 +14,27 @@ include_once('model/PedidoBss.php');
 			if(!isset($_REQUEST['accion']) ){
 				$Pedido = $this->modelo-> Listar();
 				//vista del resultado
-				include('view/PedidoView.php');
+				include('view/ListarPedidoView.php');
 			} else switch($_REQUEST['accion']){
 				case 'listar':
 					$Pedido=$this->modelo->Listar();
-					include('view/PedidoView.php');
+					include('view/ListarPedidoView.php');
 					break;
 				case 'buscarReservacion':
 					$Pedido=$this->modelo->buscarReservacion($_REQUEST['idReservacion'],$_REQUEST['idUsuario']);
-					include('view/PedidoView.php');
+					include('view/buscarReservacionView.php');
 					break;
 				case 'eliminarReservacion':
 				$Pedido=$this->modelo->eliminarReservacion($_REQUEST['idReservacion']);
-					include('view/PedidoView.php');
+					include('view/eliminarPedidoView.php');
 					break;
 				case 'ActualizarReservacion':
 					$Pedido=$this->modelo-> ActualizarReservacion($_REQUEST['idReservacion'],$_REQUEST['estado']);
-					include('view/PedidoView.php');
+					include('view/ActulizarReservacionView.php');
 					break;
 				case 'filtrarPedido':
 					$Pedido=$this->modelo->filtrarPedido($_REQUEST['descripcion']) ;
-					include('view/PedidoView.php');
+					include('view/filtrarPedidoView.php');
 					break;
 			}
 			
