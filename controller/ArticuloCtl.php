@@ -17,7 +17,7 @@ include_once('model/ArticuloBss.php');
 				include('view/ArticuloView.php');
 			} else switch($_REQUEST['accion']){
 				case 'agregarUsuario':
-					$Articulo=$this->modelo->agregarArticulo($_REQUEST['nombre'],$_REQUEST['email'],$_REQUEST['password'],$_REQUEST['calle'],$_REQUEST['telefono']) ;
+					$Articulo=$this->modelo->agregarArticulo($_REQUEST['id'],$_REQUEST['nombre'],$_REQUEST['descripcion'],$_REQUEST['precio_venta']) ;
 					include('view/ArticuloView.php');
 					break;
 				case 'buscarUsuario':
@@ -29,10 +29,12 @@ include_once('model/ArticuloBss.php');
 					include('view/ArticuloView.php');
 					break;
 				case 'modificarUsuario':
-					
+					$Articulo=$this->modelo->modificarArticulo($_REQUEST['id'],$_REQUEST['nombre'],$_REQUEST['descripcion'],$_REQUEST['precio_venta']) ;
+					include('view/ArticuloView.php');
 					break;
 				case 'filtrarUsuario':
-					
+			$Articulo=$this->modelo->filtrarArticulo($_REQUEST['descripcion']);
+					include('view/ArticuloView.php');
 					break;
 			}
 			
