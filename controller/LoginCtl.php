@@ -1,7 +1,7 @@
 <?php
 //controlador requiere tener acceso al modelo
 include_once('model/UsuarioBss.php');
-	class StdCtl{
+	class LoginCtl{
 		public $modelo;
 		
 		//cuando se crea el contrador crea el modelo usuario

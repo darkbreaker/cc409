@@ -8,7 +8,7 @@ include_once('Articulo.php');
 		public $descripcion;
 		public $precio_venta;
 		
-         agregarArticulo($nombre, $descripcion, $precio_venta){
+         function agregarArticulo($nombre, $descripcion, $precio_venta){
 			$this->nombre=$nombre;
 			$this->descripcion=$descripcion;
 			$this->precio_venta=$precio_venta;
@@ -27,7 +27,7 @@ include_once('Articulo.php');
 			return $this->id;
         }
 		
-         buscarArticulo($idArticulo){
+        function  buscarArticulo($idArticulo){
 			$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
 			if($con->conecta()==false)
 				die('error de conexion');
@@ -48,7 +48,7 @@ include_once('Articulo.php');
 			}	
          }
 		 
-         eliminarArticulo($idArticulo){
+         function eliminarArticulo($idArticulo){
 			$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
 			if($con->conecta()==false)
 				die('error de conexion');
@@ -66,7 +66,7 @@ include_once('Articulo.php');
 		 
          }
 		 
-         ReservarArticulo($idArticulo, $idUsuario){
+        function  ReservarArticulo($idArticulo, $idUsuario){
 		
 			$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
 			if(!$con->conecta())
@@ -83,7 +83,7 @@ include_once('Articulo.php');
 		 
          }
 	
-	filtrarArticulo($descripcion){
+	function filtrarArticulo($descripcion){
 		$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
 		if($con->conecta()==false)
 			die('error de conexion');
@@ -96,7 +96,7 @@ include_once('Articulo.php');
 			return FALSE;
 			}
 	
-         listar(){
+        function  listar(){
 			$conexion= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
 			if($conexion->conecta()==false){
 				$conexion->cerrar();

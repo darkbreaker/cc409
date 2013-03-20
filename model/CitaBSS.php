@@ -55,13 +55,28 @@ include_once('Cita.php');
 			$clase= new Cita ($fila[0][id],$fila[0][fecha],$fila[0][idPersona],$fila[0][estado],$fila[0][detalles],$fila[0][inicio],$fila[0][fin]);
 
 			return $clase;
+			}
+			return false;
+         }
+		 
+         function eliminarCita($idCita){
+			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+			if($con->conecta()==false)
+				die('error de conexion');
+			$sql='DELETE FROM cita WHERE id= '.$id;
+			//ejecutar el query
+			$fila = $con->consulta($sql);	
+			if($fila==false){
+				die('error al consultar');
+				$con->cerrar();
+				return FALSE;
+				}
+				
+			$con->cerrar();
+			return TRUE;
 		 
          }
-         eliminarCita($idCita){
-			
-		 
-         }
-         SerciviosCita($idCita){
+        function SerciviosCita($idCita){
 			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 			if($con->conecta()==false)
 				die('error de conexion');
@@ -76,7 +91,7 @@ include_once('Cita.php');
 			
 			return $fila;
          }
-         ActualizarCita($idCita, $hora_termino,$estado){
+        function ActualizarCita($idCita, $hora_termino,$estado){
 			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 			if(!$con->conecta())
 				die('error conexion'.$conexion->errno);
@@ -92,8 +107,9 @@ include_once('Cita.php');
 				}
 
 			return $resultado;
+		}
 			
-       filtrarCita($descripcion){
+       function filtrarCita($descripcion){
 		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 		if($con->conecta()==false)
 			die('error de conexion');
@@ -106,7 +122,9 @@ include_once('Cita.php');
 			return FALSE;
 			}
          }
-         listar(){
+		 
+		 
+         function listar(){
 			$conexion= new Conexion ('localhost', 'root', 'root','cc409_perros');
 			if($conexion->conecta()==false){
 				$conexion->cerrar();
@@ -124,8 +142,6 @@ include_once('Cita.php');
 			return $resultado;
          }
 			
-
-
 
 	}
 ?>

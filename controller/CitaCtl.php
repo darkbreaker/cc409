@@ -1,7 +1,8 @@
 <?php
 //controlador requiere tener acceso al modelo
 include_once('model/CitaBss.php');
-	class StdCtl{
+
+class CitaCtl{
 		public $modelo;
 		
 		//cuando se crea el contrador crea el modelo Cita
