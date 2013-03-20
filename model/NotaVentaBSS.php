@@ -7,7 +7,7 @@
 		public $id;		
 		
 		function listar(){
-			$conexion= new Conexion ('localhost', 'root', 'root','maskota');
+			$conexion= new Conexion ('localhost', 'root', 'root','cc409_perros');
 			if($conexion->conecta()==false){
 				$conexion->cerrar();
 				die('error al conectar');

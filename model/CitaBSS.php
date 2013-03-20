@@ -10,7 +10,7 @@ include_once('Cita.php');
 		public $hora_reserva;		
 		public $hora_termino;		
         
-		agregarCita($idUsuario, $fecha, $detalles, $hora_reserva){
+		function agregarCita($idUsuario, $fecha, $detalles, $hora_reserva){
 			$this -> fecha=$fecha;
 			$this -> cliente=$idUsuario;
 			$this -> detalles=$detalle;
@@ -18,7 +18,7 @@ include_once('Cita.php');
         
 			
 			//conectarse a la base de datos
-			$con= new Conexion ('localhost', 'root', 'root','maskota');
+			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 			if(!$con->conecta())
 				die('error conexion');
 			//crear el query
@@ -36,8 +36,9 @@ include_once('Cita.php');
 			return $this->id;
 			  
         }
-         buscarCita($idCita){
-			$con= new Conexion ('localhost', 'root', 'root','maskota');
+		
+        function buscarCita($idCita){
+			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql='SELECT * FROM cita WHERE id= '.$id;
@@ -61,7 +62,7 @@ include_once('Cita.php');
 		 
          }
          SerciviosCita($idCita){
-			$con= new Conexion ('localhost', 'root', 'root','maskota');
+			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql='SELECT descripcion FROM detalle_cita as D,cita AS C,servicio as S WHERE D.idservicio=S.idServicio and D.idcita=C.idPersona and  C.id= '.$id;
@@ -76,7 +77,7 @@ include_once('Cita.php');
 			return $fila;
          }
          ActualizarCita($idCita, $hora_termino,$estado){
-			$con= new Conexion ('localhost', 'root', 'root','maskota');
+			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 			if(!$con->conecta())
 				die('error conexion'.$conexion->errno);
 		//crear el query
@@ -93,7 +94,7 @@ include_once('Cita.php');
 			return $resultado;
 			
        filtrarCita($descripcion){
-		$con= new Conexion ('localhost', 'root', 'root','maskota');
+		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql="SELECT * FROM usuario WHERE CONCAT(fecha,detalles,hora_reserva) LIKE '%".$descripcion."%'";
@@ -106,7 +107,7 @@ include_once('Cita.php');
 			}
          }
          listar(){
-			$conexion= new Conexion ('localhost', 'root', 'root','maskota');
+			$conexion= new Conexion ('localhost', 'root', 'root','cc409_perros');
 			if($conexion->conecta()==false){
 				$conexion->cerrar();
 				die('error al conectar');

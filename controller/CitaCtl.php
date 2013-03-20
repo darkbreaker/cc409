@@ -32,11 +32,11 @@ include_once('model/CitaBss.php');
 					$Cita=$this->modelo->listar() ;
 					include('view/listarCitaView.php');
 					break;
-				case 'servicioCita'
+				case 'servicioCita':
 			               $Cita=$this->modelo->servicioCita($_REQUEST['idcita']) ;
 					include('view/serviciosCitaView.php');
 					break;
-		        case 'ActualizarCita'
+		        case 'ActualizarCita':
 			               $Cita=$this->modelo->ActualizarCita($_REQUEST['idcita'],$_REQUEST['hora_termino'],$_REQUEST['estado']) ;
 					include('view/ActulizarCitaView.php');
 					break;

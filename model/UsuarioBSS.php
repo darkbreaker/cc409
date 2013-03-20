@@ -29,7 +29,7 @@ include_once('Usuario.php');
 		$this->telefono=$telefono;
 		
 		//conectarse a la base de datos
-		$con= new Conexion ('localhost', 'root', 'root','maskota');
+		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 		if(!$con->conecta())
 			die('error conexion');
 		//crear el query
@@ -51,7 +51,7 @@ include_once('Usuario.php');
 	*@return mixed objeto de clase usuario si lo encuentra o FALSE si hay un error
 	*/
 	function buscarUsuario($id){
-		$con= new Conexion ('localhost', 'root', 'root','maskota');
+		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql='SELECT * FROM usuario WHERE idPersona= '.$id;
@@ -72,11 +72,34 @@ include_once('Usuario.php');
 
 	}
 	
+	
+		function login($id,$password){
+			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+			if($con->conecta()==false)
+				die('error de conexion');
+			$sql="SELECT * FROM usuario WHERE idPersona='$id' and password='$password' ";
+			//ejecutar el query
+			$fila = $con->consulta($sql);	
+			if($fila==false){
+				die('error al consultar');
+				$con->cerrar();
+				return FALSE;
+				}
+			if( is_object($fila))
+			if($fila[0][idPersona]==$id){
+			$con->cerrar();
+			$clase= new Usuario ($fila[0][idPersona],$fila[0][nombre],$fila[0][telefono],$fila[0][calle],$fila[0][password],$fila[0][privilegios],$fila[0][email]);
+			return $clase;
+			}	
+				return false;
+
+	}
+	
 		/**
 	*@return mixed array o FALSE si hay un error
 	*/
 	function listar(){
-		$conexion= new Conexion ('localhost', 'root', 'root','maskota');
+		$conexion= new Conexion ('localhost', 'root', 'root','cc409_perros');
 		if($conexion->conecta()==false){
 			$conexion->cerrar();
 			die('error al conectar');
@@ -94,7 +117,7 @@ include_once('Usuario.php');
 	}
 	
 	function filtrarUsuario($descripcion){
-		$con= new Conexion ('localhost', 'root', 'root','maskota');
+		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql="SELECT * FROM usuario WHERE CONCAT(nombre,calle,telefono) LIKE '%".$descripcion."%'";
@@ -117,7 +140,7 @@ include_once('Usuario.php');
 		function modificar($nombre,$telefono,$direccion,$password,$email,$idUsuario){
 	
 		//conectarse a la base de datos
-		$con= new Conexion ('localhost', 'root', 'root','maskota');
+		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 		if(!$con->conecta())
 			die('error conexion'.$conexion->errno);
 		//crear el query

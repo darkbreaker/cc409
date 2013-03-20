@@ -9,7 +9,7 @@ include_once('Pedido.php');
 		public $estado;
 		
 		function listar(){
-		$conexion= new Conexion ('localhost', 'root', 'root','maskota');
+		$conexion= new Conexion ('localhost', 'root', 'root','cc409_perros');
 		if($conexion->conecta()==false){
 			$conexion->cerrar();
 			die('error al conectar');
@@ -27,7 +27,7 @@ include_once('Pedido.php');
 	}
 		
 		function buscarReservacion($idReservacion,$idUsuario){
-		$con= new Conexion ('localhost', 'root', 'root','maskota');
+		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql="SELECT * FROM usuario WHERE idPersona='$idUsuario' or idpedido='$idReservacion'";
@@ -52,7 +52,7 @@ include_once('Pedido.php');
 		function ActualizarReservacion($idReservacion,$estado){
 	
 		//conectarse a la base de datos
-		$con= new Conexion ('localhost', 'root', 'root','maskota');
+		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 		if(!$con->conecta())
 			die('error conexion'.$conexion->errno);
 		//crear el query
@@ -70,7 +70,7 @@ include_once('Pedido.php');
 	}
 		
 	function eliminar($id){
-		$con= new Conexion ('localhost', 'root', 'root','maskota');
+		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql='DELETE FROM pedido WHERE idpedido= '.$id;
