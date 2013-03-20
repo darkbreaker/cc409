@@ -95,8 +95,10 @@ include_once('Articulo.php');
 			$con->cerrar();
 			return FALSE;
 			}
+		return $fila;
+	}
 	
-        function  listar(){
+    function  listar(){
 			$conexion= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
 			if($conexion->conecta()==false){
 				$conexion->cerrar();
