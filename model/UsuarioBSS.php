@@ -73,19 +73,19 @@ include_once('Usuario.php');
 	}
 	
 	
-		function login($id,$password){
+	function login($id,$pass){
 			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 			if($con->conecta()==false)
 				die('error de conexion');
-			$sql="SELECT * FROM usuario WHERE idPersona='$id' and password='$password' ";
+			$sql="SELECT * FROM usuario WHERE idPersona='$id' and password=".$pass;
 			//ejecutar el query
 			$fila = $con->consulta($sql);	
 			if($fila==false){
-				die('error al consultar');
+				die('error al consultar login');
 				$con->cerrar();
 				return FALSE;
 				}
-			if( is_object($fila))
+			//if( is_object($fila))
 			if($fila[0][idPersona]==$id){
 			$con->cerrar();
 			$clase= new Usuario ($fila[0][idPersona],$fila[0][nombre],$fila[0][telefono],$fila[0][calle],$fila[0][password],$fila[0][privilegios],$fila[0][email]);
@@ -142,7 +142,7 @@ include_once('Usuario.php');
 		//conectarse a la base de datos
 		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 		if(!$con->conecta())
-			die('error conexion'.$conexion->errno);
+			die('error conexion');
 		//crear el query
 		$sql="UPDATE usuario SET email='$email', nombre='$nombre' , telefono='$telefono' , calle ='$direccion',password='$password'  WHERE idPersona=".$idUsuario;
 		//$sql=$con->escapar($sql);

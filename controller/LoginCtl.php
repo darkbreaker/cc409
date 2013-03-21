@@ -11,7 +11,8 @@ include_once('model/UsuarioBss.php');
 
 		function ejecutar(){
 			//si no tengo parametros se listan los usuarios
-			$usuario=$this->modelo->login($_REQUEST['usuario'],$_REQUEST['password']);
+			$usuario=$this->modelo->login($_REQUEST['usuario'],$_REQUEST['pass']);
+			include('view/View.php');
 			
 			
 		}
