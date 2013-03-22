@@ -41,6 +41,7 @@
 			if($this->cn->errno){
 				return FALSE;}
 			if(is_object($resultado)){
+				return $resultado;
 				if($resultado->num_rows>0){
 					while($fila=$resultado->fetch_assoc())
 						$resultado_array[] =$fila;
@@ -57,7 +58,7 @@
 
 		}
 	
-		function escapar($cn,$query){
+		function escapar($query){
 			return $this->cn->real_scape_string($query);
 	
 		}

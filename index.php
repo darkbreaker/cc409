@@ -9,7 +9,8 @@
  include('controller/PedidoCtl.php');
  include('controller/ServicioCtl.php');
  include('controller/ArticuloCtl.php');
- include('controller/LoginCtl.php');
+ include('controller/LogCtl.php');
+ 
  
  switch($_REQUEST['accion']){
 	case 'usuario':
@@ -30,9 +31,10 @@
 	case 'articulo':
 		$controlador = new ArticuloCtl();
 	break;
-	case 'login':
-		$controlador = new LoginCtl();
- 
+	case 'log':
+		$controlador = new LogCtl();
+		break;
+	
  }
 
  $controlador->ejecutar();

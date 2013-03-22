@@ -1,6 +1,6 @@
 <?php
 	include_once('Conexion.php');
-include_once('Usuario.php');
+	include_once('Usuario.php');
   class UsuarioBSS{
 		public $id;
 		public $nombre;
@@ -106,7 +106,7 @@ include_once('Usuario.php');
 			}
 	
 		//ejecutar el query
-		$resultado = $conexion->consulta('select * from usuario');	
+		$resultado = $conexion->consulta('SELECT * FROM usuario');	
 		if($resultado==FALSE){
 			die('error de resultado');
 			$conexion->cerrar();

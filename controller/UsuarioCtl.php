@@ -11,30 +11,37 @@ include_once('model/UsuarioBss.php');
 
 		function ejecutar(){
 			//si no tengo parametros se listan los Usuarios
-			if(!isset($_REQUEST['accion']) ){
+			if(!isset($_REQUEST['hacer']) ){
 				$Usuario = $this->modelo-> listar();
 				//vista del resultado
 				include('view/listarUsuarioView.php');
-			} else switch($_REQUEST['accion']){
+			} else switch($_REQUEST['hacer']){
 				case 'agregarUsuario':
 					$Usuario=$this->modelo->agregarUsuario($_REQUEST['nombre'],$_REQUEST['email'],$_REQUEST['password'],$_REQUEST['calle'],$_REQUEST['telefono']) ;
 					include('view/agregarUsuarioView.php');
 					break;
-				case 'consultarUsuario':
-					$Usuario=$this->modelo->consultarUsuario($_REQUEST['id']);
-					include('view/consultarUsuarioView.php');
+				case 'buscarUsuario':
+					$Usuario=$this->modelo->buscarUsuario($_REQUEST['id']);
+					include('view/buscarUsuarioView.php');
 					break;
 				case 'filtrar':
 				$Usuario=$this->modelo->filtrarUsuario($_REQUEST['descripcion']);
 					include('view/filtrarUsuarioView.php');
 					break;
+				
 				case 'modificar':
 					$Usuario=$this->modelo->modificar($_REQUEST['nombre'],$_REQUEST['telefono'],$_REQUEST['calle'],$_REQUEST['password'],$_REQUEST['email'],$_REQUEST['idPersona']) ;
 					include('view/modificarUsuarioView.php');
 					break;
 				case 'listar':
-					$Usuario=$this->modelo->listar() ;
-					include('view/listarUsuarioView.php');
+					session_start();
+					if(isset($_SESSION['usuario'])){
+						$Usuario=$this->modelo->listar() ;
+						echo $_SESSION['nombre'];
+						include('view/listarUsuarioView.php');
+					}
+					else
+						echo 'sin sesion';
 					break;
 			}
 			
