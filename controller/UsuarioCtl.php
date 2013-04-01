@@ -24,28 +24,35 @@ include_once('model/UsuarioBss.php');
 					break;
 				case 'buscarUsuario':
 					if(isset($_SESSION['usuario'])){
+						if($_SESSION['privilegio']>0){
 					$Usuario=$this->modelo->buscarUsuario($_REQUEST['id']);
 					include('view/buscarUsuarioView.php');
+					}
 					}
 					break;
 				case 'filtrar':
 					if(isset($_SESSION['usuario'])){
-					$Usuario=$this->modelo->filtrarUsuario($_REQUEST['descripcion']);
-					include('view/filtrarUsuarioView.php');
+							if($_SESSION['privilegio']>0){
+							$Usuario=$this->modelo->filtrarUsuario($_REQUEST['descripcion']);
+							include('view/filtrarUsuarioView.php');
+							}
 					}
 					break;
 				
 				case 'modificar':
 					if(isset($_SESSION['usuario'])){
-					$Usuario=$this->modelo->modificar($_REQUEST['nombre'],$_REQUEST['telefono'],$_REQUEST['calle'],$_REQUEST['password'],$_REQUEST['email'],$_REQUEST['idPersona']) ;
-					include('view/modificarUsuarioView.php');
+			
+							$Usuario=$this->modelo->modificar($_REQUEST['nombre'],$_REQUEST['telefono'],$_REQUEST['calle'],$_REQUEST['password'],$_REQUEST['email'],$_SESSION['usuario'])) ;
+							include('view/modificarUsuarioView.php');
 					}
 					break;
 				case 'listar':
 					if(isset($_SESSION['usuario'])){
-						$Usuario=$this->modelo->listar() ;
-						echo $_SESSION['nombre'];
-						include('view/listarUsuarioView.php');
+						if($_SESSION['privilegio']>0){
+							$Usuario=$this->modelo->listar() ;
+							echo $_SESSION['nombre'];
+							include('view/listarUsuarioView.php');
+						}
 					}
 					else
 						echo 'sin sesion';
