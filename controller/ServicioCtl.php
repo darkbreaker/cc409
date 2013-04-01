@@ -10,7 +10,8 @@ include_once('model/ServicioBss.php');
 		}
 
 		function ejecutar(){
-			//si no tengo parametros se listan los Servicios
+		session_start();
+			
 			if(!isset($_REQUEST['hacer']) ){
 				$Servicio = $this->modelo-> listar();
 				//vista del resultado
@@ -20,17 +21,27 @@ include_once('model/ServicioBss.php');
 					$Servicio=$this->modelo->buscarServicio($_REQUEST['idServicio']);
 					include('view/buscarServicioView.php');
 					break;
-				case 'listar':
-					$Servicio=$this->modelo->listar();
-					include('view/listarServicioView.php');
-					break;
 				case 'agregar':
-				$Servicio=$this->modelo->agregar($_REQUEST['precio'],$_REQUEST['tiempo'],$_REQUEST['descripcion']);
+				if(!isset($_SESSION['usuario'])){
+					if($_SESSION['privilegio']==2){
+					$Servicio=$this->modelo->agregar($_REQUEST['precio'],$_REQUEST['tiempo'],$_REQUEST['descripcion']);
 					include('view/agregarServicioView.php');
+					}else
+						include('view/View.php');
+				}else{
+					include('view/View.php');
+				}
 					break;
 				case 'eliminar':
+				if(!isset($_SESSION['usuario'])){
+					if($_SESSION['privilegio']==2){
 					$Servicio=$this->modelo->eliminar($_REQUEST['idServicio']) ;
 					include('view/eliminarServicioView.php');
+					}else
+						include('view/View.php');
+				}else{
+					include('view/View.php');
+				}
 					break;
 				
 			}
