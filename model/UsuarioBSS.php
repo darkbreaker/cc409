@@ -112,6 +112,12 @@
 			$conexion->cerrar();
 			return FALSE;
 			}
+		
+		for ($i=0;$i<count($resultado);$i++) 
+                              { 
+	$obj[$i] = new Articulo($resultado[$i][id],$resultado[$i][nombre],$resultado[$i][telefono],$resultado[$i][direccion],$resultado[$i][password],$resultado[$i][tipo],$resultado[$i][email]); 
+			}	
+			
 		$conexion-> cerrar();
 		return $resultado;
 	}
