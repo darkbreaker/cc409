@@ -22,6 +22,12 @@ include_once('Pedido.php');
 			$conexion->cerrar();
 			return FALSE;
 			}
+			
+			for ($i=0;$i<count($resultado);$i++) 
+                              { 
+		$obj[$i] = new Articulo($resultado[$i][idArticulo],$resultado[$i][fidUsuario],$resultado[$i][fechaReservacion],$resultado[$i][cliente]); 
+				}
+			
 		$conexion-> cerrar();
 		return $resultado;
 	}
