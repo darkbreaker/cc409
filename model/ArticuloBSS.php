@@ -105,22 +105,20 @@ include_once('Articulo.php');
 				die('error al conectar');
 				}
 		
-			//ejecutar el query
-			
-			for ($i=0;$i<count($obj);$i++) 
-                              { 
-			$obj[$i] = new Articulo(); 
-			$obj[$i]->listar(nombre,descripcion,precio); 
-				}
-				
 			$resultado = $conexion->consulta('select * from articulo');	
 			if($resultado==FALSE){
 				die('error de resultado');
 				$conexion->cerrar();
 				return FALSE;
 				}
+				
+			for ($i=0;$i<count($resultado);$i++) 
+                              { 
+			$obj[$i] = new Articulo($resultado[$i][id]...); //y asi ya seguir con todos los campos en orden para el contructor 
+				}
+				
 			$conexion-> cerrar();
-			return $resultado;
+			return $obj;
          }
          
 	}
