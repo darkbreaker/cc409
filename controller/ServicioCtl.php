@@ -11,11 +11,11 @@ include_once('model/ServicioBss.php');
 
 		function ejecutar(){
 			//si no tengo parametros se listan los Servicios
-			if(!isset($_REQUEST['accion']) ){
+			if(!isset($_REQUEST['hacer']) ){
 				$Servicio = $this->modelo-> listar();
 				//vista del resultado
 				include('view/listarServicioView.php');
-			} else switch($_REQUEST['accion']){
+			} else switch($_REQUEST['hacer']){
 				case 'buscarServicio':
 					$Servicio=$this->modelo->buscarServicio($_REQUEST['idServicio']);
 					include('view/buscarServicioView.php');

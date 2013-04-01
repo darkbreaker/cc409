@@ -11,11 +11,11 @@ include_once('model/PedidoBss.php');
 
 		function ejecutar(){
 			//si no tengo parametros se listan los Pedidos
-			if(!isset($_REQUEST['accion']) ){
+			if(!isset($_REQUEST['hacer']) ){
 				$Pedido = $this->modelo-> Listar();
 				//vista del resultado
 				include('view/ListarPedidoView.php');
-			} else switch($_REQUEST['accion']){
+			} else switch($_REQUEST['hacer']){
 				case 'listar':
 					$Pedido=$this->modelo->Listar();
 					include('view/ListarPedidoView.php');

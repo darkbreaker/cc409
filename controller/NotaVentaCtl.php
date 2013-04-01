@@ -11,10 +11,10 @@ include_once('model/NotaVentaBss.php');
 
 		function ejecutar(){
 			
-			if(isset($_REQUEST['accion']) ){
+			
 				$NotaVenta = $this->modelo-> listar();
 				include('view/NotaVentaView.php');
-			}
+			
 			
 		}
 

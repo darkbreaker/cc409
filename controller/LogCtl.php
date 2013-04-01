@@ -10,10 +10,10 @@ include_once('model/UsuarioBSS.php');
 
 		function ejecutar(){
 		//cargando sesion
-			$accion=$_REQUEST['hacer'];
+			$hacer=$_REQUEST['hacer'];
 			session_start();
 			
-			switch ($accion){
+			switch ($hacer){
 				case 'in':
 				
 					if(!isset($_SESSION['usuario'])){
@@ -28,8 +28,13 @@ include_once('model/UsuarioBSS.php');
 							$_SESSION['nombre']=$usuario->nombre;
 							$_SESSION['privilegio']=$usuario->tipo;				
 					
-							include('view/View.php');}
-					}
+							include('view/LogInView.php');
+							}else
+							{
+								include('view/LogErrorView.php');
+							}
+					}else
+						include('view/View.php');
 					break;
 				case 'out':
 					//limpiar session
@@ -38,7 +43,7 @@ include_once('model/UsuarioBSS.php');
 					session_destroy();
 					setcookie(session_name(),'',time()-1);
 					var_dump ($_SESSION);
-				
+					include('view/View.php');
 					break;
 				
 			}

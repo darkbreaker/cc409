@@ -11,12 +11,11 @@ class CitaCtl{
 		}
 
 		function ejecutar(){
-			//si no tengo parametros se listan los Citas
-			if(!isset($_REQUEST['accion']) ){
-				$Cita = $this->modelo-> listar();
-				//vista del resultado
-				include('view/listarCitaView.php');
-			} else switch($_REQUEST['accion']){
+			//si no tengo parametros se regresa al menu principal
+			if(!isset($_REQUEST['hacer']) ){
+				
+				include('view/View.php');
+			} else switch($_REQUEST['hacer']){
 				case 'agregarCita':
 					$Cita=$this->modelo->agregarCita($_REQUEST['idUsuario'],$_REQUEST['fecha'],$_REQUEST['detalles'],$_REQUEST['hora_reserva']) ;
 					include('view/agregarCitaView.php');
