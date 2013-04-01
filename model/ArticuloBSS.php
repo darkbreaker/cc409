@@ -106,6 +106,13 @@ include_once('Articulo.php');
 				}
 		
 			//ejecutar el query
+			
+			for ($i=0;$i<count($obj);$i++) 
+                              { 
+			$obj[$i] = new Articulo(); 
+			$obj[$i]->listar(nombre,descripcion,precio); 
+				}
+				
 			$resultado = $conexion->consulta('select * from articulo');	
 			if($resultado==FALSE){
 				die('error de resultado');
