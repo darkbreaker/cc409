@@ -10,12 +10,20 @@ include_once('model/NotaVentaBss.php');
 		}
 
 		function ejecutar(){
-			
-			
-				$NotaVenta = $this->modelo-> listar();
-				include('view/NotaVentaView.php');
-			
-			
+				session_start();
+				
+				if(!isset($_SESSION['usuario'])){
+				
+					if($_SESSION['privilegio']==2){
+					$NotaVenta = $this->modelo-> listar();
+					include('view/NotaVentaView.php');
+					}else{//no se tienen privilegios sufuicientes
+						include('view/View.php');
+					}
+				}else{// si no hay sesion envia al menu principal
+					include('view/View.php');
+					
+					}
 		}
 
 	}

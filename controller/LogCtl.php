@@ -37,12 +37,14 @@ include_once('model/UsuarioBSS.php');
 						include('view/View.php');
 					break;
 				case 'out':
+					if(!isset($_SESSION['usuario'])){
 					//limpiar session
 					session_unset();
 					//destruye sesion
 					session_destroy();
 					setcookie(session_name(),'',time()-1);
 					var_dump ($_SESSION);
+					}
 					include('view/View.php');
 					break;
 				

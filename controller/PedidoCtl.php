@@ -10,35 +10,51 @@ include_once('model/PedidoBss.php');
 		}
 
 		function ejecutar(){
-			//si no tengo parametros se listan los Pedidos
-			if(!isset($_REQUEST['hacer']) ){
-				$Pedido = $this->modelo-> Listar();
-				//vista del resultado
-				include('view/ListarPedidoView.php');
-			} else switch($_REQUEST['hacer']){
-				case 'listar':
-					$Pedido=$this->modelo->Listar();
-					include('view/ListarPedidoView.php');
-					break;
-				case 'buscarReservacion':
-					$Pedido=$this->modelo->buscarReservacion($_REQUEST['idReservacion'],$_REQUEST['idUsuario']);
-					include('view/buscarReservacionView.php');
-					break;
-				case 'eliminarReservacion':
-				$Pedido=$this->modelo->eliminarReservacion($_REQUEST['idReservacion']);
-					include('view/eliminarPedidoView.php');
-					break;
-				case 'ActualizarReservacion':
-					$Pedido=$this->modelo-> ActualizarReservacion($_REQUEST['idReservacion'],$_REQUEST['estado']);
-					include('view/ActulizarReservacionView.php');
-					break;
-				case 'filtrarPedido':
-					$Pedido=$this->modelo->filtrarPedido($_REQUEST['descripcion']) ;
-					include('view/filtrarPedidoView.php');
-					break;
+				session_start();
+				if(!isset($_SESSION['usuario'])){ //se valida que una sesion este iniciada para poder usar los pedidos
+						switch($_REQUEST['hacer']){
+						case 'listar':
+							if($_SESSION['privilegio']>0){
+							$Pedido=$this->modelo->Listar();
+							include('view/ListarPedidoView.php');
+							}else
+							include('view/View.php');
+							break;
+						case 'buscarReservacion':
+					
+							$Pedido=$this->modelo->buscarReservacion($_SESSION['usuario']);
+							include('view/buscarReservacionView.php');
+					
+							break;
+							
+						case 'eliminarReservacion':
+						if($_SESSION['privilegio']>0){
+						$Pedido=$this->modelo->eliminarReservacion($_REQUEST['idReservacion']);
+							include('view/eliminarPedidoView.php');
+							}else
+							include('view/View.php');
+							break;
+						case 'ActualizarReservacion':
+						if($_SESSION['privilegio']>0){
+							$Pedido=$this->modelo-> ActualizarReservacion($_REQUEST['idReservacion'],$_REQUEST['estado']);
+							include('view/ActulizarReservacionView.php');
+							}else
+							include('view/View.php');
+							break;
+						case 'filtrarPedido':
+							if($_SESSION['privilegio']>0){
+							$Pedido=$this->modelo->filtrarPedido($_REQUEST['descripcion']) ;
+							include('view/filtrarPedidoView.php');
+							include('view/ActulizarReservacionView.php');
+							}else
+							include('view/View.php');
+							break;
+					}//fin del switch
+					} else {
+						include('view/View.php');
+					}
+				}
 			}
-			
-		}
 
 	}
 

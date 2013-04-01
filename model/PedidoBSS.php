@@ -26,11 +26,11 @@ include_once('Pedido.php');
 		return $resultado;
 	}
 		
-		function buscarReservacion($idReservacion,$idUsuario){
+		function buscarReservacion($idUsuario){
 		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
 		if($con->conecta()==false)
 			die('error de conexion');
-		$sql="SELECT * FROM usuario WHERE idPersona='$idUsuario' or idpedido='$idReservacion'";
+		$sql="SELECT * FROM usuario WHERE idPersona='$idUsuario'";
 		//ejecutar el query
 		$fila = $con->consulta($sql);	
 		if($fila==false){
