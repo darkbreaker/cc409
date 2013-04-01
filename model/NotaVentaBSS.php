@@ -20,6 +20,12 @@
 				$conexion->cerrar();
 				return FALSE;
 				}
+				
+			for ($i=0;$i<count($resultado);$i++) 
+                              { 
+		$obj[$i] = new Articulo($resultado[$i][total],$resultado[$i][fecha],$resultado[$i][id]); 
+				}
+				
 			$conexion-> cerrar();
 			return $resultado;
 		}
