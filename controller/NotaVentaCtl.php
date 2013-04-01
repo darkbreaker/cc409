@@ -12,7 +12,7 @@ include_once('model/NotaVentaBss.php');
 		function ejecutar(){
 				session_start();
 				
-				if(!isset($_SESSION['usuario'])){
+				if(isset($_SESSION['usuario'])){
 				
 					if($_SESSION['privilegio']==2){
 					$NotaVenta = $this->modelo-> listar();

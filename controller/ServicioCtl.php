@@ -22,7 +22,7 @@ include_once('model/ServicioBss.php');
 					include('view/buscarServicioView.php');
 					break;
 				case 'agregar':
-				if(!isset($_SESSION['usuario'])){
+				if(isset($_SESSION['usuario'])){
 					if($_SESSION['privilegio']==2){
 					$Servicio=$this->modelo->agregar($_REQUEST['precio'],$_REQUEST['tiempo'],$_REQUEST['descripcion']);
 					include('view/agregarServicioView.php');
@@ -33,7 +33,7 @@ include_once('model/ServicioBss.php');
 				}
 					break;
 				case 'eliminar':
-				if(!isset($_SESSION['usuario'])){
+				if(isset($_SESSION['usuario'])){
 					if($_SESSION['privilegio']==2){
 					$Servicio=$this->modelo->eliminar($_REQUEST['idServicio']) ;
 					include('view/eliminarServicioView.php');

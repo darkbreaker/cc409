@@ -11,7 +11,7 @@ include_once('model/PedidoBss.php');
 
 		function ejecutar(){
 				session_start();
-				if(!isset($_SESSION['usuario'])){ //se valida que una sesion este iniciada para poder usar los pedidos
+				if(isset($_SESSION['usuario'])){ //se valida que una sesion este iniciada para poder usar los pedidos
 						switch($_REQUEST['hacer']){
 						case 'listar':
 							if($_SESSION['privilegio']>0){
