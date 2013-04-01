@@ -58,6 +58,11 @@ include_once('Servicio.php');
 			$conexion->cerrar();
 			return FALSE;
 			}
+			
+		for ($i=0;$i<count($resultado);$i++) 
+                              { 
+	$obj[$i] = new Articulo($resultado[$i][id],$resultado[$i][tiempo],$resultado[$i][descripcion],$resultado[$i][precio]); 
+				}
 		$conexion-> cerrar();
 		return $resultado;
 	}
