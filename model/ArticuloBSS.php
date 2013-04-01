@@ -114,7 +114,7 @@ include_once('Articulo.php');
 				
 			for ($i=0;$i<count($resultado);$i++) 
                               { 
-			$obj[$i] = new Articulo($resultado[$i][id]...); //y asi ya seguir con todos los campos en orden para el contructor 
+			$obj[$i] = new Articulo($resultado[$i][id],$resultado[$i][nombre],$resultado[$i][descripcion],$resultado[$i][precio_venta]); 
 				}
 				
 			$conexion-> cerrar();
