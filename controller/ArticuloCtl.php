@@ -11,11 +11,13 @@ include_once('model/ArticuloBss.php');
 
 		function ejecutar(){
 			//si no tengo parametros se listan los Articulos
-			if(!isset($_REQUEST['hacer']) ){
+			$hacer=$_REQUEST['hacer'];
+			
+			if(!isset(hacer) ){
 				$Articulo = $this->modelo-> listar();
 				//vista del resultado
 				include('view/listarArticuloView.php');
-			} else switch($_REQUEST['hacer']){
+			} else switch(hacer){
 				case 'agregar':
 					$Articulo=$this->modelo->agregarArticulo($_REQUEST['nombre'],$_REQUEST['descripcion'],$_REQUEST['precio_venta']) ;
 					include('view/agregarArticuloView.php');
