@@ -139,18 +139,19 @@
 			die('error de conexion');
 		$sql="SELECT * FROM usuario WHERE CONCAT(nombre,calle,telefono) LIKE '%".$descripcion."%'";
 		//ejecutar el query
-		$fila = $con->consulta($sql);	
-		if($fila==false){
+		$resultado = $con->consulta($sql);	
+		if($resultado==false){
 			die('error al consultar');
 			$con->cerrar();
 			return FALSE;
 			}
-		/*	
-		if($fila[0][idPersona]==$id){
-		$con->cerrar();
-		$clase= new Usuario ($fila[0][idPersona],$fila[0][nombre],$fila[0][telefono],$fila[0][calle],$fila[0][password],$fila[0][privilegios],$fila[0][email]);
-*/
-		return $fila;
+
+		for ($i=0;$i<count($resultado);$i++) 
+                              { 
+	$obj[$i] = new Usuario($resultado[$i][id],$resultado[$i][nombre],$resultado[$i][telefono],$resultado[$i][direccion],$resultado[$i][password],$resultado[$i][tipo],$resultado[$i][email]); 
+			}	
+			
+		return $obj;
 
 	}
 	
@@ -158,6 +159,14 @@
 	
 		//conectarse a la base de datos
 		$con= new Conexion (  );
+		$idUsuario=$con->escapar($idUsuario);
+		$id=$con->escapar($id);
+		$id=$con->escapar($id);
+		$id=$con->escapar($id);
+		$id=$con->escapar($id);
+		$id=$con->escapar($id);
+		
+		
 		if(!$con->conecta())
 			die('error conexion');
 		//crear el query
