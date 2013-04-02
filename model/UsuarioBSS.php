@@ -22,14 +22,21 @@
 
 	function agregarUsuario($nombre,$mail,$pass,$calle,$telefono){
 		//asignar variables al objeto
+		
+		
+		//conectarse a la base de datos
+		$con= new Conexion (  );
+		$nombre=$con->escapar($nombre);
+		$mail=$con->escapar($mail);
+		$pass=$con->escapar($pass);
+		$calle=$con->escapar($calle);
+		$telefono=$con->escapar($telefono);
 		$this->nombre=$nombre;
 		$this->mail=$mail;
 		$this->calle=$calle;
 		$this->pass=$pass;
 		$this->telefono=$telefono;
 		
-		//conectarse a la base de datos
-		$con= new Conexion (  );
 		if(!$con->conecta())
 			die('error conexion');
 		//crear el query
@@ -52,6 +59,7 @@
 	*/
 	function buscarUsuario($id){
 		$con= new Conexion (  );
+		$id=$con->escapar($id);
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql='SELECT * FROM usuario WHERE idPersona= '.$id;
@@ -75,6 +83,8 @@
 	
 	function login($id,$pass){
 			$con= new Conexion (  );
+			$id=$con->escapar($id);
+			$pass=$con->escapar($pass);
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql="SELECT * FROM usuario WHERE idPersona='$id' and password=".$pass;
@@ -124,6 +134,7 @@
 	
 	function filtrarUsuario($descripcion){
 		$con= new Conexion (  );
+		$descripcion=$con->escapar($descripcion);
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql="SELECT * FROM usuario WHERE CONCAT(nombre,calle,telefono) LIKE '%".$descripcion."%'";

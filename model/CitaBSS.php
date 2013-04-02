@@ -101,6 +101,9 @@ include_once('Cita.php');
          }
         function ActualizarCita($idCita, $hora_termino,$estado){
 			$con= new Conexion (  );
+			$idCita=$con->escapar($idCita);
+			$hora_termino=$con->escapar($hora_termino);
+			$estado=$con->escapar($estado);
 			if(!$con->conecta())
 				die('error conexion'.$conexion->errno);
 		//crear el query
@@ -119,6 +122,7 @@ include_once('Cita.php');
 			
        function filtrarCita($descripcion){
 		$con= new Conexion (  );
+		$descripcion=$con->escapar($descripcion);
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql="SELECT * FROM usuario WHERE CONCAT(fecha,detalles,hora_reserva) LIKE '%".$descripcion."%'";
