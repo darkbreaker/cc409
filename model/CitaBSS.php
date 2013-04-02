@@ -11,14 +11,19 @@ include_once('Cita.php');
 		public $hora_termino;		
         
 		function agregarCita($idUsuario, $fecha, $detalles, $hora_reserva){
+			
+			//conectarse a la base de datos
+			$con= new Conexion (  );
+			$idUsuario=$con->escapar($idUsuario);
+			$fecha=$con->escapar($fecha);
+			$detalles=$con->escapar($detalles);
+			$hora_reserva=$con->escapar($hora_reserva);
+			
 			$this -> fecha=$fecha;
 			$this -> cliente=$idUsuario;
 			$this -> detalles=$detalle;
 			$this -> hora_reserva=$hora_reserva;				
         
-			
-			//conectarse a la base de datos
-			$con= new Conexion (  );
 			if(!$con->conecta())
 				die('error conexion');
 			//crear el query
@@ -39,6 +44,7 @@ include_once('Cita.php');
 		
         function buscarCita($idCita){
 			$con= new Conexion (  );
+			$idCita=$con->escapar($idCita);
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql='SELECT * FROM cita WHERE id= '.$id;
@@ -61,6 +67,7 @@ include_once('Cita.php');
 		 
          function eliminarCita($idCita){
 			$con= new Conexion (  );
+			$idCita=$con->escapar($idCita);
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql='DELETE FROM cita WHERE id= '.$id;
@@ -78,6 +85,7 @@ include_once('Cita.php');
          }
         function SerciviosCita($idCita){
 			$con= new Conexion (  );
+			$idCita=$con->escapar($idCita);
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql='SELECT descripcion FROM detalle_cita as D,cita AS C,servicio as S WHERE D.idservicio=S.idServicio and D.idcita=C.idPersona and  C.id= '.$id;

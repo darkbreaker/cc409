@@ -4,6 +4,7 @@ include_once('Servicio.php');
   class ServicioBSS{
 		function buscarServicio($id){
 		$con= new Conexion (  );
+		$id=$con->escapar($id);
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql='SELECT * FROM servicio WHERE id= '.$id;
@@ -23,6 +24,7 @@ include_once('Servicio.php');
 		}	
 		
 		function eliminar($id){
+		$id=$con->escapar($id);
 		$con= new Conexion (  );
 		if($con->conecta()==false)
 			die('error de conexion');
@@ -68,14 +70,20 @@ include_once('Servicio.php');
 	}
 		
 	function agregar($precio,$tiempo,$descripcion){
+	
+		
+		//conectarse a la base de datos
+		$con= new Conexion (  );
+		$precio=$con->escapar($precio);
+		$tiempo=$con->escapar($tiempo);
+		$descripcion=$con->escapar($descripcion);
+		
 		//asignar variables al objeto
 		$this -> tiempo = $tiempo;
 		$this -> descripcion = $decripcion;
 		$this -> precio = $precio;
 
 		
-		//conectarse a la base de datos
-		$con= new Conexion (  );
 		if(!$con->conecta())
 			die('error conexion');
 		//crear el query
@@ -95,6 +103,7 @@ include_once('Servicio.php');
 		
 		function filtrarUsuario($descripcion){
 		$con= new Conexion (  );
+		$descripcion=$con->escapar($descripcion);
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql="SELECT * FROM usuario WHERE CONCAT(tiempo,precio,descripcion) LIKE '%".$descripcion."%'";
