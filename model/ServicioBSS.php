@@ -3,7 +3,7 @@
 include_once('Servicio.php');
   class ServicioBSS{
 		function buscarServicio($id){
-		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+		$con= new Conexion (  );
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql='SELECT * FROM servicio WHERE id= '.$id;
@@ -23,7 +23,7 @@ include_once('Servicio.php');
 		}	
 		
 		function eliminar($id){
-		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+		$con= new Conexion (  );
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql='DELETE FROM servicio WHERE id= '.$id;
@@ -45,7 +45,7 @@ include_once('Servicio.php');
 	*@return mixed array o FALSE si hay un error
 	*/
 	function listar(){
-		$conexion= new Conexion ('localhost', 'root', 'root','cc409_perros');
+		$conexion= new Conexion (  );
 		if($conexion->conecta()==false){
 			$conexion->cerrar();
 			die('error al conectar');
@@ -75,7 +75,7 @@ include_once('Servicio.php');
 
 		
 		//conectarse a la base de datos
-		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+		$con= new Conexion (  );
 		if(!$con->conecta())
 			die('error conexion');
 		//crear el query
@@ -94,7 +94,7 @@ include_once('Servicio.php');
 	}
 		
 		function filtrarUsuario($descripcion){
-		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+		$con= new Conexion (  );
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql="SELECT * FROM usuario WHERE CONCAT(tiempo,precio,descripcion) LIKE '%".$descripcion."%'";

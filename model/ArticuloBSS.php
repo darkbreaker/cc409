@@ -12,7 +12,7 @@ include_once('Articulo.php');
 			$this->nombre=$nombre;
 			$this->descripcion=$descripcion;
 			$this->precio_venta=$precio_venta;
-			$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
+			$con= new Conexion ( );
 			if(!$con->conecta())
 				die('error conexion');
 			$sql="INSERT INTO articulo(nombre,descripcion,precio) VALUES ('$this->nombre','$this->descripcion','$this->precio_venta') ";
@@ -28,7 +28,7 @@ include_once('Articulo.php');
         }
 		
         function  buscarArticulo($idArticulo){
-			$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
+			$con= new Conexion ( );
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql='SELECT * FROM articulo WHERE idarticulo= '.$id;
@@ -49,7 +49,7 @@ include_once('Articulo.php');
          }
 		 
          function eliminarArticulo($idArticulo){
-			$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
+			$con= new Conexion ( );
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql='DELETE FROM servicio WHERE idarticulo= '.$id;
@@ -68,7 +68,7 @@ include_once('Articulo.php');
 		 
         function  ReservarArticulo($idArticulo, $idUsuario){
 		
-			$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
+			$con= new Conexion ( );
 			if(!$con->conecta())
 				die('error conexion');
 			$sql="INSERT INTO pedido(idArticulo,idUSuario,fechaReservacion,estado) VALUES ('$idArticulo','$idUsuario',CURDATE(),'pendiente') ";
@@ -84,7 +84,7 @@ include_once('Articulo.php');
          }
 	
 	function filtrarArticulo($descripcion){
-		$con= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
+		$con= new Conexion ( );
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql="SELECT * FROM usuario WHERE CONCAT(nombre,descripcion,precio_venta) LIKE '%".$descripcion."%'";
@@ -99,7 +99,7 @@ include_once('Articulo.php');
 	}
 	
     function  listar(){
-			$conexion= new Conexion ('localhost', 'cc409_perros','1owYjeJy8a','cc409_perros');
+			$conexion= new Conexion ( );
 			if($conexion->conecta()==false){
 				$conexion->cerrar();
 				die('error al conectar');

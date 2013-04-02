@@ -18,7 +18,7 @@ include_once('Cita.php');
         
 			
 			//conectarse a la base de datos
-			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+			$con= new Conexion (  );
 			if(!$con->conecta())
 				die('error conexion');
 			//crear el query
@@ -38,7 +38,7 @@ include_once('Cita.php');
         }
 		
         function buscarCita($idCita){
-			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+			$con= new Conexion (  );
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql='SELECT * FROM cita WHERE id= '.$id;
@@ -60,7 +60,7 @@ include_once('Cita.php');
          }
 		 
          function eliminarCita($idCita){
-			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+			$con= new Conexion (  );
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql='DELETE FROM cita WHERE id= '.$id;
@@ -77,7 +77,7 @@ include_once('Cita.php');
 		 
          }
         function SerciviosCita($idCita){
-			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+			$con= new Conexion (  );
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql='SELECT descripcion FROM detalle_cita as D,cita AS C,servicio as S WHERE D.idservicio=S.idServicio and D.idcita=C.idPersona and  C.id= '.$id;
@@ -92,7 +92,7 @@ include_once('Cita.php');
 			return $fila;
          }
         function ActualizarCita($idCita, $hora_termino,$estado){
-			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+			$con= new Conexion (  );
 			if(!$con->conecta())
 				die('error conexion'.$conexion->errno);
 		//crear el query
@@ -110,7 +110,7 @@ include_once('Cita.php');
 		}
 			
        function filtrarCita($descripcion){
-		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+		$con= new Conexion (  );
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql="SELECT * FROM usuario WHERE CONCAT(fecha,detalles,hora_reserva) LIKE '%".$descripcion."%'";
@@ -125,7 +125,7 @@ include_once('Cita.php');
 		 
 		 
          function listar(){
-			$conexion= new Conexion ('localhost', 'root', 'root','cc409_perros');
+			$conexion= new Conexion (  );
 			if($conexion->conecta()==false){
 				$conexion->cerrar();
 				die('error al conectar');

@@ -29,7 +29,7 @@
 		$this->telefono=$telefono;
 		
 		//conectarse a la base de datos
-		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+		$con= new Conexion (  );
 		if(!$con->conecta())
 			die('error conexion');
 		//crear el query
@@ -51,7 +51,7 @@
 	*@return mixed objeto de clase usuario si lo encuentra o FALSE si hay un error
 	*/
 	function buscarUsuario($id){
-		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+		$con= new Conexion (  );
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql='SELECT * FROM usuario WHERE idPersona= '.$id;
@@ -74,7 +74,7 @@
 	
 	
 	function login($id,$pass){
-			$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+			$con= new Conexion (  );
 			if($con->conecta()==false)
 				die('error de conexion');
 			$sql="SELECT * FROM usuario WHERE idPersona='$id' and password=".$pass;
@@ -99,7 +99,7 @@
 	*@return mixed array o FALSE si hay un error
 	*/
 	function listar(){
-		$conexion= new Conexion ('localhost', 'root', 'root','cc409_perros');
+		$conexion= new Conexion (  );
 		if($conexion->conecta()==false){
 			$conexion->cerrar();
 			die('error al conectar');
@@ -123,7 +123,7 @@
 	}
 	
 	function filtrarUsuario($descripcion){
-		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+		$con= new Conexion (  );
 		if($con->conecta()==false)
 			die('error de conexion');
 		$sql="SELECT * FROM usuario WHERE CONCAT(nombre,calle,telefono) LIKE '%".$descripcion."%'";
@@ -146,7 +146,7 @@
 		function modificar($nombre,$telefono,$direccion,$password,$email,$idUsuario){
 	
 		//conectarse a la base de datos
-		$con= new Conexion ('localhost', 'root', 'root','cc409_perros');
+		$con= new Conexion (  );
 		if(!$con->conecta())
 			die('error conexion');
 		//crear el query

@@ -12,11 +12,17 @@
 		public $db;
 		public $cn;
 		
-		function __construct($dbhost,$dbuser,$dbpass,$db){
-			$this-> host = $dbhost;
+		function __construct(){
+		
+			$this-> host = 'localhost';
+			$this -> user = 'cc409_perros';
+			$this -> pass = '1owYjeJy8a';
+			$this -> db ='cc409_perros';
+		
+		/*	$this-> host = $dbhost;
 			$this -> user = $dbuser;
 			$this -> pass = $dbpass;
-			$this -> db =$db;
+			$this -> db =$db;*/
 		
 		}
 	
