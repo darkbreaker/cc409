@@ -11,20 +11,25 @@ include_once('model/ServicioBss.php');
 
 		function ejecutar(){
 		session_start();
-			
-			if(!isset($_REQUEST['hacer']) ){
+			$hacer=$_REQUEST['hacer'];
+			$idServicio=$_REQUEST['idServicio'];
+			$precio=$_REQUEST['precio'];
+			$tiempo=$_REQUEST['tiempo'];
+			$descripcion=$_REQUEST['descripcion'];
+
+			if(!isset($hacer) ){
 				$Servicio = $this->modelo-> listar();
 				//vista del resultado
 				include('view/listarServicioView.php');
-			} else switch($_REQUEST['hacer']){
+			} else switch($hacer){
 				case 'buscarServicio':
-					$Servicio=$this->modelo->buscarServicio($_REQUEST['idServicio']);
+					$Servicio=$this->modelo->buscarServicio($idServicio);
 					include('view/buscarServicioView.php');
 					break;
 				case 'agregar':
 				if(isset($_SESSION['usuario'])){
 					if($_SESSION['privilegio']==2){
-					$Servicio=$this->modelo->agregar($_REQUEST['precio'],$_REQUEST['tiempo'],$_REQUEST['descripcion']);
+					$Servicio=$this->modelo->agregar($precio, $tiempo, $descripcion);
 					include('view/agregarServicioView.php');
 					}else
 						include('view/View.php');
@@ -35,7 +40,7 @@ include_once('model/ServicioBss.php');
 				case 'eliminar':
 				if(isset($_SESSION['usuario'])){
 					if($_SESSION['privilegio']==2){
-					$Servicio=$this->modelo->eliminar($_REQUEST['idServicio']) ;
+					$Servicio=$this->modelo->eliminar($idServicio) ;
 					include('view/eliminarServicioView.php');
 					}else
 						include('view/View.php');
