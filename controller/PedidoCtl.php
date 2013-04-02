@@ -8,11 +8,16 @@ include_once('model/PedidoBss.php');
 		function __construct(){
 			$this->modelo = new PedidoBss();
 		}
-
 		function ejecutar(){
-				session_start();
+			session_start();
 				if(isset($_SESSION['usuario'])){ //se valida que una sesion este iniciada para poder usar los pedidos
-						switch($_REQUEST['hacer']){
+					
+				  	$hacer=$_REQUEST['hacer'];
+					$idReservacion=$_REQUEST['idReservacion'];
+					$estado=$_REQUEST['estado'];
+					$descripcion=$_REQUEST['descripcion'];
+
+						switch($hacer){
 						case 'listar':
 							if($_SESSION['privilegio']>0){
 							$Pedido=$this->modelo->Listar();
@@ -29,21 +34,21 @@ include_once('model/PedidoBss.php');
 							
 						case 'eliminarReservacion':
 						if($_SESSION['privilegio']>0){
-						$Pedido=$this->modelo->eliminarReservacion($_REQUEST['idReservacion']);
+						$Pedido=$this->modelo->eliminarReservacion($idReservacion);
 							include('view/eliminarPedidoView.php');
 							}else
 							include('view/View.php');
 							break;
 						case 'ActualizarReservacion':
 						if($_SESSION['privilegio']>0){
-							$Pedido=$this->modelo-> ActualizarReservacion($_REQUEST['idReservacion'],$_REQUEST['estado']);
+							$Pedido=$this->modelo-> ActualizarReservacion($idReservacion, $estado);
 							include('view/ActulizarReservacionView.php');
 							}else
 							include('view/View.php');
 							break;
 						case 'filtrarPedido':
 							if($_SESSION['privilegio']>0){
-							$Pedido=$this->modelo->filtrarPedido($_REQUEST['descripcion']) ;
+							$Pedido=$this->modelo->filtrarPedido($descripcion) ;
 							include('view/filtrarPedidoView.php');
 							include('view/ActulizarReservacionView.php');
 							}else
