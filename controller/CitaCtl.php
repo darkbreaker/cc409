@@ -12,20 +12,29 @@ class CitaCtl{
 
 		function ejecutar(){
 			//si no tengo parametros se regresa al menu principal
-			if(!isset($_REQUEST['hacer']) ){
+			$hacer=$_REQUEST['hacer'];
+			$idCita=$_REQUEST['idCita'];
+			$fecha=$_REQUEST['fecha'];
+			$detalles=$_REQUEST['detalles'];
+			$hora_reserva=$_REQUEST['hora_reserva'];
+			$hora_termino=$_REQUEST['hora_termino'];
+			$idUsuario=$_REQUEST['idUsuario'];
+                        $estado=$_REQUEST['estado'];
+			$descripcion=$_REQUEST['descripcion'];
+			if(!isset($hacer) ){
 				
 				include('view/View.php');
-			} else switch($_REQUEST['hacer']){
+			} else switch($hacer){
 				case 'agregarCita':
-					$Cita=$this->modelo->agregarCita($_REQUEST['idUsuario'],$_REQUEST['fecha'],$_REQUEST['detalles'],$_REQUEST['hora_reserva']) ;
+					$Cita=$this->modelo->agregarCita($idUsuario, $fecha ,$detalles, $hora_reserva) ;
 					include('view/agregarCitaView.php');
 					break;
 				case 'buscarCita':
-					$Cita=$this->modelo->buscarCita($_REQUEST['idCita']);
+					$Cita=$this->modelo->buscarCita($idCita);
 					include('view/buscarCitaView.php');
 					break;
 				case 'eliminarCita':
-				$Cita=$this->modelo->eliminarCita($_REQUEST['idcita']);
+				$Cita=$this->modelo->eliminarCita($idCita);
 					include('eliminarview/CitaView.php');
 					break;
 				case 'listar':
@@ -33,16 +42,16 @@ class CitaCtl{
 					include('view/listarCitaView.php');
 					break;
 				case 'servicioCita':
-			               $Cita=$this->modelo->servicioCita($_REQUEST['idcita']) ;
+			               $Cita=$this->modelo->servicioCita($idCita) ;
 					include('view/serviciosCitaView.php');
 					break;
 		        case 'ActualizarCita':
-			               $Cita=$this->modelo->ActualizarCita($_REQUEST['idcita'],$_REQUEST['hora_termino'],$_REQUEST['estado']) ;
+			               $Cita=$this->modelo->ActualizarCita($idCita, $hora_termino ,$estado) ;
 					include('view/ActulizarCitaView.php');
 					break;
 
 				case 'filtrarCita':
-					$Cita=$this->modelo->filtrarCita($_REQUEST['descripcion']) ;
+					$Cita=$this->modelo->filtrarCita($descripcion) ;
 					include('view/filtrarCitaView.php');
 					break;
 				
