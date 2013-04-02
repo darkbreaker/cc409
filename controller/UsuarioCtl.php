@@ -12,11 +12,19 @@ include_once('model/UsuarioBss.php');
 		function ejecutar(){
 			//si no tengo parametros se listan los Usuarios
 			session_start();
+			$hacer=$_REQUEST['hacer'];
+			$id=$_REQUEST['id'];
+			$nombre=$_REQUEST['nombre'];
+			$descripcion=$_REQUEST['descripcion'];
+			$email=$_REQUEST['email'];
+			$password=$_REQUEST['password'];
+                        $calle=$_REQUEST['calle'];
+			$telefono=$_REQUEST['telefono'];
 			
-			switch($_REQUEST['hacer']){
+			switch($hacer){
 				case 'agregarUsuario':
 				if(!isset($_SESSION['usuario'])){
-					$Usuario=$this->modelo->agregarUsuario($_REQUEST['nombre'],$_REQUEST['email'],$_REQUEST['password'],$_REQUEST['calle'],$_REQUEST['telefono']) ;
+					$Usuario=$this->modelo->agregarUsuario($nombre, $email, $password, $calle, $telefono) ;
 					include('view/agregarUsuarioView.php');
 					}else{
 						include('view/View.php');
@@ -25,7 +33,7 @@ include_once('model/UsuarioBss.php');
 				case 'buscarUsuario':
 					if(isset($_SESSION['usuario'])){
 						if($_SESSION['privilegio']>0){
-					$Usuario=$this->modelo->buscarUsuario($_REQUEST['id']);
+					$Usuario=$this->modelo->buscarUsuario($id);
 					include('view/buscarUsuarioView.php');
 					}
 					}
@@ -33,7 +41,7 @@ include_once('model/UsuarioBss.php');
 				case 'filtrar':
 					if(isset($_SESSION['usuario'])){
 							if($_SESSION['privilegio']>0){
-							$Usuario=$this->modelo->filtrarUsuario($_REQUEST['descripcion']);
+							$Usuario=$this->modelo->filtrarUsuario($descripcion);
 							include('view/filtrarUsuarioView.php');
 							}
 					}
@@ -42,7 +50,7 @@ include_once('model/UsuarioBss.php');
 				case 'modificar':
 					if(isset($_SESSION['usuario'])){
 			
-							$Usuario=$this->modelo->modificar($_REQUEST['nombre'],$_REQUEST['telefono'],$_REQUEST['calle'],$_REQUEST['password'],$_REQUEST['email'],$_SESSION['usuario'])) ;
+							$Usuario=$this->modelo->modificar($nombre, $telefono, $calle, $password, $mail, $_SESSION['usuario'])) ;
 							include('view/modificarUsuarioView.php');
 					}
 					break;
