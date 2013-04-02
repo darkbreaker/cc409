@@ -25,7 +25,7 @@ include_once('Pedido.php');
 			
 			for ($i=0;$i<count($resultado);$i++) 
                               { 
-		$obj[$i] = new Articulo($resultado[$i][idArticulo],$resultado[$i][fidUsuario],$resultado[$i][fechaReservacion],$resultado[$i][cliente]); 
+		$obj[$i] = new Pedido($resultado[$i][idArticulo],$resultado[$i][fidUsuario],$resultado[$i][fechaReservacion],$resultado[$i][cliente]); 
 				}
 			
 		$conexion-> cerrar();

@@ -141,7 +141,7 @@ include_once('Cita.php');
 				
 			for ($i=0;$i<count($resultado);$i++) 
                               { 
-		$obj[$i] = new Articulo($resultado[$i][id],$resultado[$i][fecha],$resultado[$i][cliente],$resultado[$i][estado],$resultado[$i][detalles],$resultado[$i][hora_reserva],$resultado[$i][hora_termino]); 
+		$obj[$i] = new Cita($resultado[$i][id],$resultado[$i][fecha],$resultado[$i][cliente],$resultado[$i][estado],$resultado[$i][detalles],$resultado[$i][hora_reserva],$resultado[$i][hora_termino]); 
 				}
 				
 			$conexion-> cerrar();

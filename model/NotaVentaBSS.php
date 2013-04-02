@@ -23,7 +23,7 @@
 				
 			for ($i=0;$i<count($resultado);$i++) 
                               { 
-		$obj[$i] = new Articulo($resultado[$i][total],$resultado[$i][fecha],$resultado[$i][id]); 
+		$obj[$i] = new NotaVenta($resultado[$i][total],$resultado[$i][fecha],$resultado[$i][id]); 
 				}
 				
 			$conexion-> cerrar();
