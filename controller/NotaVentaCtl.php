@@ -1,7 +1,8 @@
 <?php
 //controlador requiere tener acceso al modelo
 include_once('model/NotaVentaBss.php');
-	class NotaVentaCtl{
+include_once('ModeloCtl.php');
+	class NotaVentaCtl extends ModeloCtl{
 		public $modelo;
 		
 		//cuando se crea el contrador crea el modelo NotaVenta

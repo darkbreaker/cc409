@@ -1,7 +1,8 @@
 <?php
 //controlador requiere tener acceso al modelo
 include_once('model/UsuarioBss.php');
-	class UsuarioCtl{
+include_once('ModeloCtl.php');
+	class UsuarioCtl extends ModeloCtl{
 		public $modelo;
 		
 		//cuando se crea el contrador crea el modelo Usuario
@@ -69,6 +70,8 @@ include_once('model/UsuarioBss.php');
 			
 		}
 
+		
+		
 	}
 
 

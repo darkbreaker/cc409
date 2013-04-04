@@ -1,7 +1,8 @@
 <?php
 //controlador requiere tener acceso al modelo
 include_once('model/ArticuloBss.php');
-	class ArticuloCtl{
+include_once('ModeloCtl.php');
+	class ArticuloCtl extends ModeloCtl{
 		public $modelo;
 		
 		//cuando se crea el contrador crea el modelo Articulo

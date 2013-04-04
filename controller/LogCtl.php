@@ -1,7 +1,8 @@
 <?php
 //controlador requiere tener acceso al modelo
 include_once('model/UsuarioBSS.php');
-	class LogCtl{
+include_once('ModeloCtl.php');
+	class LogCtl extends ModeloCtl{
 		public $modelo;
 		//cuando se crea el contrador crea el modelo usuario
 		function __construct(){

@@ -1,7 +1,8 @@
 <?php
 //controlador requiere tener acceso al modelo
 include_once('model/PedidoBss.php');
-	class PedidoCtl{
+include_once('ModeloCtl.php');
+	class PedidoCtl extends ModeloCtl{
 		public $modelo;
 		
 		//cuando se crea el contrador crea el modelo Pedido
