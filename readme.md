@@ -73,7 +73,15 @@ captura de datos
 Superusuario:
 control de informacion.
 
+Demo del desarrollo en alaturing
 
+Url de acceso: http://alanturing.cucei.udg.mx/cc409/USUARIOFTP
+Host: alanturing.cucei.udg.mx ó 148.202.152.110
+Puerto: 22
+
+Usuario SFTP: perros
+Base de datos: cc409_perros
+Usuario de la base de datos: cc409_perros
 
 Integrantes de Equipo
 
