@@ -67,21 +67,25 @@ actualizar pedidos
 
 
 Niveles de Usuario
-cliente:
-captura de datos
+
+Nivel = 0. Administrador.- dueño de la empresa, puede consultar las ventas del dia, ademas 
+de lo que puede consultar el empleado y por ser el dueño y encargado puede borrar o editar todo.
+Nivel = 1. Empleado.- puede consultar a los usuarios y pedidos pero no las ventas del dia
+como el Administrador, no puede eliminar nada.
+Nivel = 2. Cliente.-un cliente no puede consultar a los usuarios ni consultar los pedidos 
+y se necesita estar log in para reservar productos, mas no para verlos. 
+
+
 
 Superusuario:
 control de informacion.
 
+
+
 Demo del desarrollo en alaturing
 
-Url de acceso: http://alanturing.cucei.udg.mx/cc409/USUARIOFTP
-Host: alanturing.cucei.udg.mx ó 148.202.152.110
-Puerto: 22
+Url de acceso: http://alanturing.cucei.udg.mx/cc409
 
-Usuario SFTP: perros
-Base de datos: cc409_perros
-Usuario de la base de datos: cc409_perros
 
 Integrantes de Equipo
 
