@@ -70,8 +70,10 @@ Niveles de Usuario
 
 Nivel = 0. Administrador.- dueño de la empresa, puede consultar las ventas del dia, ademas 
 de lo que puede consultar el empleado y por ser el dueño y encargado puede borrar o editar todo.
+
 Nivel = 1. Empleado.- puede consultar a los usuarios y pedidos pero no las ventas del dia
 como el Administrador, no puede eliminar nada.
+
 Nivel = 2. Cliente.-un cliente no puede consultar a los usuarios ni consultar los pedidos 
 y se necesita estar log in para reservar productos, mas no para verlos. 
 
