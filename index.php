@@ -31,7 +31,10 @@
 	case 'log':
 		include('controller/LogCtl.php');
 		$controlador = new LogCtl();
-		break;	
+		break;
+	default:
+		include('controller/DefaultCtl.php');
+		$controlador = new LogCtl();
  }
 
  $controlador->ejecutar();
