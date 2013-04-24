@@ -87,6 +87,9 @@ control de informacion.
 Demo del desarrollo en alaturing
 
 Url de acceso: http://alanturing.cucei.udg.mx/cc409
+cuenta de acceso
+id=1 pass=1234
+id=6 pass=1234
 
 
 Integrantes de Equipo
