@@ -2,25 +2,25 @@
 //controlador requiere tener acceso al modelo
 include_once('model/UsuarioBss.php');
 include_once('ModeloCtl.php');
-	class ModeloCtl extends ModeloCtl{
+	class ModeloCtl{
 		/**
 		*funciones que comprueban la valides de las cadenas
 		*true si cumple, false sino
 		**/
 		function EsNombre($string){
-			$expresion='/[a-zA-ZÀ-ÖØ-öø-ÿ]+\.?(( |\-)[a-zA-ZÀ-ÖØ-öø-ÿ]+\.?)*/';
+			$expresion='/[a-zA-Zï¿½-ï¿½ï¿½-ï¿½ï¿½-ï¿½]+\.?(( |\-)[a-zA-Zï¿½-ï¿½ï¿½-ï¿½ï¿½-ï¿½]+\.?)*/';
 			if (preg_match($expresion, $string)) {
 				return true;
 			}else
-				return false
+				return false;
 		}
 		
 		function EsCalle($string){
-			$expresion='/[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?(( |\-)[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?)* (((#|[nN][oO]\.?) ?)?\d{1,4}(( ?[a-zA-Z0-9\-]+)+)?)/';
+			$expresion='/[a-zA-Z1-9ï¿½-ï¿½ï¿½-ï¿½ï¿½-ï¿½]+\.?(( |\-)[a-zA-Z1-9ï¿½-ï¿½ï¿½-ï¿½ï¿½-ï¿½]+\.?)* (((#|[nN][oO]\.?) ?)?\d{1,4}(( ?[a-zA-Z0-9\-]+)+)?)/';
 			if (preg_match($expresion, $string)) {
 				return true;
 			}else
-				return false
+				return false;
 		}
 		
 		function EsTelefono($string){
@@ -28,7 +28,7 @@ include_once('ModeloCtl.php');
 			if (preg_match($expresion, $string)) {
 				return true;
 			}else
-				return false
+				return false;
 		}
 		
 		function EsMail($string){
@@ -36,7 +36,7 @@ include_once('ModeloCtl.php');
 			if (preg_match($expresion, $string)) {
 				return true;
 			}else
-				return false
+				return false;
 		}
 		
 		function EsId($string){
