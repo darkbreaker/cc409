@@ -1,13 +1,13 @@
 <?php
 //controlador requiere tener acceso al modelo
-include_once('model/PedidoBss.php');
+include_once('model/PedidoBSS.php');
 include_once('ModeloCtl.php');
 	class PedidoCtl extends ModeloCtl{
 		public $modelo;
 		
 		//cuando se crea el contrador crea el modelo Pedido
 		function __construct(){
-			$this->modelo = new PedidoBss();
+			$this->modelo = new PedidoBSS();
 		}
 		function ejecutar(){
 			session_start();
