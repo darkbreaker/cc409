@@ -1,13 +1,13 @@
 <?php
 //controlador requiere tener acceso al modelo
-include_once('model/CitaBss.php');
+include_once('model/CitaBSS.php');
 include_once('ModeloCtl.php');
 class CitaCtl extends ModeloCtl{
 		public $modelo;
 		
 		//cuando se crea el contrador crea el modelo Cita
 		function __construct(){
-			$this->modelo = new CitaBss();
+			$this->modelo = new CitaBSS();
 		}
 
 		function ejecutar(){
