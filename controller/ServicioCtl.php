@@ -1,13 +1,13 @@
 <?php
 //controlador requiere tener acceso al modelo
-include_once('model/ServicioBss.php');
+include_once('model/ServicioBSS.php');
 include_once('ModeloCtl.php');
 	class ServicioCtl extends ModeloCtl{
 		public $modelo;
 		
 		//cuando se crea el contrador crea el modelo Servicio
 		function __construct(){
-			$this->modelo = new ServicioBss();
+			$this->modelo = new ServicioBSS();
 		}
 
 		function ejecutar(){
