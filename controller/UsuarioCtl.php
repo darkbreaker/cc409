@@ -1,13 +1,13 @@
 <?php
 //controlador requiere tener acceso al modelo
-include_once('model/UsuarioBss.php');
+include_once('model/UsuarioBSS.php');
 include_once('ModeloCtl.php');
 	class UsuarioCtl extends ModeloCtl{
 		public $modelo;
 		
 		//cuando se crea el contrador crea el modelo Usuario
 		function __construct(){
-			$this->modelo = new UsuarioBss();
+			$this->modelo = new UsuarioBSS();
 		}
 
 		function ejecutar(){
