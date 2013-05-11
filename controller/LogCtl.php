@@ -14,7 +14,11 @@ include_once('ModeloCtl.php');
 
 				$hacer=$_REQUEST['hacer'];
 				session_start();
-			
+				
+				if(!isset($accion)){
+				include_once('view/Login.html');
+				}else
+
 				switch ($hacer){
 					case 'in':
 						if(!isset($_SESSION['usuario'])){
