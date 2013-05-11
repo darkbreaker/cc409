@@ -11,11 +11,11 @@ include_once('ModeloCtl.php');
 		}
 
 		function ejecutar(){
-		session_start();
+			session_start();
 			$hacer=$_REQUEST['hacer'];
 			$idServicio=esId($_REQUEST['idServicio']);
 			$precio=EsNo($_REQUEST['precio']);
-			$tiempo=$_REQUEST['tiempo'];
+			$tiempo=esNo($_REQUEST['tiempo']);
 			$descripcion=$_REQUEST['descripcion'];
 
 			if(!isset($hacer) ){
@@ -24,32 +24,37 @@ include_once('ModeloCtl.php');
 				include('view/listarServicioView.php');
 			} else switch($hacer){
 				case 'buscarServicio':
-					$Servicio=$this->modelo->buscarServicio($idServicio);
-					include('view/buscarServicioView.php');
+					if(!$idServicio)
+						include('view/Index.html');
+					else{
+						$Servicio=$this->modelo->buscarServicio($idServicio);
+						include('view/buscarServicioView.php');}
 					break;
 				case 'agregar':
-				if(isset($_SESSION['usuario'])){
-					if($_SESSION['privilegio']==2){
-					$Servicio=$this->modelo->agregar($precio, $tiempo, $descripcion);
-					include('view/agregarServicioView.php');
-					}else
-						include('view/View.php');
-				}else{
-					include('view/View.php');
-				}
+					if(isset(!$_SESSION['usuario'])||!$precio||!$tiempo||!$descripcion){
+						include('view/Index.html');
+					}else{
+						if($_SESSION['privilegio']==2){
+						$Servicio=$this->modelo->agregar($precio, $tiempo, $descripcion);
+						include('view/agregarServicioView.php');
+						}else
+							include('view/Index.html');
+					}
 					break;
 				case 'eliminar':
-				if(isset($_SESSION['usuario'])){
-					if($_SESSION['privilegio']==2){
-					$Servicio=$this->modelo->eliminar($idServicio) ;
-					include('view/eliminarServicioView.php');
-					}else
-						include('view/View.php');
-				}else{
-					include('view/View.php');
-				}
-					break;
-				
+					if(!isset($_SESSION['usuario'])||!$idServicio){
+						include('view/Index.html');
+					}else{
+						if($_SESSION['privilegio']==2){
+							$Servicio=$this->modelo->eliminar($idServicio) ;
+							include('view/eliminarServicioView.php');
+						}else
+							include('view/Index.html');
+						
+					}
+						break;
+				Default:
+					include('view/Index.html');
 			}
 			
 		}
