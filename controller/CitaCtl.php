@@ -13,12 +13,12 @@ class CitaCtl extends ModeloCtl{
 		function ejecutar(){
 			//si no tengo parametros se regresa al menu principal
 			$hacer=$_REQUEST['hacer'];
-			$idCita=$_REQUEST['idCita'];
-			$fecha=$_REQUEST['fecha'];
+			$idCita=EsId($_REQUEST['idCita']);
+			$fecha=EsFecha($_REQUEST['fecha']);
 			$detalles=$_REQUEST['detalles'];
-			$hora_reserva=$_REQUEST['hora_reserva'];
-			$hora_termino=$_REQUEST['hora_termino'];
-			$idUsuario=$_REQUEST['idUsuario'];
+			$hora_reserva=EsHora($_REQUEST['hora_reserva']);
+			$hora_termino=EsHora($_REQUEST['hora_termino']);
+			$idUsuario=EsId($_REQUEST['idUsuario']);
             $estado=$_REQUEST['estado'];
 			$descripcion=$_REQUEST['descripcion'];
 			if(!isset($hacer) ){

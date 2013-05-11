@@ -9,7 +9,23 @@
 		*$string si cumple, false sino
 		**/
 		function EsNombre($string){
-			$expresion='/[a-zA-ZÀ-ÖØ-öø-ÿ]+\.?(( |\-)[a-zA-ZÀ-ÖØ-öø-ÿ]+\.?)*/';
+			$expresion='/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/';
+			if (preg_match($expresion, $string)) {
+				return $string;
+			}else
+				return false;
+		}
+		
+			function EsFecha($string){
+			$expresion='/^(19|20)[0-9]{2}(-|\/)(0[1-9]{1}|1[0-2])(-|\/)[0-2]{1}[0-9]{1}$/';
+			if (preg_match($expresion, $string)) {
+				return $string;
+			}else
+				return false;
+		}
+		
+		function EsHora($string){
+			$expresion='/([0-1][0-9])(:[1-5][0-9]){2,3}$/';
 			if (preg_match($expresion, $string)) {
 				return $string;
 			}else
@@ -55,6 +71,8 @@
 				return false;
 		
 		}
+		
+		
 		
 	}
 
