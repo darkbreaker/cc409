@@ -15,7 +15,7 @@ include_once('ModeloCtl.php');
 				$hacer=$_REQUEST['hacer'];
 				session_start();
 				
-				if(!isset($accion)){
+				if(!isset($accion)&&!isset($_SESSION['usuario'])){
 				include_once('view/Login.html');
 				}else
 
@@ -40,24 +40,24 @@ include_once('ModeloCtl.php');
 										
 										include('view/LogErrorView.php');
 						}else
-							include('view/LogErrorView.php');
+							include_once('view/Index.html');
 							
 						
 								
 						break;
 					case 'out':
 						if(isset($_SESSION['usuario'])){
-						//limpiar session
-						session_unset();
-						//destruye sesion
-						session_destroy();
-						setcookie(session_name(),'',time()-1);
-						var_dump ($_SESSION);
+							//limpiar session
+							session_unset();
+							//destruye sesion
+							session_destroy();
+							setcookie(session_name(),'',time()-1);
+							var_dump ($_SESSION);
 						}
-						include('view/View.php');
+						include_once('view/Index.html');
 						break;
 					default:
-						include('view/LogErrorView.php');
+						include_once('view/Index.html');
 				}	// fin del switch
 
 		}// fin de la funcion
