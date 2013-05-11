@@ -3,6 +3,12 @@
  *@package veterinariaweb
  //index principal
  */
+ $accion=$_REQUEST['accion'];
+ if(!isset($accion)){
+	include('controller/DefaultCtl.php');
+	$controlador = new DefaultCtl();
+	}else
+	
  switch($_REQUEST['accion']){
 	case 'usuario':
 		include('controller/UsuarioCtl.php');
@@ -34,7 +40,7 @@
 		break;
 	default:
 		include('controller/DefaultCtl.php');
-		$controlador = new LogCtl();
+		$controlador = new DefaultCtl();
  }
 
  $controlador->ejecutar();
