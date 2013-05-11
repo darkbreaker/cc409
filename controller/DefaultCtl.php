@@ -2,7 +2,7 @@
 
 	class DefaultCtl{
 		function ejecutar(){
-			include('view/Index.html');
+			include_once('view/Index.html');
 						
 		}
 
