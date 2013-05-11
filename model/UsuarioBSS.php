@@ -26,6 +26,10 @@
 		
 		//conectarse a la base de datos
 		$con= new Conexion (  );
+		
+			if(!$con->conecta())
+			die('error conexion');
+			
 		$nombre=$con->escapar($nombre);
 		$mail=$con->escapar($mail);
 		$pass=$con->escapar($pass);
@@ -37,8 +41,7 @@
 		$this->pass=$pass;
 		$this->telefono=$telefono;
 		
-		if(!$con->conecta())
-			die('error conexion');
+	
 		//crear el query
 		$sql="INSERT INTO usuario(nombre,calle,password,email,telefono,privilegios) VALUES ('$this->nombre','$this->calle','$this->pass','$this->mail','$this->telefono',DEFAULT) ";
 		//$sql=$con->escapar($sql);

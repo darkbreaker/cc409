@@ -9,12 +9,14 @@ include_once('Articulo.php');
 		public $precio_venta;
 		
          function agregarArticulo($nombre, $descripcion, $precio_venta){
-			$this->nombre=$nombre;
-			$this->descripcion=$descripcion;
-			$this->precio_venta=$precio_venta;
 			$con= new Conexion ( );
 			if(!$con->conecta())
 				die('error conexion');
+				
+			$this->nombre		=$con->escapar($nombre);
+			$this->descripcion	=$con->escapar($descripcion);
+			$this->precio_venta	=$con->escapar($precio_venta);
+		
 			$sql="INSERT INTO articulo(nombre,descripcion,precio) VALUES ('$this->nombre','$this->descripcion','$this->precio_venta') ";
 			$resultado=$con->consulta($sql);
 			if($resultado==false){
