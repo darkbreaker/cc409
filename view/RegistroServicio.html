@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Productos</title>
+    <title>RegistroServicio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -84,13 +84,43 @@ p{color:black;}
       </div>
     </div>
 
-    <div class="container">
- <table class="table">
-</table>
-<footer>
-        <p>&copy; Mascota</p>
-      </footer>
+   <div class="container">
 
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Registrar Servicio</h2>
+
+        <label for="nombre">Nombre</label>
+         <input type="text" id="nombre" name="nombre" Required class="input-block-level">
+         <label for="nombre">Descripcion</label>
+         <input type="text" id="descripcion" name="descripcion" Required class="input-block-level">
+         <label for="nombre">Precio</label>
+         <input type="text" id="precio" name="precio" Required class="input-block-level">
+         <label for="nombre">Tiempo</label>
+         <input type="text" id="tiempo" name="tiempo" Required class="input-block-level">
+       </br>
+        <button class="btn btn-large btn-primary" type="submit">Guardar</button>
+      </form>
+
+
+<div class="container">
+    <div class="row">
+      <div class="span12">
+        
+        <div class="navbar-inverse navbar-fixed-bottom">
+          <div class="navbar-inner">
+            <div class="container-fluid">
+              <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
 
     </div> <!-- /container -->

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Veterinaria</title>
+    <title>BuscarProducto</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -11,31 +11,24 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
-        padding-top: 50px;
-        padding-bottom: 20px;
-        background-image:url('fondo.jpg');
-        color: black;
+        padding-top: 150px;
+        padding-bottom: 40px;
+       background-image:url('fondo.jpg');
+       color: black;
+      }
 
 
       }
 
-      .sidebar-nav {
-        padding: 5px 0;
-      }   
+p{color:black;}
 
- 
-           @media (max-width: 980px) {
-        /* Enable use of floated navbar text */
-        .navbar-text.pull-right {
-          float: none;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-
-
-      }
     </style>
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
 
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
@@ -46,8 +39,7 @@
   </head>
 
   <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -61,47 +53,27 @@
               Se autentifico como: <a href="#" class="navbar-link">Username</a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="Index.html">Pagina Principal</a></li>
-              <li><a href="Login.html">Login</a></li>
+              <li><a href="Index.html">Pagina Principal</a></li>
+              <li class="active"><a href="Login.html">Login</a></li>
               <li><a href="Registro.html">Registrarse</a></li>
-              <li class="form-search">
-  <input type="text" class="input-medium search-query">
-  <button type="submit" class="btn">Buscar</button>
-
-</li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-        
+    <center>
+    <form>
 
-        <div class="span9">
-          <div class="hero-unit">
-            <h1>Bienvenido a la tienda en linea de Mascota</h1>
-            <p><img src="images.jpg" class="img-polaroid">
-            <img src="images.jpg" class="img-polaroid"></p>
-          </div>
-            <h3>Aqui encontraras una gran variedad de productos para tus diferentes tipos de mascotas. Entre los cuales hay comida, accesorios, productos de limpieza, etc.</h3>
-            </br>
-            <p><a class="btn btn-info" href="#">Leer Mas &raquo;</a></p>
-            </br>
-            </br>
-             <h3>Si te falta una mascota, aqui puedes encontrar a tu mascota ideal entre nuestra gran vatiedad de tipod de mascotas. Si no te interesa un perro o un gato, siendo lo mas comun entra aqui y podras ver los diferentes tipos que tenemos para ti.</h3>
-             </br>
-              <p><a class="btn btn-info" href="#">Seguir leyendo &raquo;</a></p>
-              <footer>
-        <p>&copy; Mascota</p>
-      </footer>
-            </div><!--/span-->
-      <hr>
+    <p>  
+ <input type="text" class="input-medium search-query">
+  <button type="submit" class="btn btn-inverse">Buscar Producto</button>
+</p>
+</form>
+</center>
 
-      
 
-    </div><!--/.fluid-container-->
+    </div> <!-- /container -->
 
     <!-- Le javascript
     ================================================== -->
