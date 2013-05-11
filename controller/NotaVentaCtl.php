@@ -19,12 +19,10 @@ include_once('ModeloCtl.php');
 					$NotaVenta = $this->modelo-> listar();
 					include('view/NotaVentaView.php');
 					}else{//no se tienen privilegios sufuicientes
-						include('view/View.php');
+						include('view/Index.html');
 					}
-				}else{// si no hay sesion envia al menu principal
-					include('view/View.php');
-					
-					}
+				}else	// si no hay sesion envia al menu principal
+					include('view/Index.html');
 		}
 
 	}

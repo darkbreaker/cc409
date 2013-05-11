@@ -13,8 +13,8 @@ include_once('ModeloCtl.php');
 		function ejecutar(){
 		session_start();
 			$hacer=$_REQUEST['hacer'];
-			$idServicio=$_REQUEST['idServicio'];
-			$precio=$_REQUEST['precio'];
+			$idServicio=esId($_REQUEST['idServicio']);
+			$precio=EsNo($_REQUEST['precio']);
 			$tiempo=$_REQUEST['tiempo'];
 			$descripcion=$_REQUEST['descripcion'];
 
@@ -54,7 +54,7 @@ include_once('ModeloCtl.php');
 			
 		}
 
-	}
+	}	//fin de la clase
 
 
 
