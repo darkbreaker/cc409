@@ -8,14 +8,43 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>
 
-  <style type="text/css">
+ <style type="text/css">
       body {
-        padding-top: 150px;
+
+        padding-top: 50px;
         padding-bottom: 40px;
-       background-image:url('fondo.jpg');
-       color: black;
+        background-image:url('fondo.jpg');
+        color: black;
       }
-      </style>
+
+      .form-signin {
+        max-width: 300px;
+        padding: 29px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+p{color:black;}
+    </style>
+
 </head>
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
@@ -40,6 +69,21 @@
         </div>
       </div>
     </div>
+
+ <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Registrar Producto</h2>
+
+        <label for="nombre">Nombre</label>
+         <input type="text" id="nombre" name="nombre" Required class="input-block-level">
+         <label for="nombre">Descripcion</label>
+         <input type="text" id="descripcion" name="descripcion" Required class="input-block-level">
+         <label for="nombre">Precio</label>
+         <input type="text" id="precio" name="precio" Required class="input-block-level">
+       </br>
+        <button class="btn btn-large btn-primary" type="submit">Guardar</button>
+      </form>
 
   
   <div class="container">
