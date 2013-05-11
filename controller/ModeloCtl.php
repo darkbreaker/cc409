@@ -2,7 +2,11 @@
 //controlador requiere tener acceso al modelo
 include_once('model/UsuarioBss.php');
 include_once('ModeloCtl.php');
+<<<<<<< HEAD
 	class ModeloCtl{
+=======
+	class ModeloCtl {
+>>>>>>> ox
 		/**
 		*funciones que comprueban la valides de las cadenas
 		*true si cumple, false sino

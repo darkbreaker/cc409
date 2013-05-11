@@ -65,6 +65,7 @@
 		}
 	
 		function escapar($query){
+			$this -> cn = new mysqli($this->host,$this->user,$this->pass,$this->db);
 			return $this->cn->real_scape_string($query);
 	
 		}
