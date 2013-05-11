@@ -19,7 +19,7 @@ class CitaCtl extends ModeloCtl{
 			$hora_reserva=$_REQUEST['hora_reserva'];
 			$hora_termino=$_REQUEST['hora_termino'];
 			$idUsuario=$_REQUEST['idUsuario'];
-                        $estado=$_REQUEST['estado'];
+            $estado=$_REQUEST['estado'];
 			$descripcion=$_REQUEST['descripcion'];
 			if(!isset($hacer) ){
 				

@@ -13,39 +13,54 @@ include_once('ModeloCtl.php');
 		function ejecutar(){
 			//si no tengo parametros se listan los Articulos
 			$hacer=$_REQUEST['hacer'];
-			$id=$_REQUEST['id'];
-			$nombre=$_REQUEST['nombre'];
+			$id=EsId($_REQUEST['id']);
+			$nombre=EsNombre($_REQUEST['nombre']);
 			$descripcion=$_REQUEST['descripcion'];
-			$precio_venta=$_REQUEST['precio_venta'];
-			$idUsuario=$_REQUEST['idUsuario'];
+			$precio_venta=EsNo($_REQUEST['precio_venta']);
+			$idUsuario=EsId($_REQUEST['idUsuario']);
 		
-		         	if(!isset($hacer) ){
+		     if(!isset($hacer) ){
 				$Articulo = $this->modelo-> listar();
-				//vista del resultado
 				include('view/listarArticuloView.php');
+				
 			} else switch($hacer){
 				case 'agregar':
+					if(!$nombre||!$descripcion||!$precio_venta)
+						include_once('view/Index.html');
+						else{
 					$Articulo=$this->modelo->agregarArticulo($nombre, $descripcion, $precio_venta) ;
-					include('view/agregarArticuloView.php');
+					include('view/agregarArticuloView.php');}
 					break;
 				case 'consultar':
+					if(!$id)
+						include_once('view/Index.html');
+						else{
 					$Articulo=$this->modelo->consultarArticulo($id);
-					include('view/consultarArticuloView.php');
+					include('view/consultarArticuloView.php');}
 					break;
 				case 'eliminar':
-				$Articulo=$this->modelo->eliminarArticulo($idUsuario);
-					include('view/eliminarArticuloView.php');
+					if(!$idUsuario)
+						include_once('view/Index.html');
+						else{
+					$Articulo=$this->modelo->eliminarArticulo($idUsuario);
+					include('view/eliminarArticuloView.php');}
 					break;
 				case 'modificar':
+					if(!$nombre||!$descripcion||!$precio_venta)
+						include_once('view/Index.html');
+						else{
 					$Articulo=$this->modelo->modificarArticulo($nombre, $descripcion, $precio_venta) ;
-					include('view/modificarArticuloView.php');
+					include('view/modificarArticuloView.php');}
 					break;
 				case 'filtrar':
-			$Articulo=$this->modelo->filtrarArticulo($descripcion);
-					include('view/filtrarArticuloView.php');
+					if(|!$descripcion)
+						include_once('view/Index.html');
+						else{
+					$Articulo=$this->modelo->filtrarArticulo($descripcion);
+					include('view/filtrarArticuloView.php');}
 					break;
-				case 'listar':
-			$Articulo=$this->modelo->listar();
+				Default:
+					$Articulo=$this->modelo->listar();
 					include('view/listarArticuloView.php');
 					break;
 			}
