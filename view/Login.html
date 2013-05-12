@@ -88,9 +88,11 @@ p{color:black;}
 
       <form class="form-signin">
         <h2 class="form-signin-heading">Iniciar Sesion</h2>
-      <input type="email" class="input-block-level" placeholder="Email por ejemplo@gmail.com" Required>
-        <input type="password" class="input-block-level" placeholder="Contraseña" Required>
+      <input type="email" class="input-block-level" placeholder="Email por ejemplo@gmail.com" Required id="usuario" name="usuario">
+        <input type="password" class="input-block-level" placeholder="Contraseña" Required id="pass" name="pass">
         <label class="checkbox">
+		<input type="hidden" name="accion" id="accion" value="log" >
+		<input type="hidden" name="hacer" id="hacer" value="in">
           <input type="checkbox" value="remember-me"> Recordar Cuenta
         </label>
         <button class="btn btn-large btn-primary" type="submit">Entrar</button>

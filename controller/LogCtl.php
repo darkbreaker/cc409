@@ -15,30 +15,27 @@ include_once('ModeloCtl.php');
 				$hacer=$_REQUEST['hacer'];
 				session_start();
 				
-				if(!isset($accion)&&!isset($_SESSION['usuario'])){
-				include_once('view/Login.html');
-				}else
+				if(!isset($hacer))
+					include_once('view/Login.html');
+				else
 
 				switch ($hacer){
 					case 'in':
 						if(!isset($_SESSION['usuario'])){
 								$id=$_REQUEST['usuario'];
 								$pass=$_REQUEST['pass'];
-								if(isset($_REQUEST['usuario']))
 								$usuario=$this->modelo->login($id,$pass);
-								else
-								$usuario=false;
-								
+														
 								if(is_object($usuario)){
 							//si existe
 									$_SESSION['usuario']=$usuario->id;
 									$_SESSION['nombre']=$usuario->nombre;
 									$_SESSION['privilegio']=$usuario->tipo;				
 							
-									include('view/LogInView.php');
+									include('view/Index.html');
 								}else
 										
-										include('view/LogErrorView.php');
+										include('view/Login.html');
 						}else
 							include_once('view/Index.html');
 							

@@ -82,11 +82,12 @@
 	
 	function login($id,$pass){
 			$con= new Conexion (  );
-			$id=$con->escapar($id);
-			$pass=$con->escapar($pass);
+			
 			if($con->conecta()==false)
 				die('error de conexion');
-			$sql="SELECT * FROM usuario WHERE idPersona='$id' and password=".$pass;
+			$id=$con->escapar($id);
+			$pass=$con->escapar($pass);
+			$sql="SELECT * FROM usuario WHERE email='$id' and password=".$pass;
 			//ejecutar el query
 			$fila = $con->consulta($sql);	
 			if($fila==false){
@@ -94,13 +95,14 @@
 				$con->cerrar();
 				return FALSE;
 				}
-			//if( is_object($fila))
-			if($fila[0][idPersona]==$id){
+			$fila = $fila->fetch_array();
+	//print var_dump($fila);	
+		//	if($fila[0][email]==$id){
 			$con->cerrar();
 			$clase= new Usuario ($fila[0][idPersona],$fila[0][nombre],$fila[0][telefono],$fila[0][calle],$fila[0][password],$fila[0][privilegios],$fila[0][email]);
 			return $clase;
-			}	
-				return false;
+			//}	
+			//	return false;
 
 	}
 	
