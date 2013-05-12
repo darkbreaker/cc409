@@ -9,7 +9,7 @@
 		*$string si cumple, false sino
 		**/
 		function EsNombre($string){
-			$expresion='/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/';
+			$expresion='/[a-zA-ZÀ-ÖØ-öø-ÿ]+\.?(( |\-)[a-zA-ZÀ-ÖØ-öø-ÿ]+\.?)*/';
 			if (preg_match($expresion, $string)) {
 				return $string;
 			}else
@@ -43,7 +43,7 @@
 		function EsTelefono($string){
 			$expresion='/0{0,2}([\+]?[\d]{1,3} ?)?([\(]([\d]{2,3})[)] ?)?[0-9][0-9 \-]{6,}( ?([xX]|([eE]xt[\.]?)) ?([\d]{1,5}))?/';
 			if (preg_match($expresion, $string)) {
-				return $;
+				return $string;
 			}else
 				return false;
 		}

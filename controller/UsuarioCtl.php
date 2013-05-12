@@ -14,19 +14,27 @@ include_once('ModeloCtl.php');
 			//si no tengo parametros se listan los Usuarios
 			session_start();
 			$hacer=$_REQUEST['hacer'];
-			$id=EsId($_REQUEST['id']);
-			$nombre=EsNombre($_REQUEST['nombre']);
+			$id=$this->EsId($_REQUEST['id']);
+	
+			$nombre=$this->EsNombre($_REQUEST['nombre']);
 			$descripcion=$_REQUEST['descripcion'];
-			$email=EsMail($_REQUEST['email']);
+			$email=$this->EsMail($_REQUEST['email']);
 			$password=$_REQUEST['password'];
-            $calle=EsCalle($_REQUEST['calle']);
-			$telefono=EsTelefono($_REQUEST['telefono']);
+            $calle=$this->EsCalle($_REQUEST['calle']);
+			$telefono=$this->EsTelefono($_REQUEST['telefono']);
 			
 			switch($hacer){
 				case 'agregarUsuario':
 				if(!isset($_SESSION['usuario'])||!$nombre||!$email||!$password||!$calle||!$telefono){
+					
+					if(isset($nombre)){
+				
 					$Usuario=$this->modelo->agregarUsuario($nombre, $email, $password, $calle, $telefono) ;
-					include('view/agregarUsuarioView.php');
+					
+					include('view/Login.html');
+					}
+					else
+						include('view/Index.html');
 					}else{
 						include('view/Index.html');
 					}
@@ -35,7 +43,7 @@ include_once('ModeloCtl.php');
 					if(isset($_SESSION['usuario'])&&$id!=false){
 						if($_SESSION['privilegio']>0){
 					$Usuario=$this->modelo->buscarUsuario($id);
-					include('view/buscarUsuarioView.php');
+					include('view/BuscarUsuario.html');
 					}else
 						include('view/Index.html');
 					}else
@@ -45,7 +53,7 @@ include_once('ModeloCtl.php');
 					if(isset($_SESSION['usuario'])){
 							if($_SESSION['privilegio']>0){
 							$Usuario=$this->modelo->filtrarUsuario($descripcion);
-							include('view/filtrarUsuarioView.php');
+							include('view/BuscarUsuario.html');
 							}else
 								include('view/Index.html');
 					}else
@@ -56,8 +64,8 @@ include_once('ModeloCtl.php');
 					if(!isset($_SESSION['usuario'])||!$nombre||!$telefono||!$calle||!$password||!$mail)
 						include('view/Index.html');
 					else{
-							$Usuario=$this->modelo->modificar($nombre, $telefono, $calle, $password, $mail, $_SESSION['usuario'])) ;
-							include('view/modificarUsuarioView.php');
+							$Usuario=$this->modelo->modificar($nombre, $telefono, $calle, $password, $mail, $_SESSION['usuario']) ;
+							include('view/Registro.html');
 					}
 					break;
 				case 'listar':
@@ -65,7 +73,7 @@ include_once('ModeloCtl.php');
 						if($_SESSION['privilegio']>0){
 							$Usuario=$this->modelo->listar() ;
 							echo $_SESSION['nombre'];
-							include('view/listarUsuarioView.php');
+							include('view/Consultas.html');
 						}else
 							include('view/Index.html');
 					}

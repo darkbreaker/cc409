@@ -21,9 +21,6 @@
 		*/
 
 	function agregarUsuario($nombre,$mail,$pass,$calle,$telefono){
-		//asignar variables al objeto
-		
-		
 		//conectarse a la base de datos
 		$con= new Conexion (  );
 		
@@ -41,7 +38,6 @@
 		$this->pass=$pass;
 		$this->telefono=$telefono;
 		
-	
 		//crear el query
 		$sql="INSERT INTO usuario(nombre,calle,password,email,telefono,privilegios) VALUES ('$this->nombre','$this->calle','$this->pass','$this->mail','$this->telefono',DEFAULT) ";
 		//$sql=$con->escapar($sql);

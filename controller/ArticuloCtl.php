@@ -13,11 +13,11 @@ include_once('ModeloCtl.php');
 		function ejecutar(){
 			//si no tengo parametros se listan los Articulos
 			$hacer=$_REQUEST['hacer'];
-			$id=EsId($_REQUEST['id']);
-			$nombre=EsNombre($_REQUEST['nombre']);
+			$id=$this->EsId($_REQUEST['id']);
+			$nombre=$this->EsNombre($_REQUEST['nombre']);
 			$descripcion=$_REQUEST['descripcion'];
-			$precio_venta=EsNo($_REQUEST['precio_venta']);
-			$idUsuario=EsId($_REQUEST['idUsuario']);
+			$precio_venta=$this->EsNo($_REQUEST['precio_venta']);
+			$idUsuario=$this->EsId($_REQUEST['idUsuario']);
 		
 		     if(!isset($hacer) ){
 				$Articulo = $this->modelo-> listar();

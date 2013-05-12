@@ -14,15 +14,15 @@
 		
 		function __construct(){
 		
-			$this-> host = 'localhost';
+			/*$this-> host = 'localhost';
 			$this -> user = 'cc409_perros';
 			$this -> pass = '1owYjeJy8a';
-			$this -> db ='cc409_perros';
+			$this -> db ='cc409_perros';*/
 		
-		/*	$this-> host = $dbhost;
-			$this -> user = $dbuser;
-			$this -> pass = $dbpass;
-			$this -> db =$db;*/
+			$this-> host = 'localhost';
+			$this -> user = 'root';
+			$this -> pass = 'root';
+			$this -> db = 'cc409_perros';
 		
 		}
 	
@@ -65,8 +65,8 @@
 		}
 	
 		function escapar($query){
-			$this -> cn = new mysqli($this->host,$this->user,$this->pass,$this->db);
-			return $this->cn->real_scape_string($query);
+			
+			return $this->cn->real_escape_string($query);
 	
 		}
 	

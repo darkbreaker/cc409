@@ -13,9 +13,9 @@ include_once('ModeloCtl.php');
 		function ejecutar(){
 			session_start();
 			$hacer=$_REQUEST['hacer'];
-			$idServicio=esId($_REQUEST['idServicio']);
-			$precio=EsNo($_REQUEST['precio']);
-			$tiempo=esNo($_REQUEST['tiempo']);
+			$idServicio=$this->EsId($_REQUEST['idServicio']);
+			$precio=$this->EsNo($_REQUEST['precio']);
+			$tiempo=$this->EsNo($_REQUEST['tiempo']);
 			$descripcion=$_REQUEST['descripcion'];
 
 			if(!isset($hacer) ){
