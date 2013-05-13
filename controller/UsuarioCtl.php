@@ -25,19 +25,20 @@ include_once('ModeloCtl.php');
 			
 			switch($hacer){
 				case 'agregarUsuario':
-				if(!isset($_SESSION['usuario'])||!$nombre||!$email||!$password||!$calle||!$telefono){
+				if(!$nombre||!$email||!$password||!$calle||!$telefono){
 					
-					if(isset($nombre)){
-				
-					$Usuario=$this->modelo->agregarUsuario($nombre, $email, $password, $calle, $telefono) ;
+					if(!isset($_SESSION['usuario'])){
+						$Usuario=$this->modelo->agregarUsuario($nombre, $email, $password, $calle, $telefono);
+						include('view/Login.html');
+					}
+					else{
+						$Usuario=$this->modelo->buscarUsuario($_SESSION['usuario']);
+						include('view/Login.html');
+						}
+						
+				}else
+						include('view/Index.html');
 					
-					include('view/Login.html');
-					}
-					else
-						include('view/Index.html');
-					}else{
-						include('view/Index.html');
-					}
 					break;
 				case 'buscarUsuario':
 					if(isset($_SESSION['usuario'])&&$id!=false){
