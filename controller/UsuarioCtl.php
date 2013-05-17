@@ -29,8 +29,9 @@ include_once('ModeloCtl.php');
 						include('view/Registro.html');
 					}
 				else{
-						//modificar los datos del uduario
-						include('view/Index.html');
+						$file = file_get_contents('view/Index.html'); //cargo el archivo
+						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+						echo $file;
 						}
 			
 			}
@@ -49,7 +50,13 @@ include_once('ModeloCtl.php');
 						}
 						
 				}else
-						include('view/Index.html');
+					{
+						$file = file_get_contents('view/Index.html'); //cargo el archivo
+						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+						echo $file;
+					
+					
+					}
 					
 					break;
 				case 'buscarUsuario':
@@ -95,7 +102,12 @@ include_once('ModeloCtl.php');
 					break;
 				
 				default:
-					include('view/Index.html');
+					if(isset($_SESSION['usuario'])){
+						$file = file_get_contents('view/Index.html'); //cargo el archivo
+						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+						echo $file;}
+					else
+						include('view/Index.html');
 			} //fin del switch
 			
 		} //fin de la funcion

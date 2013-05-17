@@ -16,8 +16,10 @@ include_once('ModeloCtl.php');
 				session_start();
 				
 				if(!isset($hacer)){
-					if(!isset($_SESSION['usuario']))
+					if(!isset($_SESSION['usuario'])){
 						include_once('view/Login.html');
+						
+						}
 					else{
 						session_unset();
 						//destruye sesion
@@ -41,13 +43,21 @@ include_once('ModeloCtl.php');
 									$_SESSION['usuario']=$usuario->id;
 									$_SESSION['nombre']=$usuario->nombre;
 									$_SESSION['privilegio']=$usuario->tipo;				
-							
-									include('view/Index.html');
+									$file = file_get_contents('view/Index.html'); //cargo el archivo
+									$file = str_ireplace('{Username}',$usuario->nombre , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+									echo $file;
+									
 								}else
 										
 										include('view/Login.html');
 						}else
-							include_once('view/Index.html');
+							{
+							
+								$file = file_get_contents('view/Index.html'); //cargo el archivo
+								$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+								echo $file;
+							
+							}
 							
 						
 								
