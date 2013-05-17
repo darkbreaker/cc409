@@ -15,8 +15,18 @@ include_once('ModeloCtl.php');
 				$hacer=$_REQUEST['hacer'];
 				session_start();
 				
-				if(!isset($hacer))
-					include_once('view/Login.html');
+				if(!isset($hacer)){
+					if(!isset($_SESSION['usuario']))
+						include_once('view/Login.html');
+					else{
+						session_unset();
+						//destruye sesion
+						session_destroy();
+						setcookie(session_name(),'',time()-1);
+						echo 'sesion cerrada';
+						include_once('view/Login.html');
+						}
+					}
 				else
 
 				switch ($hacer){

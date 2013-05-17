@@ -23,6 +23,18 @@ include_once('ModeloCtl.php');
             $calle=$this->EsCalle($_REQUEST['calle']);
 			$telefono=$this->EsTelefono($_REQUEST['telefono']);
 			
+			if(!isset($hacer)){
+				if(!isset($_SESSION['usuario'])){
+						
+						include('view/Registro.html');
+					}
+				else{
+						//modificar los datos del uduario
+						include('view/Index.html');
+						}
+			
+			}
+			else
 			switch($hacer){
 				case 'agregarUsuario':
 				if(!$nombre||!$email||!$password||!$calle||!$telefono){

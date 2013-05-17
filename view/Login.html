@@ -75,9 +75,9 @@ p{color:black;}
               Se autentifico como: <a href="//localhost/cc409_perros/view/#" class="navbar-link">Username</a>
             </p>
             <ul class="nav">
-              <li><a href="//localhost/cc409_perros/view/Index.html">Pagina Principal</a></li>
-              <li class="active"><a href="//localhost/cc409_perros/view/Login.html">Login</a></li>
-              <li><a href="//localhost/cc409_perros/view/Registro.html">Registrarse</a></li>
+              <li><a href="//localhost/cc409_perros/index.php">Pagina Principal</a></li>
+              <li class="active"><a href="//localhost/cc409_perros/index.php?accion=log">Login</a></li>
+              <li><a href="//localhost/cc409_perros/index.php?accion=usuario">Registrarse</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -86,12 +86,12 @@ p{color:black;}
 
     <div class="container">
 
-      <form class="form-signin" action="../index.php" method="GET">
+      <form class="form-signin" action="index.php" method="GET">
         <h2 class="form-signin-heading">Iniciar Sesion</h2>
       <input type="email" class="input-block-level" placeholder="Email por ejemplo@gmail.com" Required id="usuario" name="usuario">
         <input type="password" class="input-block-level" placeholder="Contraseña" Required id="pass" name="pass">
         <label class="checkbox">
-		<input type="hidden" name="accion" id="accion" value="log" >
+		<input type="hidden" name="accion" id="accion" value="log">
 		<input type="hidden" name="hacer" id="hacer" value="in">
           <input type="checkbox" value="remember-me"> Recordar Cuenta
         </label>
