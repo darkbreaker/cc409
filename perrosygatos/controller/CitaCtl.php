@@ -22,12 +22,16 @@ class CitaCtl extends ModeloCtl{
 			$idUsuario=$this->EsId($_REQUEST['idUsuario']);
             $estado=$_REQUEST['estado'];
 			$descripcion=$_REQUEST['descripcion'];
-			if(!isset($hacer) ){
+			
+			
+				if(!isset($_SESSION['usuario'])){
+					include_once('view/Index.html');
 				
-				include('view/Index.html');
-			} else switch($hacer){
+			}
+				
+			else switch($hacer){
 				case 'agregarCita':
-					if((!$idUsuario||!$fecha||!$hora_reserva)||!isset($_SESSION['usuario']))
+					if((!$idUsuario||!$fecha||!$hora_reserva))
 						include_once('view/Index.html');
 						else{
 					$Cita=$this->modelo->agregarCita($idUsuario, $fecha ,$detalles, $hora_reserva) ;
@@ -35,35 +39,32 @@ class CitaCtl extends ModeloCtl{
 					break;
 					
 				case 'buscarCita':
-					if(!$idCita||!isset($_SESSION['usuario']))
+					if(!$idCita)
 						include_once('view/Index.html');
 						else{
 					$Cita=$this->modelo->buscarCita($idCita);
 					include('view/buscarCitaView.php');}
 					break;
 				case 'eliminarCita':
-					if(!$idCita||!isset($_SESSION['usuario']))
+					if(!$idCita)
 						include_once('view/Index.html');
 					else{
 							$Cita=$this->modelo->eliminarCita($idCita);
 							include('eliminarview/CitaView.php');}
 					break;
 				case 'listar':
-					if(!isset($_SESSION['usuario']))
-						include_once('view/Index.html');
-						else{
-							$Cita=$this->modelo->listar() ;
-							include('view/listarCitaView.php');}
+						$Cita=$this->modelo->listar() ;
+						include('view/listarCitaView.php');
 					break;
 				case 'servicioCita':
-						if(!$idCita||!isset($_SESSION['usuario']))
-								include_once('view/Index.html');
+						if(!$idCita)
+								include_once('index.php');
 						else{
 			               $Cita=$this->modelo->servicioCita($idCita) ;
 							include('view/serviciosCitaView.php');}
 					break;
 		        case 'ActualizarCita':
-					if(!$idCita||!$hora_termino||!$estado||!isset($_SESSION['usuario']))
+					if(!$idCita||!$hora_termino||!$estado)
 						include_once('view/Index.html');
 						else{
 			               $Cita=$this->modelo->ActualizarCita($idCita, $hora_termino ,$estado) ;
@@ -71,11 +72,8 @@ class CitaCtl extends ModeloCtl{
 					break;
 
 				case 'filtrarCita':
-					if(!isset($_SESSION['usuario']))
-						include_once('view/Index.html');
-						else{
 					$Cita=$this->modelo->filtrarCita($descripcion) ;
-					include('view/filtrarCitaView.php');}
+					include('view/filtrarCitaView.php');
 					break;
 				
 			}
