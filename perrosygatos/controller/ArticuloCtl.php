@@ -20,8 +20,17 @@ include_once('ModeloCtl.php');
 			$idUsuario=$this->EsId($_REQUEST['idUsuario']);
 		
 		     if(!isset($hacer) ){
-				$Articulo = $this->modelo-> listar();
-				include('view/listarArticuloView.php');
+				session_start();
+				
+				if(isset($_SESSION['usuario'])){
+				$file = file_get_contents('view/BuscarProducto.html'); //cargo el archivo
+				$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+				echo $file;
+				} else{
+					
+					include_once('view/BuscarProducto.html');
+					
+					}
 				
 			} else switch($hacer){
 				case 'agregar':
@@ -53,17 +62,15 @@ include_once('ModeloCtl.php');
 					include('view/modificarArticuloView.php');}
 					break;
 				case 'filtrar':
-					if(!$descripcion)
-						{
+					if(!isset($descripcion)){
 						$Articulo=$this->modelo->listar();
 						echo json_encode($Articulo);
-						}
 						
+						}
 						else{
 							$Articulo=$this->modelo->filtrarArticulo($descripcion);
 							echo json_encode($Articulo);
-					
-					}
+						}
 					break;
 				Default:
 					

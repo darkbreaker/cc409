@@ -89,7 +89,7 @@ include_once('Articulo.php');
 		$con= new Conexion ( );
 		if($con->conecta()==false)
 			die('error de conexion');
-		$sql="SELECT * FROM usuario WHERE CONCAT(nombre,descripcion,precio_venta) LIKE '%".$descripcion."%'";
+		$sql="SELECT  id,nombre,precio_venta,descripcion FROM usuario WHERE CONCAT(nombre,descripcion,precio_venta) LIKE '%".$descripcion."%'";
 		//ejecutar el query
 		$fila = $con->consulta($sql);	
 		if($fila==false){
@@ -97,6 +97,8 @@ include_once('Articulo.php');
 			$con->cerrar();
 			return FALSE;
 			}
+		$con->cerrar();
+		$fila = $fila->fetch_array();
 		return $fila;
 	}
 	
@@ -107,19 +109,21 @@ include_once('Articulo.php');
 				die('error al conectar');
 				}
 		
-			$resultado = $conexion->consulta('select * from articulo');	
+			$resultado = $conexion->consulta('select id,nombre,precio_venta,descripcion from articulo');	
+		
 			if($resultado==FALSE){
 				die('error de resultado');
 				$conexion->cerrar();
-				return FALSE;
+				
+				return false;
 				}
 				
-			for ($i=0;$i<count($resultado);$i++) 
-                              { 
-			$obj[$i] = new Articulo($resultado[$i][id],$resultado[$i][nombre],$resultado[$i][descripcion],$resultado[$i][precio_venta]); 
-				}
-				
-			$conexion-> cerrar();
+		while($row = $resultado->fetch_array(MYSQLI_ASSOC))
+		{
+		$obj[] = $row;
+		}		
+			//$resultado=$resultado->fetch_array();
+			
 			return $obj;
          }
          
