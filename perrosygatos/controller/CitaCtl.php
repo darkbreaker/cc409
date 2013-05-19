@@ -27,9 +27,13 @@ class CitaCtl extends ModeloCtl{
 				if(!isset($_SESSION['usuario'])){
 					include_once('view/Index.html');
 				
-			}
+			} else if(!isset($hacer)){
+				$file = file_get_contents('view/RegistroCita.html'); //cargo el archivo
+				$file = str_ireplace('{Username}',$_SESSION['usuario'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+				echo $file;
 				
-			else switch($hacer){
+			}else  
+			switch($hacer){
 				case 'agregarCita':
 					if((!$idUsuario||!$fecha||!$hora_reserva))
 						include_once('view/Index.html');

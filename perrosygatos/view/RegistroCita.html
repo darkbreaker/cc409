@@ -1,4 +1,4 @@
-<!DOCTYPE html> <script language=""="text/JavaScript" src="//localhost/cc409/perrosygatos/view/js/ajax.js">		</script>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -60,7 +60,7 @@ p{color:black;}
                                    <link rel="shortcut icon" href="//localhost/cc409/perrosygatos/view/../assets/ico/favicon.png">
   </head>
 
-  <body>
+  <body onload="carga();">
 <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -86,19 +86,20 @@ p{color:black;}
 
  <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" name="fomr" id="form">
         <h2 class="form-signin-heading">Registrar Cita</h2>
-
+		<input type="hidden" id="accion" name="accion" value="cita">
+		<input type="hidden" id="hacer" name="hacer" value="agregar">
+		<input type="hidden" id="estado" name="estado"  value="reservado">
+		<input type="hidden" id="fecha" name="fecha" >
+		
         <label for="nombre">Detalles</label>
          <input type="text" id="detalles" name="detalles" Required class="input-block-level">
-         <label for="nombre">Estado</label>
-         <input type="text" id="estado" name="estado" Required class="input-block-level">
          <label for="nombre">Inicio</label>
          <input type="text" id="inicio" name="inicio" Required class="input-block-level">
-         <label for="nombre">Fin</label>
-         <input type="text" id="fin" name="fin" Required class="input-block-level">
-          <label for="nombre">Fecha</label>
-         <input type="text" id="fecha" name="fecha" Required class="input-block-level">
+        <Select name="opccion" id="opccion"> 	</select>
+  
+         
        </br>
         <button class="btn btn-large btn-primary" type="submit">Guardar</button>
       </form>
@@ -146,23 +147,48 @@ p{color:black;}
       </div>
     </div>
 	
-	
+	 <script language=""="text/JavaScript" src="//localhost/cc409/perrosygatos/view/js/ajax.js">		</script>
+	 <script language=""="text/JavaScript" >	
+			function carga(){
+				var ajax= new nuevoAjax();
+				//abrir comunicacion asicfonz
+				ajax.open("get","index.php?accion=servicio",true);
+				//obtener resultado
+				ajax.onreadystatechange = function (){
+					if(ajax.readyState == 4){
+						//procesar resultado como JSON
+							var variable = eval(ajax.responseText);
+							
+							for(categorias in variable){
+								//crear elemento opcion
+								var option = document.createElement('option');
+								////crear texto del elemnto
+								var texto = document.createTextNode(variable[categorias].descripcion);
+								//agregar texto al elemnto
+								option.appendChild(texto);
+								//agregar atributos
+								option.setAttribute('value',variable[categorias].id);
+								//agregar nodo al select
+								var form = document.getElementById('opccion');
+								form.appendChild(option);
+								
+							}
+						a=document.getElementById("fecha");
+						var x= new Date();
+						var fecha= x.getFullYear()+'/'+x.getMonth()+'/' + x.getDate() ;
+						a.value=fecha;
+							
+					}
+				}
+				//
+				ajax.send(null);
+				//pedir al listar servicios.php default select (servicios) from sercicios
+			}
+	 </script>
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="//localhost/cc409/perrosygatos/view/../assets/js/jquery.js"></script>
-    <script src="//localhost/cc409/perrosygatos/view/../assets/js/bootstrap-transition.js"></script>
-    <script src="//localhost/cc409/perrosygatos/view/../assets/js/bootstrap-alert.js"></script>
-    <script src="//localhost/cc409/perrosygatos/view/../assets/js/bootstrap-modal.js"></script>
-    <script src="//localhost/cc409/perrosygatos/view/../assets/js/bootstrap-dropdown.js"></script>
-    <script src="//localhost/cc409/perrosygatos/view/../assets/js/bootstrap-scrollspy.js"></script>
-    <script src="//localhost/cc409/perrosygatos/view/../assets/js/bootstrap-tab.js"></script>
-    <script src="//localhost/cc409/perrosygatos/view/../assets/js/bootstrap-tooltip.js"></script>
-    <script src="//localhost/cc409/perrosygatos/view/../assets/js/bootstrap-popover.js"></script>
-    <script src="//localhost/cc409/perrosygatos/view/../assets/js/bootstrap-button.js"></script>
-    <script src="//localhost/cc409/perrosygatos/view/../assets/js/bootstrap-collapse.js"></script>
-    <script src="//localhost/cc409/perrosygatos/view/../assets/js/bootstrap-carousel.js"></script>
-    <script src="//localhost/cc409/perrosygatos/view/../assets/js/bootstrap-typeahead.js"></script>
+    
 
   </body>
 </html>
