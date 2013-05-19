@@ -64,10 +64,11 @@ p{color:black;}
 
     <center>
     <form>
-
+	<label name="msn">Introduce un detalle para filtrar la busqueda:</label><br />
     <p>  
+	
  <input type="text" class="input-medium search-query">
-  <button type="button" class="btn btn-inverse">Buscar Producto</button>
+  <button type="button" class="btn btn-inverse" onClick="productos();">Buscar Producto</button>
 </p>
 	<div class="container">
 		<table class="table" name="table" id="table">
@@ -100,7 +101,36 @@ p{color:black;}
       </div>
     </div>
 	
+	<script language=""="text/JavaScript" >
 	
+		function productos(){
+			//crear objeto xmlhttprequest
+			var ajax= new nuevoAjax();
+			//abrir comunicacion asicfonz
+			ajax.open("get","index.php?accion=articulo&hacer=filtrar",true);
+			//obtener resultado
+			ajax.onreadystatechange = function (){
+				if(ajax.readyState == 4){
+						//procesar resultado como JSON
+							var variable = eval(ajax.responseText);
+							console.log(variable);
+							for(categoria in response){
+								//crear elemento opcion
+								////crear texto del elemnto
+								//agregar texto al elemnto
+								//agregar atributos
+								//agregar nodo al select
+								
+							}
+				}
+			}
+				//
+				ajax.send(null);
+				//pedir al listar servicios.php default select (servicios) from sercicios		
+		
+		}
+	
+	</script>
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster 

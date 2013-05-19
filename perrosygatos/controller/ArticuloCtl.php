@@ -53,15 +53,21 @@ include_once('ModeloCtl.php');
 					include('view/modificarArticuloView.php');}
 					break;
 				case 'filtrar':
-					if(|!$descripcion)
-						include_once('view/Index.html');
+					if(!$descripcion)
+						{
+						$Articulo=$this->modelo->listar();
+						echo json_encode($Articulo);
+						}
+						
 						else{
-					$Articulo=$this->modelo->filtrarArticulo($descripcion);
-					include('view/filtrarArticuloView.php');}
+							$Articulo=$this->modelo->filtrarArticulo($descripcion);
+							echo json_encode($Articulo);
+					
+					}
 					break;
 				Default:
-					$Articulo=$this->modelo->listar();
-					include('view/listarArticuloView.php');
+					
+					include('view/BuscarProducto.html');
 					break;
 			}
 			
