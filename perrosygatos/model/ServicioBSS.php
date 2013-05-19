@@ -61,12 +61,15 @@ include_once('Servicio.php');
 			return FALSE;
 			}
 			
-		for ($i=0;$i<count($resultado);$i++) 
-                              { 
-	$obj[$i] = new Servicio($resultado[$i][id],$resultado[$i][tiempo],$resultado[$i][descripcion],$resultado[$i][precio]); 
-				}
+		//for ($i=0;$i<count($resultado);$i++) { 
+	//$obj[$i] = new Servicio($resultado[$i][id],$resultado[$i][tiempo],$resultado[$i][descripcion],$resultado[$i][precio]); 		}
 		$conexion-> cerrar();
-		return $resultado;
+		//return $resultado->fetch_array_assoc;
+			while($row = $resultado->fetch_array(MYSQLI_ASSOC))	{
+		$obj[] = $row;		}		
+			//$resultado=$resultado->fetch_array();
+			
+			return $obj;
 	}
 		
 	function agregar($precio,$tiempo,$descripcion){

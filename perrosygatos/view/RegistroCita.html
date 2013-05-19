@@ -97,11 +97,11 @@ p{color:black;}
          <input type="text" id="detalles" name="detalles" Required class="input-block-level">
          <label for="nombre">Inicio</label>
          <input type="text" id="inicio" name="inicio" Required class="input-block-level">
-        <Select name="opccion" id="opccion"> 	</select>
+        <Select name="opccion" id="opccion"> <option value="0"> Elige un Servicio</option>	</select>
   
          
        </br>
-        <button class="btn btn-large btn-primary" type="submit">Guardar</button>
+        <button class="btn btn-large btn-primary" onClick="enviar();">Guardar</button>
       </form>
 
 
@@ -148,7 +148,30 @@ p{color:black;}
     </div>
 	
 	 <script language=""="text/JavaScript" src="//localhost/cc409/perrosygatos/view/js/ajax.js">		</script>
-	 <script language=""="text/JavaScript" >	
+	 <script language=""="text/JavaScript" >
+			function enviar(){
+				//if(document.form.nombre.value.lenght<3)
+					if(document.form.opccion.value>0){
+						if(document.form.detalles.value.lenght>5)
+							document.from.submit();
+						else{
+							var tel = document.getElementById("telefono");
+							var div = document.createElement("div");
+							//div.setAtributte("div");
+							var msg = document.createTextNode("telefono incompleto");
+							div.appendChild(msg);
+							document.form.insertBefore(div,tel.nextSibiling);
+							//document.form.telefono.type="hidden";
+							//document.form.msn.value="error";
+						}
+					}
+		
+		
+				return false;	
+			}
+
+
+	 
 			function carga(){
 				var ajax= new nuevoAjax();
 				//abrir comunicacion asicfonz

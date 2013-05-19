@@ -20,8 +20,7 @@ include_once('ModeloCtl.php');
 
 			if(!isset($hacer) ){
 				$Servicio = $this->modelo-> listar();
-				//vista del resultado
-				include('view/listarServicioView.php');
+				echo json_encode($Servicio);
 			} else switch($hacer){
 				case 'buscarServicio':
 					if(!$idServicio)
@@ -31,7 +30,7 @@ include_once('ModeloCtl.php');
 						include('view/buscarServicioView.php');}
 					break;
 				case 'agregar':
-					if(isset(!$_SESSION['usuario'])||!$precio||!$tiempo||!$descripcion){
+					if(!isset($_SESSION['usuario'])||!$precio||!$tiempo||!$descripcion){
 						include('view/Index.html');
 					}else{
 						if($_SESSION['privilegio']==2){
