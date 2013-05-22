@@ -22,6 +22,11 @@
 
 p{color:black;}
 
+td
+{
+text-align:center;
+}
+
     </style>
     <link href="view/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -71,10 +76,10 @@ p{color:black;}
   <button type="button" class="btn btn-inverse" onClick="productos();">Buscar Producto</button>
 </p>
 	<div class="container">
-		<form class="form" name="form" id="form">
+		<table id="jtable" name="jtable">
 			
 			
-		</form>
+		</table>
 	</div>
 </form>
 </center>
@@ -112,6 +117,8 @@ p{color:black;}
 			ajax.onreadystatechange = function (){
 				if(ajax.readyState == 4){
 						//procesar resultado como JSON
+						$('table').remove('jtable');
+						
 							var data = ajax.responseText;
 							data = JSON.parse(data);
 							 data = crearTabla(data,'articulos', true);
