@@ -117,7 +117,7 @@ text-align:center;
 			ajax.onreadystatechange = function (){
 				if(ajax.readyState == 4){
 						//procesar resultado como JSON
-						$('table').remove('jtable');
+						$('.table-hover').remove();
 						
 							var data = ajax.responseText;
 							data = JSON.parse(data);
