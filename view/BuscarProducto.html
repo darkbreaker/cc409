@@ -71,10 +71,10 @@ p{color:black;}
   <button type="button" class="btn btn-inverse" onClick="productos();">Buscar Producto</button>
 </p>
 	<div class="container">
-		<table class="tabla" name="tabla" id="tabla">
+		<form class="form" name="form" id="form">
 			
 			
-		</table>
+		</form>
 	</div>
 </form>
 </center>
@@ -112,11 +112,13 @@ p{color:black;}
 			ajax.onreadystatechange = function (){
 				if(ajax.readyState == 4){
 						//procesar resultado como JSON
-							var variable = ajax.responseText;
-							//variable = JSON.parse(variable);
-							console.log(variable);
-							
+							var data = ajax.responseText;
+							data = JSON.parse(data);
+							 data = crearTabla(data,'articulos', true);
+							$('form').append(data);
+							//console.log(data);
 						
+							
 				}
 			}
 				//
@@ -125,46 +127,13 @@ p{color:black;}
 		
 		}
 		
-	function crearTabla(myList) {
-    var columns = addAllColumnHeaders(myList);
+	
 
-    for (var i = 0 ; i < myList.length ; i++) {
-        var row$ = $('<tr/>');
-        for (var colIndex = 0 ; colIndex < columns.length ; colIndex++) {
-            var cellValue = myList[i][columns[colIndex]];
 
-            if (cellValue == null) { cellValue = ""; }
-
-            row$.append($('<tr/>').html(cellValue));
-        }
-        $("#tabla").append(row$);
-    }
-}
-
-// Adds a header row to the table and returns the set of columns.
-// Need to do union of keys from all records as some records may not contain
-// all records
-function addAllColumnHeaders(myList)
-{
-    var columnSet = [];
-    var headerTr$ = $('<th>');
-
-    for (var i = 0 ; i < myList.length ; i++) {
-        var rowHash = myList[i];
-        for (var key in rowHash) {
-            if ($.inArray(key, columnSet) == -1){
-                columnSet.push(key);
-                headerTr$.append($('<th/>').html(key));
-            }
-        }
-    }
-    $("#tabla").append(headerTr$);
-
-    return columnSet;
-}
 	
 	</script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script language=""="text/JavaScript" src="view/js/ajax.js">		</script>
+	<script language=""="text/JavaScript" src="view/js/jasontable.js">		</script>
   </body>
 </html>
