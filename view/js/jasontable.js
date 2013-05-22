@@ -11,7 +11,7 @@ function crearTabla(objArray, theme, enableHeader) {
     // If the returned data is an object do nothing, else try to parse
     var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
  
-    var str = '<table class="' + theme + '">';
+    var str = '<table class="table-hover">';
  
     // table head
     if (enableHeader) {
