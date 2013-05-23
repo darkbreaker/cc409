@@ -29,7 +29,7 @@ class CitaCtl extends ModeloCtl{
 				
 			} else if(!isset($hacer)){
 				$file = file_get_contents('view/RegistroCita.html'); //cargo el archivo
-				$file = str_ireplace('{Username}',$_SESSION['usuario'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+				$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
 				echo $file;
 				
 			}else  

@@ -41,10 +41,11 @@ include_once('ModeloCtl.php');
 								if(is_object($usuario)){
 							//si existe
 									$_SESSION['usuario']=$usuario->id;
-									$_SESSION['nombre']=$usuario->nombre;
+									$_SESSION['nombre']=$usuario->email;
 									$_SESSION['privilegio']=$usuario->tipo;				
 									$file = file_get_contents('view/Index.html'); //cargo el archivo
-									$file = str_ireplace('{Username}',$usuario->nombre , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+									$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); //tomo {titulo} y lo reemplazo por lo que quiera
+								
 									echo $file;
 									
 								}else

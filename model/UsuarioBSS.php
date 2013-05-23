@@ -95,11 +95,11 @@
 				$con->cerrar();
 				return FALSE;
 				}
-			$fila = $fila->fetch_array();
+			$fila = $fila->fetch_array(MYSQLI_ASSOC);
 	//print var_dump($fila);	
 		//	if($fila[0][email]==$id){
 			$con->cerrar();
-			$clase= new Usuario ($fila[0][idPersona],$fila[0][nombre],$fila[0][telefono],$fila[0][calle],$fila[0][password],$fila[0][privilegios],$fila[0][email]);
+			$clase= new Usuario ($fila[idPersona],$fila[nombre],$fila[telefono],$fila[calle],$fila[password],$fila[privilegios],$id);
 			return $clase;
 			//}	
 			//	return false;

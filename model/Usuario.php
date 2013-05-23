@@ -8,7 +8,7 @@
 		public $tipo;
 		public $email;
 		
-			function __construct($id, $nombre, $telefono, $direccion, $password, $tipo, $mail){
+			function __construct($id, $nombre, $telefono, $direccion, $password, $tipo, $email){
 			$this-> id = $id;
 			$this -> nombre = $nombre;
 			$this -> telefono = $telefono;
