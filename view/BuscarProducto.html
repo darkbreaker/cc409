@@ -27,6 +27,7 @@ p{color:black;}
 
 td
 {
+width: 10%;
 text-align:center;
 }
 
@@ -124,7 +125,7 @@ text-align:center;
 						
 							var data = ajax.responseText;
 							data = JSON.parse(data);
-							 data = crearTabla(data,'articulos', true);
+							 data = crearTabla(data,"pedido&hacer=agregar&id=", true);
 							$('form').append(data);
 							//console.log(data);
 						

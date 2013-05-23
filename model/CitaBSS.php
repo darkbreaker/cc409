@@ -144,20 +144,18 @@ include_once('Cita.php');
 				}
 		
 			//ejecutar el query
-			$resultado = $conexion->consulta('select * from citas');	
+			$resultado = $conexion->consulta('select id_cliente as Cliente,fecha,hora_reserva as Reservacion,detalles,id_cita as Cita from cita');	
 			if($resultado==FALSE){
 				die('error de resultado');
 				$conexion->cerrar();
 				return FALSE;
 				}
+				$conexion-> cerrar();
+			while($row = $resultado->fetch_array(MYSQLI_ASSOC))		{
+		$obj[] = $row;		}		
+			return $obj;
 				
-			for ($i=0;$i<count($resultado);$i++) 
-                              { 
-		$obj[$i] = new Cita($resultado[$i][id],$resultado[$i][fecha],$resultado[$i][cliente],$resultado[$i][estado],$resultado[$i][detalles],$resultado[$i][hora_reserva],$resultado[$i][hora_termino]); 
-				}
-				
-			$conexion-> cerrar();
-			return $resultado;
+			
          }
 			
 

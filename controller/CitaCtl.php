@@ -24,13 +24,21 @@ class CitaCtl extends ModeloCtl{
 			$descripcion=$_REQUEST['descripcion'];
 			
 			
+			 if(!isset($hacer)){
 				if(!isset($_SESSION['usuario'])){
 					include_once('view/Index.html');
 				
-			} else if(!isset($hacer)){
+				}else
+				if($_SESSION['privilegio']==0){
 				$file = file_get_contents('view/RegistroCita.html'); //cargo el archivo
-				$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+				$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
 				echo $file;
+				}else{
+					$file = file_get_contents('view/BuscarCita.html'); //cargo el archivo
+					$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+					echo $file;
+				
+				}
 				
 			}else  
 			switch($hacer){
@@ -58,7 +66,8 @@ class CitaCtl extends ModeloCtl{
 					break;
 				case 'listar':
 						$Cita=$this->modelo->listar() ;
-						include('view/listarCitaView.php');
+						echo json_encode($Cita);
+					
 					break;
 				case 'servicioCita':
 						if(!$idCita)

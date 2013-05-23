@@ -118,12 +118,8 @@ include_once('Articulo.php');
 				return false;
 				}
 				
-		while($row = $resultado->fetch_array(MYSQLI_ASSOC))
-		{
-		$obj[] = $row;
-		}		
-			//$resultado=$resultado->fetch_array();
-			
+		while($row = $resultado->fetch_array(MYSQLI_ASSOC))		{
+		$obj[] = $row;		}		
 			return $obj;
          }
          

@@ -74,7 +74,28 @@ include_once('Pedido.php');
 
 		return $resultado;
 	}
-		
+	
+
+
+		function agregar($idproducto,$idpersona){
+	
+		//conectarse a la base de datos
+		$con= new Conexion (  );
+		if(!$con->conecta())
+			die('error conexion'.$conexion->errno);
+		//crear el query
+		$sql="INSERT INTO pedido(fecha,estado,idarticulo,idPersona) VALUES (now(),'P','$idproducto','$idpersona') ";
+		//ejecutar el query
+		$resultado=$con->consulta($sql);
+		if($resultado==false){
+			die('error actualizar');
+			$con->cerrar();
+			return FALSE;
+			}
+
+		return true;
+	}
+	
 	function eliminar($id){
 		$con= new Conexion (  );
 		if($con->conecta()==false)

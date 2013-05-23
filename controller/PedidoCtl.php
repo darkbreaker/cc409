@@ -22,6 +22,14 @@ include_once('ModeloCtl.php');
 					$descripcion=$_REQUEST['descripcion'];
 
 						switch($hacer){
+						case 'agregar':
+							
+								$Pedido=$this->modelo->agregar($_REQUEST['id'],$_SESSION['usuario']);
+								$file = file_get_contents('view/Index.html'); //cargo el archivo
+									$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
+									echo $file;
+							
+							break;
 						
 						case 'listar':
 							if($_SESSION['privilegio']>0){
@@ -54,12 +62,6 @@ include_once('ModeloCtl.php');
 							}else
 									include('view/Index.html');
 								break;
-						case 'filtrarPedido':
-							if($_SESSION['privilegio']>0){
-								$Pedido=$this->modelo->filtrarPedido($descripcion) ;
-								include('view/filtrarPedidoView.php');
-							}else
-								include('view/Index.html');
 							break;
 						Default:
 							include('view/Index.html');
@@ -71,9 +73,6 @@ include_once('ModeloCtl.php');
 					
 		}	
 	}
-
-
-
 
 
 
