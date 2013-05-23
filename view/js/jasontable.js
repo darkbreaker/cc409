@@ -20,7 +20,7 @@ function crearTabla(objArray, dir) {
 		var id=0;
         for (var index in array[i]) {
 			if(id==0)
-				str += '<td><a href="index.php?accion='+dir+array[i][index] +'">' + array[i][index] + '</a></td>';
+				str += '<td><a '+ "onmouseover=\"this.innerHTML = 'Click para reservar'\" onmouseout=\"this.innerHTML = '"+array[i][index] +"'\" "  + ' href="index.php?accion='+dir+array[i][index] +'">' + array[i][index] + '</a></td>';
 			else
 				str += '<td>' + array[i][index] + '</td>';
 				id++;
