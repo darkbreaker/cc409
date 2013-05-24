@@ -38,23 +38,20 @@ include_once('ModeloCtl.php');
 			else
 			switch($hacer){
 				case 'agregarUsuario':
-				if(!$nombre||!$email||!$password||!$calle||!$telefono){
+			
 					
 					if(!isset($_SESSION['usuario'])){
-						$Usuario=$this->modelo->agregarUsuario($nombre, $email, $password, $calle, $telefono);
-						include('view/Login.html');
+							$Usuario=$this->modelo->agregarUsuario($nombre, $email, $password, $calle, $telefono);
+						if($Usuario==true)
+							include_once('view/Login.html');
+						else
+							include_once('view/Registro.html');
 					}
 					else{
 						$Usuario=$this->modelo->buscarUsuario($_SESSION['usuario']);
 						include('view/Login.html');
 						}
-						
-				}else
-					{
-						$file = file_get_contents('view/Index.html'); //cargo el archivo
-						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
-						echo $file;
-					}
+				
 					
 					break;
 				case 'buscarUsuario':
