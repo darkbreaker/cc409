@@ -89,7 +89,7 @@ include_once('Articulo.php');
 		$con= new Conexion ( );
 		if($con->conecta()==false)
 			die('error de conexion');
-		$sql="SELECT  id,nombre,precio_venta,descripcion FROM usuario WHERE CONCAT(nombre,descripcion,precio_venta) LIKE '%".$descripcion."%'";
+		$sql="SELECT  id,nombre,precio_venta,descripcion FROM articulo WHERE CONCAT(nombre,descripcion) LIKE '%".$descripcion."%'";
 		//ejecutar el query
 		$fila = $con->consulta($sql);	
 		if($fila==false){
@@ -97,9 +97,12 @@ include_once('Articulo.php');
 			$con->cerrar();
 			return FALSE;
 			}
-		$con->cerrar();
-		$fila = $fila->fetch_array();
-		return $fila;
+				$con->cerrar();
+				
+		while($row = $fila->fetch_array(MYSQLI_ASSOC)){
+		$obj[] = $row;		}	
+			return $obj;
+         
 	}
 	
     function  listar(){
@@ -117,6 +120,7 @@ include_once('Articulo.php');
 				
 				return false;
 				}
+				$conexion->cerrar();
 				
 		while($row = $resultado->fetch_array(MYSQLI_ASSOC))		{
 		$obj[] = $row;		}		
