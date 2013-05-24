@@ -76,7 +76,7 @@ text-align:center;
 	<label name="msn">Introduce un detalle para filtrar la busqueda:</label><br />
     <p>  
 	
- <input type="text" class="input-medium search-query">
+ <input type="text" class="input-medium search-query" id="filtro" name="filtro">
   <button type="button" class="btn btn-inverse" onClick="productos();">Buscar Producto</button>
 </p>
 	<div class="container">
@@ -116,7 +116,12 @@ text-align:center;
 			//crear objeto xmlhttprequest
 			var ajax= new nuevoAjax();
 			//abrir comunicacion asicfonz
-			ajax.open("get","index.php?accion=articulo&hacer=filtrar",true);
+			var filtro = document.getElementById('filtro').value;
+			console.log(filtro);
+			if(filtro.length==0)
+				ajax.open("get","index.php?accion=articulo&hacer=filtrar",true);
+			else
+				ajax.open("get","index.php?accion=articulo&hacer=filtrar&descripcion="+filtro,true);
 			//obtener resultado
 			ajax.onreadystatechange = function (){
 				if(ajax.readyState == 4){
