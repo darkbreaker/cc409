@@ -57,11 +57,11 @@
 	*@return mixed objeto de clase usuario si lo encuentra o FALSE si hay un error
 	*/
 	function buscarUsuario($id){
-		$con= new Conexion (  );
-		$id=$con->escapar($id);
+		$con= new Conexion ( );
+
 		if($con->conecta()==false)
 			die('error de conexion');
-		$sql='SELECT * FROM usuario WHERE idPersona= '.$id;
+		$sql="SELECT * FROM usuario WHERE idPersona= '$id'";
 		//ejecutar el query
 		$fila = $con->consulta($sql);	
 		if($fila==false){
@@ -69,13 +69,12 @@
 			$con->cerrar();
 			return FALSE;
 			}
-			
-		if($fila[0][idPersona]==$id){
-		$con->cerrar();
-		$clase= new Usuario ($fila[0][idPersona],$fila[0][nombre],$fila[0][telefono],$fila[0][calle],$fila[0][password],$fila[0][privilegios],$fila[0][email]);
 
-		return $clase;
-		}	
+		$fila = $fila->fetch_array(MYSQLI_ASSOC);
+			$con->cerrar();
+			//$clase= new Usuario ($fila[idPersona],$fila[nombre],$fila[telefono],$fila[calle],$fila[password],$fila[privilegios],$id);
+			
+			return $fila;
 
 	}
 	
@@ -96,13 +95,10 @@
 				return FALSE;
 				}
 			$fila = $fila->fetch_array(MYSQLI_ASSOC);
-	//print var_dump($fila);	
-		//	if($fila[0][email]==$id){
 			$con->cerrar();
 			$clase= new Usuario ($fila[idPersona],$fila[nombre],$fila[telefono],$fila[calle],$fila[password],$fila[privilegios],$id);
 			return $clase;
-			//}	
-			//	return false;
+
 
 	}
 	
@@ -159,13 +155,7 @@
 		function modificar($nombre,$telefono,$direccion,$password,$email,$idUsuario){
 	
 		//conectarse a la base de datos
-		$con= new Conexion (  );
-		$idUsuario=$con->escapar($idUsuario);
-		$id=$con->escapar($id);
-		$id=$con->escapar($id);
-		$id=$con->escapar($id);
-		$id=$con->escapar($id);
-		$id=$con->escapar($id);
+		$con= new Conexion ();
 		
 		
 		if(!$con->conecta())

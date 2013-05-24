@@ -29,7 +29,7 @@ include_once('ModeloCtl.php');
 						include('view/Registro.html');
 					}
 				else{
-						$file = file_get_contents('view/Index.html'); //cargo el archivo
+						$file = file_get_contents('view/Modificar.html'); //cargo el archivo
 						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
 						echo $file;
 						}
@@ -54,20 +54,16 @@ include_once('ModeloCtl.php');
 						$file = file_get_contents('view/Index.html'); //cargo el archivo
 						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
 						echo $file;
-					
-					
 					}
 					
 					break;
 				case 'buscarUsuario':
-					if(isset($_SESSION['usuario'])&&$id!=false){
-						if($_SESSION['privilegio']>0){
-					$Usuario=$this->modelo->buscarUsuario($id);
-					include('view/BuscarUsuario.html');
-					}else
-						include('view/Index.html');
-					}else
-						include('view/Index.html');
+					if(isset($_SESSION['usuario'])){
+					$Usuario=$this->modelo->buscarUsuario($_SESSION['usuario']);
+					echo json_encode($Usuario);
+					}
+					else
+						include_once('view/Index.html');
 					break;
 				case 'filtrar':
 					if(isset($_SESSION['usuario'])){
@@ -81,12 +77,22 @@ include_once('ModeloCtl.php');
 					break;
 				
 				case 'modificar':
-					if(!isset($_SESSION['usuario'])||!$nombre||!$telefono||!$calle||!$password||!$mail)
-						include('view/Index.html');
-					else{
-							$Usuario=$this->modelo->modificar($nombre, $telefono, $calle, $password, $mail, $_SESSION['usuario']) ;
-							include('view/Registro.html');
+					/*if(!$nombre||!$telefono||!$calle||!$password||!$mail){
+					
+						$file = file_get_contents('view/Index.html'); //cargo el archivo
+						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+						echo $file;
 					}
+						
+					else{*/
+							$Usuario=$this->modelo->modificar($nombre, $telefono, $calle, $password, $mail, $_SESSION['usuario']) ;
+							
+							$file = file_get_contents('view/Index.html'); //cargo el archivo
+							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+							$file = str_ireplace('>Buscar<','>Cambios hechos<' , $file); 
+							echo $file;
+				//	}
+					
 					break;
 				case 'listar':
 					if(isset($_SESSION['usuario'])){

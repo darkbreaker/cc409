@@ -1,0 +1,174 @@
+<!DOCTYPE html> <script language=""="text/JavaScript" src="view/js/ajax.js">		</script>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Registro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="view/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+
+        padding-top: 50px;
+        padding-bottom: 40px;
+        background-image:url('view/fondo.jpg');
+        color: black;
+      }
+
+      .form-signin {
+        max-width: 300px;
+        padding: 29px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+p{color:black;}
+    </style>
+    <link href="view/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="view/../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="view/../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="view/../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="view/../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="view/../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="view/../assets/ico/favicon.png">
+  </head>
+
+  <body onload="usuario();">
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="http://es.wikipedia.org/wiki/Animal_de_compa%C3%B1%C3%ADa">Mascota</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Se autentifico como: <a href="view/#" class="navbar-link">{Username}</a>
+            </p>
+            <ul class="nav">
+              <li><a href="index.php">Pagina Principal</a></li>
+              <li><a href="index.php?accion=log">Login</a></li>
+              <li class="active"><a href="index.php?accion=usuario">Registrarse</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <form class="form-signin"  id="form" action="index.php" method="GET" >
+        <h2 class="form-signin-heading">Datos del usuario</h2>
+
+		<input type="hidden" id="accion" name="accion" value="usuario">
+		<input type="hidden" id="hacer" name="hacer" value="modificar">
+		
+        <label for="nombre">Nombre</label>
+         <input type="text" id="nombre" name="nombre" Required class="input-block-level">
+		 
+         <label for="nombre">Telefono</label>
+         <input type="text" id="telefono" name="telefono" maxlength="10" Required class="input-block-level">
+		 
+         <label for="nombre">Direccion</label>
+         <input type="text" id="calle" name="calle" Required class="input-block-level">
+		 
+        
+         <input type="hidden"  id="email" name="email"  Required class="input-block-level">
+		 
+          <label for="nombre">Contraseña</label>
+         <input type="password" id="password" name="password" Required class="input-block-level">
+		 
+		  <label for="nombre">Repetir Contraseña</label>
+         <input type="password" id="pass" name="pass" Required class="input-block-level">
+		 
+       </br>
+        <button class="btn btn-large btn-primary" type="submit">Guardar cambios</button>
+      </form>
+<footer>
+        <p>&copy; Mascota</p>
+      </footer>
+
+
+
+    </div> <!-- /container -->
+
+	<div class="navbar navbar-inverse navbar-fixed-bottom" id="navegacion" >
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          
+          <div class="nav-collapse collapse">
+            <ul class="nav" id="lista">
+              <li class="active"><a href="index.php?accion=articulo">Productos</a></li>
+              <li><a href="index.php?accion=cita">Citas</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+	
+   <script language=""="text/JavaScript" >
+		function usuario(){
+			var form = document.getElementById('form');
+			var ajax= new nuevoAjax();
+			//abrir comunicacion asicfonz
+			ajax.open("get","index.php?accion=usuario&hacer=buscarUsuario",true);
+			//obtener resultado
+			ajax.onreadystatechange = function (){
+				if(ajax.readyState == 4){				
+							var data = ajax.responseText;
+							data = JSON.parse(data);
+							console.log(data);
+							form.nombre.value=data.nombre;
+							form.telefono.value=data.telefono;
+							form.calle.value=data.calle;
+							form.email.value=data.email;
+							form.password.value=data.password;
+							form.pass.value=data.password;
+							form.id.value=data.idPersona;
+				}
+			}
+				//
+				ajax.send(null);
+		
+		
+		}
+   
+   </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script language=""="text/JavaScript" src="view/js/ajax.js">		</script>
+  </body>
+</html>
