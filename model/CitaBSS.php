@@ -27,7 +27,7 @@ include_once('Cita.php');
 			if(!$con->conecta())
 				die('error conexion');
 			//crear el query
-			$sql="INSERT INTO cita(idPersona,fecha,detalles,inicio) VALUES ('$this->idUsuario','$this->fecha','$this->detalles','$this->hora_reserva') ";
+			$sql="INSERT INTO cita(idPersona,fecha,detalles,inicio) VALUES ('$this->idUsuario',CURRENT_DATE,'$this->detalles',CURTIME()) ";
 			//$sql=$con->escapar($sql);
 			//ejecutar el query
 			$resultado=$con->consulta($sql);
@@ -99,33 +99,29 @@ include_once('Cita.php');
 			
 			return $fila;
          }
-        function ActualizarCita($idCita, $hora_termino,$estado){
+        function ActualizarCita($idCita){
 			$con= new Conexion (  );
-			$idCita=$con->escapar($idCita);
-			$hora_termino=$con->escapar($hora_termino);
-			$estado=$con->escapar($estado);
 			if(!$con->conecta())
 				die('error conexion'.$conexion->errno);
-		//crear el query
-			$sql="UPDATE usuario SET fin='$hora_termino', estado='$estado'  WHERE idCita=".$idCita;
-			//$sql=$con->escapar($sql);
-			//ejecutar el query
+
+			$sql="UPDATE cita SET hora_termino = CURTIME( ) ,estado =  'fin'  WHERE id_cita =  '$idCita'";
+
 			$resultado=$con->consulta($sql);
 			if($resultado==false){
-				die('error actualizar');
+				die('error actualizar cita');
 				$con->cerrar();
 				return FALSE;
 				}
 
-			return $resultado;
+			return true;
 		}
 			
        function filtrarCita($descripcion){
 		$con= new Conexion (  );
-		$descripcion=$con->escapar($descripcion);
+	
 		if($con->conecta()==false)
 			die('error de conexion');
-		$sql="SELECT * FROM usuario WHERE CONCAT(fecha,detalles,hora_reserva) LIKE '%".$descripcion."%'";
+		$sql="SELECT id_cita as Cita,fecha,hora_reserva as Reservacion,detalles,id_cliente as Cliente FROM cita WHERE CONCAT(fecha,detalles,hora_reserva) LIKE '%".$descripcion."%'";
 		//ejecutar el query
 		$fila = $con->consulta($sql);	
 		if($fila==false){
@@ -133,6 +129,13 @@ include_once('Cita.php');
 			$con->cerrar();
 			return FALSE;
 			}
+			$con-> cerrar();
+			while($row = $fila->fetch_array(MYSQLI_ASSOC))		{
+		$obj[] = $row;		}		
+			return $obj;
+				
+			
+			
          }
 		 
 		 
@@ -144,7 +147,7 @@ include_once('Cita.php');
 				}
 		
 			//ejecutar el query
-			$resultado = $conexion->consulta('select id_cliente as Cliente,fecha,hora_reserva as Reservacion,detalles,id_cita as Cita from cita');	
+			$resultado = $conexion->consulta('select id_cita as Cita,fecha,hora_reserva as Reservacion,detalles,id_cliente as Cliente from cita');	
 			if($resultado==FALSE){
 				die('error de resultado');
 				$conexion->cerrar();

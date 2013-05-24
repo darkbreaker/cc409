@@ -56,11 +56,10 @@ include_once('ModeloCtl.php');
 									include('view/Index.html');
 								break;
 						case 'ActualizarReservacion':
-							if($_SESSION['privilegio']>0){
-								$Pedido=$this->modelo-> ActualizarReservacion($idReservacion, $estado);
+							
+								$Pedido=$this->modelo-> ActualizarReservacion($idReservacion, 'terminado');
 								include('view/ActulizarReservacionView.php');
-							}else
-									include('view/Index.html');
+							
 								break;
 							break;
 						Default:

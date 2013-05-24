@@ -69,24 +69,19 @@ class CitaCtl extends ModeloCtl{
 						echo json_encode($Cita);
 					
 					break;
-				case 'servicioCita':
-						if(!$idCita)
-								include_once('index.php');
-						else{
-			               $Cita=$this->modelo->servicioCita($idCita) ;
-							include('view/serviciosCitaView.php');}
-					break;
+				
 		        case 'ActualizarCita':
-					if(!$idCita||!$hora_termino||!$estado)
-						include_once('view/Index.html');
-						else{
-			               $Cita=$this->modelo->ActualizarCita($idCita, $hora_termino ,$estado) ;
-							include('view/ActulizarCitaView.php');}
+					
+			        $Cita=$this->modelo->ActualizarCita($_REQUEST['idCita']) ;
+					$file = file_get_contents('view/Index.html'); //cargo el archivo
+					$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+					echo $file;
+
 					break;
 
 				case 'filtrarCita':
 					$Cita=$this->modelo->filtrarCita($descripcion) ;
-					include('view/filtrarCitaView.php');
+					echo json_encode($Cita);
 					break;
 				
 			}
