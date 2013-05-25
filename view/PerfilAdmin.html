@@ -1,5 +1,4 @@
-<!DOCTYPE html> <script language=""="text/JavaScript" src="view/js/ajax.js">		</script> <script language=""="text/JavaScript" src="view/js/ajax.js">		</script>
-
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <title>Perfil Admin</title>
@@ -24,7 +23,7 @@ th{border-bottom-width: 3px ; border-bottom-style: solid;
      td{border-bottom-width: 3px ; border-bottom-style: solid;}
       </style>
 </head>
-<body>
+<body onload="carga();">
   <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -81,4 +80,16 @@ th{border-bottom-width: 3px ; border-bottom-style: solid;
 	  
 	  
 </body>
+<script language=""="text/JavaScript" src="view/js/ajax.js">		</script>
+	 <script language=""="text/JavaScript" >
+			
+	 
+			function carga(){
+				var ajax= new nuevoAjax();
+				//abrir comunicacion asicfonz
+				
+				ajax.send(null);
+				//pedir al listar servicios.php default select (servicios) from sercicios
+			}
+	 </script>
 </html>

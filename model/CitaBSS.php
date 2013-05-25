@@ -37,27 +37,25 @@ include_once('Cita.php');
 			  
         }
 		
-        function buscarCita($idCita){
-			$con= new Conexion (  );
-			$idCita=$con->escapar($idCita);
-			if($con->conecta()==false)
-				die('error de conexion');
-			$sql='SELECT * FROM cita WHERE id= '.$id;
+        function buscarCita($id){
+			$conexion= new Conexion (  );
+			if($conexion->conecta()==false){
+				$conexion->cerrar();
+				die('error al conectar');
+				}
+		
 			//ejecutar el query
-			$fila = $con->consulta($sql);	
-			if($fila==false){
-				die('error al consultar');
-				$con->cerrar();
+			$resultado = $conexion->consulta("select fecha,hora_reserva as Reservacion,detalles from cita WHERE id_cliente = '$id'");	
+			if($resultado==FALSE){
+				die('error de resultado');
+				$conexion->cerrar();
 				return FALSE;
 				}
+				$conexion-> cerrar();
+			while($row = $resultado->fetch_array(MYSQLI_ASSOC))		{
+		$obj[] = $row;		}		
+			return $obj;
 				
-			if($fila[0][id]==$id){
-			$con->cerrar();
-			$clase= new Cita ($fila[0][id],$fila[0][fecha],$fila[0][idPersona],$fila[0][estado],$fila[0][detalles],$fila[0][inicio],$fila[0][fin]);
-
-			return $clase;
-			}
-			return false;
          }
 		 
          function eliminarCita($idCita){

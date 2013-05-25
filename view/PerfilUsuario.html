@@ -1,14 +1,10 @@
-<!DOCTYPE html> <script language=""="text/JavaScript" src="view/js/ajax.js">		</script> <script language=""="text/JavaScript" src="view/js/ajax.js">		</script>
-
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <title>Perfil Usuario</title>
   <link rel="stylesheet" type="text/css" href="view/css/bootstrap.css"/>
   
-  <script src="view/http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-  <script src="vete/js/bootstrap.js"></script>
-
-  <style type="text/css">
+   <style type="text/css">
       body {
         padding-top: 150px;
         padding-bottom: 40px;
@@ -22,9 +18,17 @@ border-right-width: 3px ; border-right-style: solid;}
 th{border-bottom-width: 3px ; border-bottom-style: solid;
 }
      td{border-bottom-width: 3px ; border-bottom-style: solid;}
+	 
+	 td
+{
+
+text-align:center;
+}
+	 
+	 
       </style>
 </head>
-<body>
+<body onload="carga();">
   <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -50,15 +54,15 @@ th{border-bottom-width: 3px ; border-bottom-style: solid;
 
   
 	<div class="container">
-		<table class="table table-hover" id="citas">
-
-		<div class="container">
-    <table class="table table-hover" id="Reservaciones">
-
+	<form name="form" id="form" class="form">
+		
+	</form>
+	
+	
 		<footer>
 			<p>&copy; Mascota</p>
 		  </footer>
-		</table>
+		
 	</div>
 	  <div class="navbar navbar-inverse navbar-fixed-bottom" id="navegacion" >
       <div class="navbar-inner">
@@ -79,6 +83,118 @@ th{border-bottom-width: 3px ; border-bottom-style: solid;
       </div>
     </div>
 	  
-	  
+<script language=""="text/JavaScript" src="view/js/ajax.js">		</script>
+	 <script language=""="text/JavaScript" >
+			
+	 
+			function carga(){
+				var ajax= new nuevoAjax();
+				var form=document.getElementById('form');
+				ajax.open("get","index.php?accion=cita&hacer=buscarCita",true);
+				ajax.onreadystatechange = function (){
+					if(ajax.readyState == 4){						
+								var data = ajax.responseText;
+								data = JSON.parse(data);
+								data = crearCitas(data);
+								
+								$('form').append(data);
+					}
+				}
+				
+			ajax.send(null);
+	pedido();
+			}
+			
+			function pedido(){
+				var ajax= new nuevoAjax();
+				ajax.open("get","index.php?accion=pedido&hacer=buscar",true);
+					
+					ajax.onreadystatechange = function (){
+					if(ajax.readyState == 4){						
+								var dato = ajax.responseText;
+								dato = JSON.parse(dato);
+								dato = crearpedido(dato);
+								$('form').append(dato);
+					}
+				}
+			ajax.send(null);
+			
+			
+			}
+			
+					function crearpedido(objArray) {
+ 
+    // If the returned data is an object do nothing, else try to parse
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+ 
+    var str = '</br><table class="table-hover" id="ptable" name="ptable">';
+ 
+    // table head
+        str += '<thead><tr>';
+        for (var index in array[0]) {
+            str += '<th scope="col">' + index + '</th>';
+        }
+        str += '</tr></thead>';
+    
+ 
+    // table body
+    str += '<tbody>';
+    for (var i = 0; i < array.length; i++) {
+        str += (i % 2 == 0) ? '<tr class="alt">' : '<tr>';
+		var id=0;
+        for (var index in array[i]) {
+			if(id==0)
+				str += '<td>' + array[i][index] + '</td>';
+			else
+				str += '<td>' + array[i][index] + '</td>';
+				id++;
+        }
+        str += '</tr>';
+    }
+    str += '</tbody>'
+    str += '</table>';
+    return str;
+}
+			
+			function crearCitas(objArray) {
+ 
+    // If the returned data is an object do nothing, else try to parse
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+ 
+    var str = '<table class="table-hover" id="jtable" name="jtable">';
+ 
+    // table head
+        str += '<thead><tr>';
+        for (var index in array[0]) {
+            str += '<th scope="col">' + index + '</th>';
+        }
+        str += '</tr></thead>';
+    
+ 
+    // table body
+    str += '<tbody>';
+    for (var i = 0; i < array.length; i++) {
+        str += (i % 2 == 0) ? '<tr class="alt">' : '<tr>';
+		var id=0;
+        for (var index in array[i]) {
+			if(id==0)
+				str += '<td>' + array[i][index] + '</td>';
+			else
+				str += '<td>' + array[i][index] + '</td>';
+				id++;
+        }
+        str += '</tr>';
+    }
+    str += '</tbody>'
+    str += '</table>';
+    return str;
+}
+		
+	 </script>
+
+	<script language="text/JavaScript" src="view/js/ajax.js">		</script>
+	<script language="text/JavaScript" src="view/js/jquery.js">		</script>	 
+	  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 </body>
+
 </html>

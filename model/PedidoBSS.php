@@ -9,51 +9,47 @@ include_once('Pedido.php');
 		public $estado;
 		
 		function listar(){
-		$conexion= new Conexion (  );
-		if($conexion->conecta()==false){
-			$conexion->cerrar();
-			die('error al conectar');
-			}
-	
-		//ejecutar el query
-		$resultado = $conexion->consulta('select * from pedido');	
-		if($resultado==FALSE){
-			die('error de resultado');
-			$conexion->cerrar();
-			return FALSE;
-			}
-			
-			for ($i=0;$i<count($resultado);$i++) 
-                              { 
-		$obj[$i] = new Pedido($resultado[$i][idArticulo],$resultado[$i][fidUsuario],$resultado[$i][fechaReservacion],$resultado[$i][cliente]); 
+			$conexion= new Conexion (  );
+			if($conexion->conecta()==false){
+				$conexion->cerrar();
+				die('error al conectar');
 				}
-			
-		$conexion-> cerrar();
-		return $resultado;
-	}
 		
-		function buscarReservacion($idUsuario){
-		$con= new Conexion (  );
-		if($con->conecta()==false)
-			die('error de conexion');
-		$sql="SELECT * FROM usuario WHERE idPersona='$idUsuario'";
-		//ejecutar el query
-		$fila = $con->consulta($sql);	
-		if($fila==false){
-			die('error al consultar');
-			$con->cerrar();
-			return FALSE;
-			}
-			/*
-		if($fila[0][idPersona]==$id){
-		$con->cerrar();
-		$clase= new Usuario ($fila[0][idPersona],$fila[0][nombre],$fila[0][telefono],$fila[0][calle],$fila[0][password],$fila[0][privilegios],$fila[0][email]);
+			//ejecutar el query
+			$resultado = $conexion->consulta('select * from pedido');	
+			if($resultado==FALSE){
+				die('error de resultado');
+				$conexion->cerrar();
+				return FALSE;
+				}
+				$conexion-> cerrar();
+			while($row = $resultado->fetch_array(MYSQLI_ASSOC))		{
+		$obj[] = $row;		}		
+			return $obj;
+				
+			
+		}
+		
+		function buscarReservacion($id){
+			$conexion= new Conexion (  );
+			if($conexion->conecta()==false){
+				$conexion->cerrar();
+				die('error al conectar');
+				}
+		
+			//ejecutar el query
+			$resultado = $conexion->consulta("select fecha,estado,idarticulo from pedido WHERE idcliente = '$id'");	
+			if($resultado==FALSE){
+				die('error de resultado');
+				$conexion->cerrar();
+				return FALSE;
+				}
+				$conexion-> cerrar();
+			while($row = $resultado->fetch_array(MYSQLI_ASSOC))		{
+		$obj[] = $row;		}		
+			return $obj;
 
-		return $clase;
-		}	*/
-		return $fila;
-
-	}
+		}
 		
 		function ActualizarReservacion($idReservacion,$estado){
 	
@@ -84,7 +80,7 @@ include_once('Pedido.php');
 		if(!$con->conecta())
 			die('error conexion'.$conexion->errno);
 		//crear el query
-		$sql="INSERT INTO pedido(fecha,estado,idarticulo,idPersona) VALUES (now(),'P','$idproducto','$idpersona') ";
+		$sql="INSERT INTO pedido(fecha,estado,idarticulo,idcliente) VALUES (now(),'P','$idproducto','$idpersona') ";
 		//ejecutar el query
 		$resultado=$con->consulta($sql);
 		if($resultado==false){

@@ -32,16 +32,13 @@ include_once('ModeloCtl.php');
 							break;
 						
 						case 'listar':
-							if($_SESSION['privilegio']>0){
-								$Pedido=$this->modelo->Listar();
-								include('view/ListarPedidoView.php');
-							}else
-								include('view/Index.html');
+							$Pedido=$this->modelo->listar();
+							echo json_encode($Pedido);
 							break;
-						case 'buscarReservacion':
+						case 'buscar':
 							
 							$Pedido=$this->modelo->buscarReservacion($_SESSION['usuario']);
-							include('view/buscarReservacionView.php');
+							echo json_encode($Pedido);
 					
 							break;
 							

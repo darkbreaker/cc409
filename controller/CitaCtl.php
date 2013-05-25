@@ -50,11 +50,9 @@ class CitaCtl extends ModeloCtl{
 					break;
 					
 				case 'buscarCita':
-					if(!$idCita)
-						include_once('view/Index.html');
-						else{
-					$Cita=$this->modelo->buscarCita($idCita);
-					include('view/buscarCitaView.php');}
+					
+					$Cita=$this->modelo->buscarCita($_SESSION['usuario']);
+					echo json_encode($Cita);
 					break;
 				case 'eliminarCita':
 					if(!$idCita)
