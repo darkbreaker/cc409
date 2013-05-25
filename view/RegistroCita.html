@@ -86,22 +86,18 @@ p{color:black;}
 
  <div class="container">
 
-      <form class="form-signin" name="fomr" id="form">
+      <form class="form-signin" name="form" id="form">
         <h2 class="form-signin-heading">Registrar Cita</h2>
 		<input type="hidden" id="accion" name="accion" value="cita">
-		<input type="hidden" id="hacer" name="hacer" value="agregar">
-		<input type="hidden" id="estado" name="estado"  value="reservado">
-		<input type="hidden" id="fecha" name="fecha" >
+		<input type="hidden" id="hacer" name="hacer" value="agregarCita">
 		
         <label for="nombre">Detalles</label>
          <input type="text" id="detalles" name="detalles" Required class="input-block-level">
-         <label for="nombre">Inicio</label>
-         <input type="text" id="inicio" name="inicio" Required class="input-block-level">
         <Select name="opccion" id="opccion"> <option value="0"> Elige un Servicio</option>	</select>
   
          
        </br>
-        <button class="btn btn-large btn-primary" onClick="enviar();">Guardar</button>
+        <button type="button" class="btn btn-large btn-primary" onClick="enviar();" >Guardar</button>
       </form>
 
 
@@ -150,21 +146,14 @@ p{color:black;}
 	 <script language=""="text/JavaScript" src="view/js/ajax.js">		</script>
 	 <script language=""="text/JavaScript" >
 			function enviar(){
-				//if(document.form.nombre.value.lenght<3)
-					if(document.form.opccion.value>0){
-						if(document.form.detalles.value.lenght>5)
-							document.from.submit();
-						else{
-							var tel = document.getElementById("telefono");
-							var div = document.createElement("div");
-							//div.setAtributte("div");
-							var msg = document.createTextNode("telefono incompleto");
-							div.appendChild(msg);
-							document.form.insertBefore(div,tel.nextSibiling);
-							//document.form.telefono.type="hidden";
-							//document.form.msn.value="error";
-						}
-					}
+				if(document.form.opccion.value!=0){
+								if(document.form.detalles.value.length>3){
+									document.form.submit();
+									return true;}
+								else
+									document.getElementById("detalles").focus();
+				}else
+					document.getElementById("opccion").focus();
 		
 		
 				return false;	
@@ -196,11 +185,6 @@ p{color:black;}
 								form.appendChild(option);
 								
 							}
-						a=document.getElementById("fecha");
-						var x= new Date();
-						var fecha= x.getFullYear()+'/'+x.getMonth()+'/' + x.getDate() ;
-						a.value=fecha;
-							
 					}
 				}
 				//

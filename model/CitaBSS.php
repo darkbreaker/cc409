@@ -10,28 +10,23 @@ include_once('Cita.php');
 		public $hora_reserva;		
 		public $hora_termino;		
         
-		function agregarCita($idUsuario, $fecha, $detalles, $hora_reserva){
+		function agregarCita($id,  $detalles, $servicio){
 			
 			//conectarse a la base de datos
 			$con= new Conexion (  );
-			$idUsuario=$con->escapar($idUsuario);
-			$fecha=$con->escapar($fecha);
-			$detalles=$con->escapar($detalles);
-			$hora_reserva=$con->escapar($hora_reserva);
 			
-			$this -> fecha=$fecha;
-			$this -> cliente=$idUsuario;
-			$this -> detalles=$detalle;
-			$this -> hora_reserva=$hora_reserva;				
-        
 			if(!$con->conecta())
 				die('error conexion');
 			//crear el query
-			$sql="INSERT INTO cita(idPersona,fecha,detalles,inicio) VALUES ('$this->idUsuario',CURRENT_DATE,'$this->detalles',CURTIME()) ";
-			//$sql=$con->escapar($sql);
-			//ejecutar el query
+			$sql="INSERT INTO cita(id_cliente,fecha,detalles,hora_reserva) VALUES ('$id',CURRENT_DATE(),'$detalles',CURTIME()) ";
+	
 			$resultado=$con->consulta($sql);
-			if($resultado==false){
+			
+			$sql="INSERT INTO detalle_cita(id_cita,id_servicio) VALUES ('$resultado','$servicio') ";
+	
+			$resultado=$con->consulta($sql);
+			
+			if($resultado===false){
 				die('error insercion');
 				$con->cerrar();
 				return FALSE;

@@ -15,10 +15,8 @@ class CitaCtl extends ModeloCtl{
 			session_start();
 			$hacer=$_REQUEST['hacer'];
 			$idCita=$this->EsId($_REQUEST['idCita']);
-			$fecha=$this->EsFecha($_REQUEST['fecha']);
-			$detalles=$_REQUEST['detalles'];
-			$hora_reserva=$this->EsHora($_REQUEST['hora_reserva']);
-			$hora_termino=$this->EsHora($_REQUEST['hora_termino']);
+			$fecha=$this->EsFecha($_REQUEST['fecha']);			$detalles=$_REQUEST['detalles'];
+
 			$idUsuario=$this->EsId($_REQUEST['idUsuario']);
             $estado=$_REQUEST['estado'];
 			$descripcion=$_REQUEST['descripcion'];
@@ -43,11 +41,12 @@ class CitaCtl extends ModeloCtl{
 			}else  
 			switch($hacer){
 				case 'agregarCita':
-					if((!$idUsuario||!$fecha||!$hora_reserva))
-						include_once('view/Index.html');
-						else{
-					$Cita=$this->modelo->agregarCita($idUsuario, $fecha ,$detalles, $hora_reserva) ;
-					include('view/agregarCitaView.php');}
+					
+					$Cita=$this->modelo->agregarCita($_SESSION['usuario'],$detalles, $_REQUEST['opccion']) ;
+					$file = file_get_contents('view/Index.html'); //cargo el archivo
+					$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+					echo $file;
+			
 					break;
 					
 				case 'buscarCita':
