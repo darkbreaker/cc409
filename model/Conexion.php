@@ -56,11 +56,9 @@
 					return FALSE;
 				
 			}
-			$pos = strpos($query,'INSERT');
 			
-			if($pos===0)
 				return $this->cn -> insert_id;
-			return $this->cn -> affected_rows;
+			
 
 		}
 	
