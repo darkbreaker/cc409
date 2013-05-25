@@ -103,7 +103,25 @@ include_once('ModeloCtl.php');
 					else
 						include('view/Index.html');
 					break;
-				
+				case 'perfil':
+					if(isset($_SESSION['usuario'])){
+						if($_SESSION['privilegio']==0){
+							$file = file_get_contents('view/PerfilUsuario.html'); //cargo el archivo
+							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+							$file = str_ireplace('>Buscar<','>Cambios hechos<' , $file); 
+							echo $file;
+						}else
+							{
+							$file = file_get_contents('view/PerfilAdmin.html'); //cargo el archivo
+							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+							$file = str_ireplace('>Buscar<','>Cambios hechos<' , $file); 
+							echo $file;
+							
+							}
+					}
+					else
+						include('view/Index.html');
+					break;
 				default:
 					if(isset($_SESSION['usuario'])){
 						$file = file_get_contents('view/Index.html'); //cargo el archivo
