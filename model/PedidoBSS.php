@@ -16,7 +16,7 @@ include_once('Pedido.php');
 				}
 		
 			//ejecutar el query
-			$resultado = $conexion->consulta('select * from pedido');	
+			$resultado = $conexion->consulta("select idpedido as pedido,idarticulo as articulo,fecha,idcliente as cliente from pedido");	
 			if($resultado==FALSE){
 				die('error de resultado');
 				$conexion->cerrar();
@@ -51,24 +51,22 @@ include_once('Pedido.php');
 
 		}
 		
-		function ActualizarReservacion($idReservacion,$estado){
+		function ActualizarReservacion($id){
 	
-		//conectarse a la base de datos
-		$con= new Conexion (  );
-		if(!$con->conecta())
-			die('error conexion'.$conexion->errno);
-		//crear el query
-		$sql="UPDATE usuario SET estado='$estado'   WHERE idpedido=".$idReservacion;
-		//$sql=$con->escapar($sql);
-		//ejecutar el query
-		$resultado=$con->consulta($sql);
-		if($resultado==false){
-			die('error actualizar');
-			$con->cerrar();
-			return FALSE;
-			}
 
-		return $resultado;
+			$con= new Conexion (  );
+			if(!$con->conecta())
+				die('error conexion'.$conexion->errno);
+			//crear el query
+			$sql="UPDATE pedido SET estado =  'listo' WHERE idpedido ='$id'";
+			$resultado=$con->consulta($sql);
+			if($resultado===false){
+				die('error actualizar');
+				$con->cerrar();
+				return FALSE;
+				}
+
+			return true;
 	}
 	
 

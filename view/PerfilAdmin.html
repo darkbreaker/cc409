@@ -38,7 +38,7 @@ text-align:center;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="="http://es.wikipedia.org/wiki/Animal_de_compa%C3%B1%C3%ADa">Mascota</a>
+          <a class="brand" href="http://es.wikipedia.org/wiki/Animal_de_compa%C3%B1%C3%ADa">Mascota</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               Se autentifico como: <a href="index.php?accion=usuario&hacer=perfil" class="navbar-link">{Username}</a>
@@ -129,7 +129,7 @@ text-align:center;
 		var id=0;
         for (var index in array[i]) {
 			if(id==0)
-				str += '<td>' + array[i][index] + '</td>';
+				str += "<td><a href='index.php?accion=pedido&hacer=actualizar&idReservacion=" +array[i][index]+"'>"+ array[i][index] + '</a></td>';
 			else
 				str += '<td>' + array[i][index] + '</td>';
 				id++;

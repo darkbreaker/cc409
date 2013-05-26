@@ -52,10 +52,12 @@ include_once('ModeloCtl.php');
 							}else
 									include('view/Index.html');
 								break;
-						case 'ActualizarReservacion':
+						case 'actualizar':
 							
-								$Pedido=$this->modelo-> ActualizarReservacion($idReservacion, 'terminado');
-								include('view/ActulizarReservacionView.php');
+								$Pedido=$this->modelo-> ActualizarReservacion($idReservacion);
+								$file = file_get_contents('view/Index.html'); //cargo el archivo
+									$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
+									echo $file;
 							
 								break;
 							break;
