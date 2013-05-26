@@ -21,6 +21,12 @@ border-right-width: 3px ; border-right-style: solid;}
 th{border-bottom-width: 3px ; border-bottom-style: solid;
 }
      td{border-bottom-width: 3px ; border-bottom-style: solid;}
+	 	 td
+{
+
+text-align:center;
+}
+	 
       </style>
 </head>
 <body onload="carga();">
@@ -48,16 +54,16 @@ th{border-bottom-width: 3px ; border-bottom-style: solid;
     </div>
 
   
-	<div class="container">
-		<table class="table table-hover" id="citas">
 
 		<div class="container">
-    <table class="table table-hover" id="Reservaciones">
-
+   
+	<form name="form" id="form" class="form">
+		
+	</form>
 		<footer>
 			<p>&copy; Mascota</p>
 		  </footer>
-		</table>
+	
 	</div>
 	  <div class="navbar navbar-inverse navbar-fixed-bottom" id="navegacion" >
       <div class="navbar-inner">
@@ -78,18 +84,68 @@ th{border-bottom-width: 3px ; border-bottom-style: solid;
       </div>
     </div>
 	  
-	  
-</body>
-<script language=""="text/JavaScript" src="view/js/ajax.js">		</script>
+	  <script language=""="text/JavaScript" src="view/js/ajax.js">		</script>
 	 <script language=""="text/JavaScript" >
 			
 	 
 			function carga(){
 				var ajax= new nuevoAjax();
-				//abrir comunicacion asicfonz
+				var form=document.getElementById('form');
+				ajax.open("get","index.php?accion=pedido&hacer=listar",true);
+				ajax.onreadystatechange = function (){
+					if(ajax.readyState == 4){						
+								var data = ajax.responseText;
+								data = JSON.parse(data);
+								data = crearCitas(data);
+								
+								$('form').append(data);
+					}
+				}
 				
-				ajax.send(null);
-				//pedir al listar servicios.php default select (servicios) from sercicios
+			ajax.send(null);
+
 			}
+			
+			
+			function crearCitas(objArray) {
+ 
+    // If the returned data is an object do nothing, else try to parse
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+ 
+    var str = '<table class="table-hover" id="jtable" name="jtable">';
+ 
+    // table head
+        str += '<thead><tr>';
+        for (var index in array[0]) {
+            str += '<th scope="col">' + index + '</th>';
+        }
+        str += '</tr></thead>';
+    
+ 
+    // table body
+    str += '<tbody>';
+    for (var i = 0; i < array.length; i++) {
+        str += (i % 2 == 0) ? '<tr class="alt">' : '<tr>';
+		var id=0;
+        for (var index in array[i]) {
+			if(id==0)
+				str += '<td>' + array[i][index] + '</td>';
+			else
+				str += '<td>' + array[i][index] + '</td>';
+				id++;
+        }
+        str += '</tr>';
+    }
+    str += '</tbody>'
+    str += '</table>';
+    return str;
+}
+		
 	 </script>
+
+	<script language="text/JavaScript" src="view/js/ajax.js">		</script>
+	<script language="text/JavaScript" src="view/js/jquery.js">		</script>	 
+	  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	  
+</body>
 </html>
