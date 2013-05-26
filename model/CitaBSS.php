@@ -46,7 +46,7 @@ include_once('Cita.php');
 		
 			//ejecutar el query
 			$resultado = $conexion->consulta("select fecha,hora_reserva as Reservacion,detalles from cita WHERE id_cliente = '$id'");	
-			if($resultado==FALSE){
+			if($resultado===false){
 				die('error de resultado');
 				$conexion->cerrar();
 				return FALSE;
@@ -100,7 +100,7 @@ include_once('Cita.php');
 			$sql="UPDATE cita SET hora_termino = CURTIME( ) ,estado =  'fin'  WHERE id_cita =  '$idCita'";
 
 			$resultado=$con->consulta($sql);
-			if($resultado==false){
+			if($resultado===false){
 				die('error actualizar cita');
 				$con->cerrar();
 				return FALSE;
@@ -141,7 +141,7 @@ include_once('Cita.php');
 		
 			//ejecutar el query
 			$resultado = $conexion->consulta('select id_cita as Cita,fecha,hora_reserva as Reservacion,detalles,id_cliente as Cliente from cita');	
-			if($resultado==FALSE){
+			if($resultado===false){
 				die('error de resultado');
 				$conexion->cerrar();
 				return FALSE;

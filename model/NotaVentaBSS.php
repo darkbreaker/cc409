@@ -15,7 +15,7 @@
 		
 			//ejecutar el query
 			$resultado = $conexion->consulta('select * from NotaVenta');	
-			if($resultado==FALSE){
+			if($resultado===false){
 				die('error de resultado');
 				$conexion->cerrar();
 				return FALSE;

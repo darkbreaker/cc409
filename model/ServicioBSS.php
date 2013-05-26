@@ -55,7 +55,7 @@ include_once('Servicio.php');
 	
 		//ejecutar el query
 		$resultado = $conexion->consulta('select * from servicio');	
-		if($resultado==FALSE){
+		if($resultado===false){
 			die('error de resultado');
 			$conexion->cerrar();
 			return FALSE;
@@ -94,7 +94,7 @@ include_once('Servicio.php');
 		//$sql=$con->escapar($sql);
 		//ejecutar el query
 		$resultado=$con->consulta($sql);
-		if($resultado==false){
+		if($resultado===false){
 			die('error insercion');
 			$con->cerrar();
 			return FALSE;

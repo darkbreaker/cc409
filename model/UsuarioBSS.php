@@ -43,7 +43,7 @@
 		//$sql=$con->escapar($sql);
 		//ejecutar el query
 		$resultado=$con->consulta($sql);
-		if($resultado==false){
+		if($resultado===false){
 			die('error insercion');
 			$con->cerrar();
 			return FALSE;
@@ -114,7 +114,7 @@
 	
 		//ejecutar el query
 		$resultado = $conexion->consulta('SELECT * FROM usuario');	
-		if($resultado==FALSE){
+		if($resultado===false){
 			die('error de resultado');
 			$conexion->cerrar();
 			return FALSE;
@@ -137,7 +137,7 @@
 		$sql="SELECT * FROM usuario WHERE CONCAT(nombre,calle,telefono) LIKE '%".$descripcion."%'";
 		//ejecutar el query
 		$resultado = $con->consulta($sql);	
-		if($resultado==false){
+		if($resultado===false){
 			die('error al consultar');
 			$con->cerrar();
 			return FALSE;
@@ -165,7 +165,7 @@
 		//$sql=$con->escapar($sql);
 		//ejecutar el query
 		$resultado=$con->consulta($sql);
-		if($resultado==false){
+		if($resultado===false){
 			die('error actualizar');
 			$con->cerrar();
 			return FALSE;

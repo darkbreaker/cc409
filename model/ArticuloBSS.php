@@ -19,7 +19,7 @@ include_once('Articulo.php');
 		
 			$sql="INSERT INTO articulo(nombre,descripcion,precio) VALUES ('$this->nombre','$this->descripcion','$this->precio_venta') ";
 			$resultado=$con->consulta($sql);
-			if($resultado==false){
+			if($resultado===false){
 				die('error insercion');
 				$con->cerrar();
 				return FALSE;
@@ -75,7 +75,7 @@ include_once('Articulo.php');
 				die('error conexion');
 			$sql="INSERT INTO pedido(idArticulo,idUSuario,fechaReservacion,estado) VALUES ('$idArticulo','$idUsuario',CURDATE(),'pendiente') ";
 			$resultado=$con->consulta($sql);
-			if($resultado==false){
+			if($resultado===false){
 				die('error insercion');
 				$con->cerrar();
 				return FALSE;
@@ -114,7 +114,7 @@ include_once('Articulo.php');
 		
 			$resultado = $conexion->consulta('select id,nombre,precio_venta,descripcion from articulo');	
 		
-			if($resultado==FALSE){
+			if($resultado===false){
 				die('error de resultado');
 				$conexion->cerrar();
 				

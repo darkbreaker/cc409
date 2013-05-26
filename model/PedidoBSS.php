@@ -17,7 +17,7 @@ include_once('Pedido.php');
 		
 			//ejecutar el query
 			$resultado = $conexion->consulta("select idpedido as pedido,idarticulo as articulo,fecha,idcliente as cliente from pedido");	
-			if($resultado==FALSE){
+			if($resultado===false){
 				die('error de resultado');
 				$conexion->cerrar();
 				return FALSE;
@@ -39,7 +39,7 @@ include_once('Pedido.php');
 		
 			//ejecutar el query
 			$resultado = $conexion->consulta("select fecha,estado,idarticulo from pedido WHERE idcliente = '$id'");	
-			if($resultado==FALSE){
+			if($resultado===false){
 				die('error de resultado');
 				$conexion->cerrar();
 				return FALSE;
@@ -81,7 +81,7 @@ include_once('Pedido.php');
 		$sql="INSERT INTO pedido(fecha,estado,idarticulo,idcliente) VALUES (now(),'P','$idproducto','$idpersona') ";
 		//ejecutar el query
 		$resultado=$con->consulta($sql);
-		if($resultado==false){
+		if($resultado===false){
 			die('error actualizar');
 			$con->cerrar();
 			return FALSE;
