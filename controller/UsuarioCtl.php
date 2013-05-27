@@ -30,7 +30,8 @@ include_once('ModeloCtl.php');
 					}
 				else{
 						$file = file_get_contents('view/Modificar.html'); //cargo el archivo
-						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file);
+						$file = str_ireplace('>Login<','>Log out<' , $file);
 						echo $file;
 						}
 			
@@ -77,7 +78,7 @@ include_once('ModeloCtl.php');
 					/*if(!$nombre||!$telefono||!$calle||!$password||!$mail){
 					
 						$file = file_get_contents('view/Index.html'); //cargo el archivo
-						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); //tomo {titulo} y lo reemplazo por lo que quiera
 						echo $file;
 					}
 						
@@ -85,7 +86,7 @@ include_once('ModeloCtl.php');
 							$Usuario=$this->modelo->modificar($nombre, $telefono, $calle, $password, $mail, $_SESSION['usuario']) ;
 							
 							$file = file_get_contents('view/Index.html'); //cargo el archivo
-							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
 							$file = str_ireplace('>Buscar<','>Cambios hechos<' , $file); 
 							echo $file;
 				//	}
@@ -107,13 +108,13 @@ include_once('ModeloCtl.php');
 					if(isset($_SESSION['usuario'])){
 						if($_SESSION['privilegio']==0){
 							$file = file_get_contents('view/PerfilUsuario.html'); //cargo el archivo
-							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
 							$file = str_ireplace('>Buscar<','>Cambios hechos<' , $file); 
 							echo $file;
 						}else
 							{
 							$file = file_get_contents('view/PerfilAdmin.html'); //cargo el archivo
-							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
 							$file = str_ireplace('>Buscar<','>Cambios hechos<' , $file); 
 							echo $file;
 							
@@ -125,7 +126,7 @@ include_once('ModeloCtl.php');
 				default:
 					if(isset($_SESSION['usuario'])){
 						$file = file_get_contents('view/Index.html'); //cargo el archivo
-						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); //tomo {titulo} y lo reemplazo por lo que quiera
 						echo $file;}
 					else
 						include('view/Index.html');

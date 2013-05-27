@@ -29,11 +29,11 @@ class CitaCtl extends ModeloCtl{
 				}else
 				if($_SESSION['privilegio']==0){
 				$file = file_get_contents('view/RegistroCita.html'); //cargo el archivo
-				$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+				$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
 				echo $file;
 				}else{
 					$file = file_get_contents('view/BuscarCita.html'); //cargo el archivo
-					$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+					$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
 					echo $file;
 				
 				}
@@ -44,7 +44,7 @@ class CitaCtl extends ModeloCtl{
 					
 					$Cita=$this->modelo->agregarCita($_SESSION['usuario'],$detalles, $_REQUEST['opccion']) ;
 					$file = file_get_contents('view/Index.html'); //cargo el archivo
-					$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+					$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
 					echo $file;
 			
 					break;
@@ -71,7 +71,7 @@ class CitaCtl extends ModeloCtl{
 					
 			        $Cita=$this->modelo->ActualizarCita($_REQUEST['idCita']) ;
 					$file = file_get_contents('view/Index.html'); //cargo el archivo
-					$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+					$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
 					echo $file;
 
 					break;

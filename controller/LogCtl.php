@@ -55,7 +55,7 @@ include_once('ModeloCtl.php');
 							{
 							
 								$file = file_get_contents('view/Index.html'); //cargo el archivo
-								$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+								$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); //tomo {titulo} y lo reemplazo por lo que quiera
 								echo $file;
 							
 							}
