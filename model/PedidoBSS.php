@@ -16,7 +16,7 @@ include_once('Pedido.php');
 				}
 		
 			//ejecutar el query
-			$resultado = $conexion->consulta("select idpedido as pedido,idarticulo as articulo,fecha,idcliente as cliente from pedido");	
+			$resultado = $conexion->consulta("select idpedido as pedido,idarticulo as articulo,fecha,idPersona as cliente from pedido");	
 			if($resultado===false){
 				die('error de resultado');
 				$conexion->cerrar();
@@ -38,7 +38,7 @@ include_once('Pedido.php');
 				}
 		
 			//ejecutar el query
-			$resultado = $conexion->consulta("select fecha,estado,idarticulo from pedido WHERE idcliente = '$id'");	
+			$resultado = $conexion->consulta("select fecha,estado,idarticulo from pedido WHERE idPersona = '$id'");	
 			if($resultado===false){
 				die('error de resultado');
 				$conexion->cerrar();
@@ -78,7 +78,7 @@ include_once('Pedido.php');
 		if(!$con->conecta())
 			die('error conexion'.$conexion->errno);
 		//crear el query
-		$sql="INSERT INTO pedido(fecha,estado,idarticulo,idcliente) VALUES (now(),'P','$idproducto','$idpersona') ";
+		$sql="INSERT INTO pedido(fecha,estado,idarticulo,idPersona) VALUES (now(),'P','$idproducto','$idpersona') ";
 		//ejecutar el query
 		$resultado=$con->consulta($sql);
 		if($resultado===false){

@@ -20,6 +20,7 @@ include_once('ModeloCtl.php');
 
 			if(!isset($hacer) ){
 				$Servicio = $this->modelo-> listar();
+
 				echo json_encode($Servicio);
 			} else switch($hacer){
 				case 'buscarServicio':

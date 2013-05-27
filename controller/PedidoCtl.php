@@ -17,7 +17,7 @@ include_once('ModeloCtl.php');
 				if(isset($_SESSION['usuario'])){ //se valida que una sesion este iniciada para poder usar los pedidos
 					
 				  	$hacer=$_REQUEST['hacer'];
-					$idReservacion=$this->EsId($_REQUEST['idReservacion']);
+					$idReservacion=$_REQUEST['idReservacion'];
 					$estado=$_REQUEST['estado'];
 					$descripcion=$_REQUEST['descripcion'];
 

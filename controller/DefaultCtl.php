@@ -1,5 +1,4 @@
 <?php
-
 	class DefaultCtl{
 		function ejecutar(){
 			session_start();

@@ -15,7 +15,7 @@ include_once('ModeloCtl.php');
 			$hacer=$_REQUEST['hacer'];
 			$id=$this->EsId($_REQUEST['id']);
 			$nombre=$this->EsNombre($_REQUEST['nombre']);
-			$descripcion=$_REQUEST['descripcion'];
+			
 			$precio_venta=$this->EsNo($_REQUEST['precio_venta']);
 			$idUsuario=$this->EsId($_REQUEST['idUsuario']);
 		
@@ -62,13 +62,13 @@ include_once('ModeloCtl.php');
 					include('view/modificarArticuloView.php');}
 					break;
 				case 'filtrar':
-					if(!isset($descripcion)){
+					if(!isset($_REQUEST['descripcion'])){
 						$Articulo=$this->modelo->listar();
 						echo json_encode($Articulo);
 						
 						}
 						else{
-							$Articulo=$this->modelo->filtrarArticulo($descripcion);
+							$Articulo=$this->modelo->filtrarArticulo($_REQUEST['descripcion']);
 							echo json_encode($Articulo);
 						}
 					break;

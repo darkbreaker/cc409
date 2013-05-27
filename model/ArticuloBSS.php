@@ -112,7 +112,7 @@ include_once('Articulo.php');
 				die('error al conectar');
 				}
 		
-			$resultado = $conexion->consulta('select id,nombre,precio_venta,descripcion from articulo');	
+			$resultado = $conexion->consulta('select idarticulo,nombre,precio,descripcion from articulo');	
 		
 			if($resultado===false){
 				die('error de resultado');

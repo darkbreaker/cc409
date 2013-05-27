@@ -136,7 +136,8 @@ th{border-bottom-width: 3px ; border-bottom-style: solid;
 						//procesar resultado como JSON
 						$('.table-hover').remove();
 						
-							var data = ajax.responseText;
+							var data=ajax.responseText; data="["+data.substring(data.search("{"));
+							
 							data = JSON.parse(data);
 							//console.log(data);
 							 data = crearCitas(data);

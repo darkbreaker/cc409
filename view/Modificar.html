@@ -149,7 +149,7 @@ p{color:black;}
 			//obtener resultado
 			ajax.onreadystatechange = function (){
 				if(ajax.readyState == 4){				
-							var data = ajax.responseText;
+							var data=ajax.responseText; data="["+data.substring(data.search("{"));
 							data = JSON.parse(data);
 							console.log(data);
 							form.nombre.value=data.nombre;

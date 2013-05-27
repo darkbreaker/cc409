@@ -93,7 +93,8 @@ text-align:center;
 				ajax.open("get","index.php?accion=cita&hacer=buscarCita",true);
 				ajax.onreadystatechange = function (){
 					if(ajax.readyState == 4){						
-								var data = ajax.responseText;
+								var data=ajax.responseText; 
+data="["+data.substring(data.search("{"));
 								data = JSON.parse(data);
 								data = crearCitas(data);
 								
@@ -112,6 +113,9 @@ text-align:center;
 					ajax.onreadystatechange = function (){
 					if(ajax.readyState == 4){						
 								var dato = ajax.responseText;
+								
+								dato="["+dato.substring(dato.search("{"));
+
 								dato = JSON.parse(dato);
 								dato = crearpedido(dato);
 								$('form').append(dato);
@@ -186,7 +190,7 @@ text-align:center;
         str += '</tr>';
     }
     str += '</tbody>'
-    str += '</table>';
+    str += '</table></br>';
     return str;
 }
 		

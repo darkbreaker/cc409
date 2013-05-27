@@ -104,6 +104,7 @@ p{color:black;}
 <div class="container">
     <div class="row">
       <div class="span12">
+
         
         <div class="navbar-inverse navbar-fixed-bottom">
           <div class="navbar-inner">
@@ -146,7 +147,7 @@ p{color:black;}
 	
 
   </body>
-  <script language=""="text/JavaScript" src="view/js/ajax.js">		</script>
+
 	 <script language=""="text/JavaScript" >
 			function enviar(){
 				if(document.form.opccion.value!=0){
@@ -162,18 +163,36 @@ p{color:black;}
 				return false;	
 			}
 
-
+function nuevoAjax(){
+	var xmlhttp=false;
+	try{
+		//creacion del ajax para navegadores no IE
+		xmlhttp=new ActiveXObject("Msxl2.XMLHTTP");
+	}
+	catch (e){
+		try{
+			//creacion ajax para IE 
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		catch (e){
+			if(!xmlhttp && typeof XMLHttpRequest!='undefined')
+			xmlhttp=new XMLHttpRequest();
+		}
+	}
+	return xmlhttp;
+}
 	 
 			function carga(){
 				var ajax= new nuevoAjax();
-				//abrir comunicacion asicfonz
 				ajax.open("get","index.php?accion=servicio",true);
-				//obtener resultado
+				
 				ajax.onreadystatechange = function (){
+					
 					if(ajax.readyState == 4){
-						//procesar resultado como JSON
-							var variable = eval(ajax.responseText);
-							
+							var variable = ajax.responseText;
+							var data="["+variable.substring(variable.search("{"));	
+							variable =eval(data);						
+
 							for(categorias in variable){
 								//crear elemento opcion
 								var option = document.createElement('option');
@@ -192,7 +211,6 @@ p{color:black;}
 				}
 				//
 				ajax.send(null);
-				//pedir al listar servicios.php default select (servicios) from sercicios
 			}
 	 </script>
 </html>
