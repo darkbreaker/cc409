@@ -27,7 +27,7 @@ p{color:black;}
 
 td
 {
-width: 5%;
+
 text-align:center;
 }
       .table-hover{border-left-width: 3px ; border-left-style: solid;
@@ -55,7 +55,7 @@ th{border-bottom-width: 3px ; border-bottom-style: solid;
                                    <link rel="shortcut icon" href="view/../assets/ico/favicon.png">
   </head>
 
-  <body>
+  <body onload="productos()">
 <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -118,7 +118,9 @@ th{border-bottom-width: 3px ; border-bottom-style: solid;
       </div>
     </div>
 	
-	<script language=""="text/JavaScript" >
+	<script >
+	
+
 	
 		function productos(){
 			//crear objeto xmlhttprequest
@@ -157,7 +159,7 @@ th{border-bottom-width: 3px ; border-bottom-style: solid;
 	
 	</script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-	<script language=""="text/JavaScript" src="view/js/ajax.js">		</script>
-	<script language=""="text/JavaScript" src="view/js/jasontable.js">		</script>
+	<script  src="view/js/ajax.js">		</script>
+	<script  src="view/js/jasontable.js">		</script>
   </body>
 </html>
