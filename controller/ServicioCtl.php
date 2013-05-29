@@ -11,7 +11,7 @@ include_once('ModeloCtl.php');
 		}
 
 		function ejecutar(){
-			session_start();
+			 
 			$hacer=$_REQUEST['hacer'];
 			$idServicio=$this->EsId($_REQUEST['idServicio']);
 			$precio=$this->EsNo($_REQUEST['precio']);
@@ -25,36 +25,36 @@ include_once('ModeloCtl.php');
 			} else switch($hacer){
 				case 'buscarServicio':
 					if(!$idServicio)
-						include('view/Index.html');
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					else{
 						$Servicio=$this->modelo->buscarServicio($idServicio);
 						include('view/buscarServicioView.php');}
 					break;
 				case 'agregar':
 					if(!isset($_SESSION['usuario'])||!$precio||!$tiempo||!$descripcion){
-						include('view/Index.html');
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					}else{
 						if($_SESSION['privilegio']==2){
 						$Servicio=$this->modelo->agregar($precio, $tiempo, $descripcion);
 						include('view/agregarServicioView.php');
 						}else
-							include('view/Index.html');
+							$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					}
 					break;
 				case 'eliminar':
 					if(!isset($_SESSION['usuario'])||!$idServicio){
-						include('view/Index.html');
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					}else{
 						if($_SESSION['privilegio']==2){
 							$Servicio=$this->modelo->eliminar($idServicio) ;
 							include('view/eliminarServicioView.php');
 						}else
-							include('view/Index.html');
+							$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 						
 					}
 						break;
 				Default:
-					include('view/Index.html');
+					$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 			}
 			
 		}

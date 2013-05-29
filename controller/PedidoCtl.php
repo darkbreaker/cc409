@@ -13,7 +13,7 @@ include_once('ModeloCtl.php');
 		
 		
 		function ejecutar(){
-			session_start();
+			 
 				if(isset($_SESSION['usuario'])){ //se valida que una sesion este iniciada para poder usar los pedidos
 					
 				  	$hacer=$_REQUEST['hacer'];
@@ -45,12 +45,12 @@ include_once('ModeloCtl.php');
 						case 'eliminarReservacion':
 							if($_SESSION['privilegio']>0){
 								if(!$idReservacion)
-									include('view/Index.html');
+									$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 								else{
 									$Pedido=$this->modelo->eliminarReservacion($idReservacion);
 									include('view/eliminarPedidoView.php');}
 							}else
-									include('view/Index.html');
+									$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 								break;
 						case 'actualizar':
 							
@@ -62,12 +62,12 @@ include_once('ModeloCtl.php');
 								break;
 							break;
 						Default:
-							include('view/Index.html');
+							$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 							
 					}//fin del switch
 				} 	
 				else 
-					include('view/Index.html');
+					$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					
 		}	
 	}

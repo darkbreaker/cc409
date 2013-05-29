@@ -11,7 +11,7 @@ include_once('ModeloCtl.php');
 		}
 
 		function ejecutar(){
-				session_start();
+				 
 				
 				if(isset($_SESSION['usuario'])){
 				
@@ -19,10 +19,10 @@ include_once('ModeloCtl.php');
 					$NotaVenta = $this->modelo-> listar();
 					include('view/NotaVentaView.php');
 					}else{//no se tienen privilegios sufuicientes
-						include('view/Index.html');
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					}
 				}else	// si no hay sesion envia al menu principal
-					include('view/Index.html');
+					$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 		}
 
 	}

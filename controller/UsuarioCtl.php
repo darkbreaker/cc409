@@ -12,8 +12,8 @@ include_once('ModeloCtl.php');
 
 		function ejecutar(){
 			//si no tengo parametros se listan los Usuarios
-			session_start();
-			$hacer=$_REQUEST['hacer'];
+			 
+			
 			$id=$this->EsId($_REQUEST['id']);
 	
 			$nombre=$this->EsNombre($_REQUEST['nombre']);
@@ -23,10 +23,13 @@ include_once('ModeloCtl.php');
             $calle=$this->EsCalle($_REQUEST['calle']);
 			$telefono=$this->EsTelefono($_REQUEST['telefono']);
 			
-			if(!isset($hacer)){
+			if(!isset($_REQUEST['hacer'])){
 				if(!isset($_SESSION['usuario'])){
 						
-						include('view/Registro.html');
+						
+						$file = file_get_contents('view/Registro.html');
+						$file = str_ireplace('{Username}','Sin sesion' , $file);
+						echo $file;
 					}
 				else{
 						$file = file_get_contents('view/Modificar.html'); //cargo el archivo
@@ -37,7 +40,7 @@ include_once('ModeloCtl.php');
 			
 			}
 			else
-			switch($hacer){
+			switch($_REQUEST['hacer']){
 				case 'agregarUsuario':
 			
 					
@@ -61,7 +64,7 @@ include_once('ModeloCtl.php');
 					echo json_encode($Usuario);
 					}
 					else
-						include_once('view/Index.html');
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					break;
 				case 'filtrar':
 					if(isset($_SESSION['usuario'])){
@@ -69,9 +72,9 @@ include_once('ModeloCtl.php');
 							$Usuario=$this->modelo->filtrarUsuario($descripcion);
 							include('view/BuscarUsuario.html');
 							}else
-								include('view/Index.html');
+								$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					}else
-						include('view/Index.html');
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					break;
 				
 				case 'modificar':
@@ -99,10 +102,10 @@ include_once('ModeloCtl.php');
 							echo $_SESSION['nombre'];
 							include('view/Consultas.html');
 						}else
-							include('view/Index.html');
+							$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					}
 					else
-						include('view/Index.html');
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					break;
 				case 'perfil':
 					if(isset($_SESSION['usuario'])){
@@ -121,7 +124,7 @@ include_once('ModeloCtl.php');
 							}
 					}
 					else
-						include('view/Index.html');
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					break;
 				default:
 					if(isset($_SESSION['usuario'])){
@@ -129,7 +132,7 @@ include_once('ModeloCtl.php');
 						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); //tomo {titulo} y lo reemplazo por lo que quiera
 						echo $file;}
 					else
-						include('view/Index.html');
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 			} //fin del switch
 			
 		} //fin de la funcion

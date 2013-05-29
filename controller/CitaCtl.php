@@ -12,10 +12,11 @@ class CitaCtl extends ModeloCtl{
 
 		function ejecutar(){
 			//si no tengo parametros se regresa al menu principal
-			session_start();
+			 
 			$hacer=$_REQUEST['hacer'];
 			$idCita=$this->EsId($_REQUEST['idCita']);
-			$fecha=$this->EsFecha($_REQUEST['fecha']);			$detalles=$_REQUEST['detalles'];
+			$fecha=$this->EsFecha($_REQUEST['fecha']);
+			$detalles=$_REQUEST['detalles'];
 
 			$idUsuario=$this->EsId($_REQUEST['idUsuario']);
             $estado=$_REQUEST['estado'];
@@ -24,7 +25,8 @@ class CitaCtl extends ModeloCtl{
 			
 			 if(!isset($hacer)){
 				if(!isset($_SESSION['usuario'])){
-					include_once('view/Index.html');
+					$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+					
 				
 				}else
 				if($_SESSION['privilegio']==0){
@@ -56,7 +58,7 @@ class CitaCtl extends ModeloCtl{
 					break;
 				case 'eliminarCita':
 					if(!$idCita)
-						include_once('view/Index.html');
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					else{
 							$Cita=$this->modelo->eliminarCita($idCita);
 							include('eliminarview/CitaView.php');}
