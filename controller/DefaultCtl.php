@@ -11,6 +11,7 @@
 					else{
 						$file = file_get_contents('view/Index.html');
 						$file = str_ireplace('{Username}','sin sesion',$file);
+						$file = str_ireplace('>Citas<','><',$file);
 						echo $file;}
 						
 		}

@@ -15,7 +15,7 @@ include_once('ModeloCtl.php');
 			if(!isset($_REQUEST['hacer'])){
 				if(!isset($_SESSION['usuario'])){
 						$file = file_get_contents('view/Registro.html');
-						$file = str_ireplace('{Username}','Sin sesion' , $file);
+						$file = str_ireplace('{Username}','Sin sesion' , $file); $file = str_ireplace('>Citas<','><' , $file);
 						echo $file;
 					}
 				else{
@@ -36,12 +36,12 @@ include_once('ModeloCtl.php');
 					$telefono=$this->EsTelefono($_REQUEST['telefono']);
 					if(!$nombre||!$telefono||!$calle||!$mail){
 						$file = file_get_contents('view/Index.html'); 
-						$file = str_ireplace('{Username}','sin sesion' , $file); 
+						$file = str_ireplace('{Username}','Sin sesion' , $file); $file = str_ireplace('>Citas<','><' , $file); 
 						echo $file;
 					}else if(!isset($_SESSION['usuario'])){
 							$Usuario=$this->modelo->agregarUsuario($nombre, $email, $password, $calle, $telefono);
 							$file = file_get_contents('view/Login.html'); 
-							$file = str_ireplace('{Username}','sin sesion' , $file);
+							$file = str_ireplace('{Username}','Sin sesion' , $file); $file = str_ireplace('>Citas<','><' , $file);
 							echo $file;
 					}
 					break;
@@ -85,7 +85,7 @@ include_once('ModeloCtl.php');
 							} 
 					}else{
 						$file = file_get_contents('view/Login.html');
-						$file = str_ireplace('{Username}','Sin sesion' , $file);
+						$file = str_ireplace('{Username}','Sin sesion' , $file); $file = str_ireplace('>Citas<','><' , $file);
 						echo $file;
 						}
 					break;

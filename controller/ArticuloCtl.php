@@ -27,7 +27,7 @@ include_once('ModeloCtl.php');
 				echo $file;
 				} else{
 					$file = file_get_contents('view/BuscarProducto.html');
-						$file = str_ireplace('{Username}','Sin sesion' , $file);
+						$file = str_ireplace('{Username}','Sin sesion' , $file); $file = str_ireplace('>Citas<','><' , $file);
 						echo $file;
 					}
 				
