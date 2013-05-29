@@ -10,30 +10,30 @@ include_once('ModeloCtl.php');
 		}
 
 		function ejecutar(){
-		//cargando sesion
 
-				$hacer=$_REQUEST['hacer'];
-				session_start();
-				
-				if(!isset($hacer)){
+				if(!isset($_REQUEST['hacer'])){
 					if(!isset($_SESSION['usuario'])){
-						include_once('view/Login.html');
-						
+						$file = file_get_contents('view/Login.html');
+						$file = str_ireplace('{Username}','Sin sesion' , $file);
+						echo $file;
 						}
 					else{
 						session_unset();
 						//destruye sesion
 						session_destroy();
 						setcookie(session_name(),'',time()-1);
-						echo 'sesion cerrada';
-						include_once('view/Login.html');
+						
+						$file = file_get_contents('view/Login.html');
+						$file = str_ireplace('{Username}','Sin sesion' , $file);
+						echo $file;
 						}
 					}
 				else
 
-				switch ($hacer){
+				switch ($_REQUEST['hacer']){
 					case 'in':
 						if(!isset($_SESSION['usuario'])){
+								session_start();
 								$id=$_REQUEST['usuario'];
 								$pass=$_REQUEST['pass'];
 								$usuario=$this->modelo->login($id,$pass);
@@ -48,9 +48,11 @@ include_once('ModeloCtl.php');
 								
 									echo $file;
 									
-								}else
-										
-										include('view/Login.html');
+								}else{
+								$file = file_get_contents('view/Login.html');
+								$file = str_ireplace('{Username}','Sin sesion' , $file);
+								echo $file;
+										}
 						}else
 							{
 							
@@ -72,10 +74,15 @@ include_once('ModeloCtl.php');
 							setcookie(session_name(),'',time()-1);
 							var_dump ($_SESSION);
 						}
-						include_once('view/Index.html');
+						
+						$file = file_get_contents('view/Index.html');
+						$file = str_ireplace('{Username}','Sin sesion' , $file);
+						echo $file;
 						break;
 					default:
-						include_once('view/Index.html');
+						$file = file_get_contents('view/Index.html');
+						$file = str_ireplace('{Username}','Sin sesion' , $file);
+						echo $file;
 				}	// fin del switch
 
 		}// fin de la funcion

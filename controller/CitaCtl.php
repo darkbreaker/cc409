@@ -25,7 +25,11 @@ class CitaCtl extends ModeloCtl{
 			
 			 if(!isset($_REQUEST['hacer'])){
 				if(!isset($_SESSION['usuario'])){
-					$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
+					$file = file_get_contents('view/Index.html');
+					
+					$file = str_ireplace('{Username}','sin sesion',$file); 
+					$file = str_ireplace('<h5>Hola</h5>','Requiere Iniciar sesion',$file);
+					echo $file;
 					
 				
 				}else
@@ -57,9 +61,9 @@ class CitaCtl extends ModeloCtl{
 					echo json_encode($Cita);
 					break;
 				case 'eliminarCita':
-					if(!$idCita)
+					if(!$idCita){
 						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
-					else{
+					}else{
 							$Cita=$this->modelo->eliminarCita($idCita);
 							include('eliminarview/CitaView.php');}
 					break;

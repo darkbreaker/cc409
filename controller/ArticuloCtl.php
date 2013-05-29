@@ -26,37 +26,39 @@ include_once('ModeloCtl.php');
 				$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); //tomo {titulo} y lo reemplazo por lo que quiera
 				echo $file;
 				} else{
-					
-					include_once('view/BuscarProducto.html');
-					
+					$file = file_get_contents('view/BuscarProducto.html');
+						$file = str_ireplace('{Username}','Sin sesion' , $file);
+						echo $file;
 					}
 				
 			} else switch($_REQUEST['hacer']){
 				case 'agregar':
-					if(!$nombre||!$descripcion||!$precio_venta)
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
+					if(!$nombre||!$descripcion||!$precio_venta){
+						$file = file_get_contents('view/Index.html');
+						$file = str_ireplace('{Username}','sin sesion',$file);
+						echo $file;}
 						else{
 					$Articulo=$this->modelo->agregarArticulo($nombre, $descripcion, $precio_venta) ;
 					include('view/agregarArticuloView.php');}
 					break;
 				case 'consultar':
-					if(!$id)
+					if(!$id){
 						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
-						else{
+						}else{
 					$Articulo=$this->modelo->consultarArticulo($id);
 					include('view/consultarArticuloView.php');}
 					break;
 				case 'eliminar':
-					if(!$idUsuario)
+					if(!$idUsuario){
 						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
-						else{
+						}else{
 					$Articulo=$this->modelo->eliminarArticulo($idUsuario);
 					include('view/eliminarArticuloView.php');}
 					break;
 				case 'modificar':
-					if(!$nombre||!$descripcion||!$precio_venta)
+					if(!$nombre||!$descripcion||!$precio_venta){
 						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
-						else{
+						}else{
 					$Articulo=$this->modelo->modificarArticulo($nombre, $descripcion, $precio_venta) ;
 					include('view/modificarArticuloView.php');}
 					break;

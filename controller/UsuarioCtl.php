@@ -25,8 +25,6 @@ include_once('ModeloCtl.php');
 			
 			if(!isset($_REQUEST['hacer'])){
 				if(!isset($_SESSION['usuario'])){
-						
-						
 						$file = file_get_contents('view/Registro.html');
 						$file = str_ireplace('{Username}','Sin sesion' , $file);
 						echo $file;
@@ -123,8 +121,12 @@ include_once('ModeloCtl.php');
 							
 							}
 					}
-					else
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
+					else{
+						$file = file_get_contents('view/Index.html');
+						$file = str_ireplace('{Username}','sin sesion',$file); 
+						$file = str_ireplace('<h5>Hola</h5>','Requiere Iniciar sesion',$file);
+						echo $file;
+					}
 					break;
 				default:
 					if(isset($_SESSION['usuario'])){
