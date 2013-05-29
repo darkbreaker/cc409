@@ -12,21 +12,18 @@ include_once('ModeloCtl.php');
 		}
 		
 		
-		function ejecutar(){ session_start();
+		function ejecutar(){ 
+			session_start();
 			 
 				if(isset($_SESSION['usuario'])){ //se valida que una sesion este iniciada para poder usar los pedidos
 					
-				  	 
-					$idReservacion=$_REQUEST['idReservacion'];
-					$estado=$_REQUEST['estado'];
-					$descripcion=$_REQUEST['descripcion'];
-
 						switch($_REQUEST['hacer']){
 						case 'agregar':
 							
 								$Pedido=$this->modelo->agregar($_REQUEST['id'],$_SESSION['usuario']);
 								$file = file_get_contents('view/Index.html'); //cargo el archivo
 									$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
+									$file = str_ireplace('<h5>Hola</h5>','Pedido hecho',$file);
 									echo $file;
 							
 							break;
@@ -43,31 +40,55 @@ include_once('ModeloCtl.php');
 							break;
 							
 						case 'eliminarReservacion':
+							$idReservacion=$this->EsId($_REQUEST['idReservacion']);
 							if($_SESSION['privilegio']>0){
 								if(!$idReservacion)
-									$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
+									$file = file_get_contents('view/Index.html');
+									$file = str_ireplace('{Username}','sin sesion',$file);
+									$file = str_ireplace('<h5>Hola</h5>','Error',$file); 
+									echo $file;
 								else{
+									
 									$Pedido=$this->modelo->eliminarReservacion($idReservacion);
-									include('view/eliminarPedidoView.php');}
-							}else
-									$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
-								break;
+									$file = file_get_contents('view/Index.html'); 
+									$file = str_ireplace('{Username}','sin sesion',$file); 
+									$file = str_ireplace('<h5>Hola</h5>','hecho',$file); 
+									echo $file;
+									}
+							}else{
+									$file = file_get_contents('view/Index.html'); 
+									$file = str_ireplace('{Username}','sin sesion',$file); 
+									$file = str_ireplace('<h5>Hola</h5>','Error',$file); 
+									echo $file;
+								}break;
 						case 'actualizar':
-							
+								$idReservacion=$this->EsId($_REQUEST['idReservacion']);
+								if($idReservacion!=false){
 								$Pedido=$this->modelo-> ActualizarReservacion($idReservacion);
 								$file = file_get_contents('view/Index.html'); //cargo el archivo
 									$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
+									$file = str_ireplace('<h5>Hola</h5>','Reservacion Actulizada',$file); 
 									echo $file;
+									}else{
+									$file = file_get_contents('view/Index.html'); //cargo el archivo
+									$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
+									echo $file;
+								
+									}
 							
 								break;
 							break;
 						Default:
-							$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
+							$file = file_get_contents('view/Index.html');
+							$file = str_ireplace('{Username}','sin sesion',$file); 
+							echo $file;
 							
 					}//fin del switch
 				} 	
-				else 
-					$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
+				else {
+					$file = file_get_contents('view/Index.html');
+					$file = str_ireplace('{Username}','sin sesion',$file); 
+					echo $file;}
 					
 		}	
 	}

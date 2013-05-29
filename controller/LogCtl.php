@@ -45,7 +45,7 @@ include_once('ModeloCtl.php');
 									$_SESSION['privilegio']=$usuario->tipo;				
 									$file = file_get_contents('view/Index.html'); //cargo el archivo
 									$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
-								
+									$file = str_ireplace('>Login<','>Log out<' , $file);
 									echo $file;
 									
 								}else{
@@ -55,14 +55,11 @@ include_once('ModeloCtl.php');
 										}
 						}else
 							{
-							
-								$file = file_get_contents('view/Index.html'); //cargo el archivo
-								$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+								$file = file_get_contents('view/Index.html'); 
+								$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file);
+								$file = str_ireplace('>Login<','>Log out<' , $file); 
 								echo $file;
-							
 							}
-							
-						
 								
 						break;
 					case 'out':

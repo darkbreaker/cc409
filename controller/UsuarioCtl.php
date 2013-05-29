@@ -11,17 +11,6 @@ include_once('ModeloCtl.php');
 		}
 
 		function ejecutar(){ session_start();
-			//si no tengo parametros se listan los Usuarios
-			 
-			
-			$id=$this->EsId($_REQUEST['id']);
-	
-			$nombre=$this->EsNombre($_REQUEST['nombre']);
-			$descripcion=$_REQUEST['descripcion'];
-			$email=$this->EsMail($_REQUEST['email']);
-			$password=$_REQUEST['password'];
-            $calle=$this->EsCalle($_REQUEST['calle']);
-			$telefono=$this->EsTelefono($_REQUEST['telefono']);
 			
 			if(!isset($_REQUEST['hacer'])){
 				if(!isset($_SESSION['usuario'])){
@@ -40,83 +29,86 @@ include_once('ModeloCtl.php');
 			else
 			switch($_REQUEST['hacer']){
 				case 'agregarUsuario':
-			
-					
-					if(!isset($_SESSION['usuario'])){
+					$nombre=$this->EsNombre($_REQUEST['nombre']);
+					$email=$this->EsMail($_REQUEST['email']);
+					$password=$_REQUEST['password'];
+					$calle=$this->EsCalle($_REQUEST['calle']);
+					$telefono=$this->EsTelefono($_REQUEST['telefono']);
+					if(!$nombre||!$telefono||!$calle||!$mail){
+						$file = file_get_contents('view/Index.html'); 
+						$file = str_ireplace('{Username}','sin sesion' , $file); 
+						echo $file;
+					}else if(!isset($_SESSION['usuario'])){
 							$Usuario=$this->modelo->agregarUsuario($nombre, $email, $password, $calle, $telefono);
-						if($Usuario==true)
-							include_once('view/Login.html');
-						else
-							include_once('view/Registro.html');
+							$file = file_get_contents('view/Login.html'); 
+							$file = str_ireplace('{Username}','sin sesion' , $file);
+							echo $file;
 					}
-					else{
-						$Usuario=$this->modelo->buscarUsuario($_SESSION['usuario']);
-						include('view/Login.html');
-						}
-				
-					
 					break;
 				case 'buscarUsuario':
 					if(isset($_SESSION['usuario'])){
-					$Usuario=$this->modelo->buscarUsuario($_SESSION['usuario']);
-					echo json_encode($Usuario);
+						$Usuario=$this->modelo->buscarUsuario($_SESSION['usuario']);
+						echo json_encode($Usuario);
 					}
-					else
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
+	
 					break;
 				case 'filtrar':
+					$descripcion=$_REQUEST['descripcion'];
 					if(isset($_SESSION['usuario'])){
 							if($_SESSION['privilegio']>0){
-							$Usuario=$this->modelo->filtrarUsuario($descripcion);
-							include('view/BuscarUsuario.html');
-							}else
-								$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
-					}else
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
+								$Usuario=$this->modelo->filtrarUsuario($descripcion);
+								echo $Usuario;
+							}
+					}
 					break;
 				
 				case 'modificar':
-					/*if(!$nombre||!$telefono||!$calle||!$password||!$mail){
-					
-						$file = file_get_contents('view/Index.html'); //cargo el archivo
-						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); //tomo {titulo} y lo reemplazo por lo que quiera
-						echo $file;
-					}
-						
-					else{*/
-							$Usuario=$this->modelo->modificar($nombre, $telefono, $calle, $password, $mail, $_SESSION['usuario']) ;
+					if(isset($_SESSION['usuario'])){
+							$nombre=$this->EsNombre($_REQUEST['nombre']);
+							$email=$this->EsMail($_REQUEST['email']);
+							$password=$_REQUEST['password'];
+							$calle=$this->EsCalle($_REQUEST['calle']);
+							$telefono=$this->EsTelefono($_REQUEST['telefono']);
+							if(!$nombre||!$telefono||!$calle||!$mail){
 							
-							$file = file_get_contents('view/Index.html'); //cargo el archivo
-							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
-							$file = str_ireplace('>Buscar<','>Cambios hechos<' , $file); 
-							echo $file;
-				//	}
-					
+								$file = file_get_contents('view/Index.html'); 
+								$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+								$file = str_ireplace('>Login<','>Log out<' , $file); 
+								echo $file;
+							}else{
+									$Usuario=$this->modelo->modificar($nombre, $telefono, $calle, $password, $mail, $_SESSION['usuario']) ;
+									$file = file_get_contents('view/Index.html'); //cargo el archivo
+									$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file);
+									$file = str_ireplace('>Login<','>Log out<' , $file); 
+									$file = str_ireplace('>Hola<','>Cambios hechos<' , $file); 
+									echo $file;
+							} 
+					}else{
+						$file = file_get_contents('view/Login.html');
+						$file = str_ireplace('{Username}','Sin sesion' , $file);
+						echo $file;
+						}
 					break;
 				case 'listar':
 					if(isset($_SESSION['usuario'])){
 						if($_SESSION['privilegio']>0){
 							$Usuario=$this->modelo->listar() ;
-							echo $_SESSION['nombre'];
-							include('view/Consultas.html');
-						}else
-							$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
-					}
-					else
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
+							echo $Usuario;
+						}
+						}
 					break;
 				case 'perfil':
 					if(isset($_SESSION['usuario'])){
 						if($_SESSION['privilegio']==0){
-							$file = file_get_contents('view/PerfilUsuario.html'); //cargo el archivo
-							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
-							$file = str_ireplace('>Buscar<','>Cambios hechos<' , $file); 
+							$file = file_get_contents('view/PerfilUsuario.html'); 
+							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+							$file = str_ireplace('>Login<','>Log out<' , $file); 
 							echo $file;
 						}else
 							{
 							$file = file_get_contents('view/PerfilAdmin.html'); //cargo el archivo
-							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
-							$file = str_ireplace('>Buscar<','>Cambios hechos<' , $file); 
+							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file);
+							$file = str_ireplace('>Login<','>Log out<' , $file); 
 							echo $file;
 							
 							}
@@ -131,10 +123,13 @@ include_once('ModeloCtl.php');
 				default:
 					if(isset($_SESSION['usuario'])){
 						$file = file_get_contents('view/Index.html'); //cargo el archivo
-						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); //tomo {titulo} y lo reemplazo por lo que quiera
+						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
+						$file = str_ireplace('>Login<','>Log out<' , $file); 
 						echo $file;}
-					else
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
+					else{
+						$file = file_get_contents('view/Index.html'); 
+						$file = str_ireplace('{Username}','sin sesion',$file); 
+						echo $file;}
 			} //fin del switch
 			
 		} //fin de la funcion
