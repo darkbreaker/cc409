@@ -10,7 +10,7 @@ include_once('ModeloCtl.php');
 		}
 
 		function ejecutar(){
-
+				session_start();
 				if(!isset($_REQUEST['hacer'])){
 					if(!isset($_SESSION['usuario'])){
 						$file = file_get_contents('view/Login.html');
@@ -33,7 +33,7 @@ include_once('ModeloCtl.php');
 				switch ($_REQUEST['hacer']){
 					case 'in':
 						if(!isset($_SESSION['usuario'])){
-								session_start();
+								
 								$id=$_REQUEST['usuario'];
 								$pass=$_REQUEST['pass'];
 								$usuario=$this->modelo->login($id,$pass);
