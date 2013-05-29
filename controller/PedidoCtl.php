@@ -12,7 +12,7 @@ include_once('ModeloCtl.php');
 		}
 		
 		
-		function ejecutar(){
+		function ejecutar(){ session_start();
 			 
 				if(isset($_SESSION['usuario'])){ //se valida que una sesion este iniciada para poder usar los pedidos
 					

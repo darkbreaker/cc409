@@ -10,7 +10,7 @@ include_once('ModeloCtl.php');
 			$this->modelo = new ArticuloBSS();
 		}
 
-		function ejecutar(){
+		function ejecutar(){ session_start();
 
 			$id=$this->EsId($_REQUEST['id']);
 			$nombre=$this->EsNombre($_REQUEST['nombre']);

@@ -10,7 +10,7 @@ class CitaCtl extends ModeloCtl{
 			$this->modelo = new CitaBSS();
 		}
 
-		function ejecutar(){
+		function ejecutar(){ session_start();
 			//si no tengo parametros se regresa al menu principal
 			 
 			 

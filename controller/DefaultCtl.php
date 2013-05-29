@@ -1,6 +1,6 @@
 <?php
 	class DefaultCtl{
-		function ejecutar(){
+		function ejecutar(){ session_start();
 			 
 			if(isset($_SESSION['usuario'])){
 						$file = file_get_contents('view/Index.html'); 						

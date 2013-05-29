@@ -10,7 +10,7 @@ include_once('ModeloCtl.php');
 			$this->modelo = new UsuarioBSS();
 		}
 
-		function ejecutar(){
+		function ejecutar(){ session_start();
 			//si no tengo parametros se listan los Usuarios
 			 
 			

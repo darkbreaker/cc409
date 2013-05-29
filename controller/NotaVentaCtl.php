@@ -10,7 +10,7 @@ include_once('ModeloCtl.php');
 			$this->modelo = new NotaVentaBSS();
 		}
 
-		function ejecutar(){
+		function ejecutar(){ session_start();
 				 
 				
 				if(isset($_SESSION['usuario'])){
