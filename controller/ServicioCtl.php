@@ -25,36 +25,36 @@ include_once('ModeloCtl.php');
 			} else switch($_REQUEST['hacer']){
 				case 'buscarServicio':
 					if(!$idServicio)
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 					else{
 						$Servicio=$this->modelo->buscarServicio($idServicio);
 						include('view/buscarServicioView.php');}
 					break;
 				case 'agregar':
 					if(!isset($_SESSION['usuario'])||!$precio||!$tiempo||!$descripcion){
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 					}else{
 						if($_SESSION['privilegio']==2){
 						$Servicio=$this->modelo->agregar($precio, $tiempo, $descripcion);
 						include('view/agregarServicioView.php');
 						}else
-							$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+							$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 					}
 					break;
 				case 'eliminar':
 					if(!isset($_SESSION['usuario'])||!$idServicio){
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 					}else{
 						if($_SESSION['privilegio']==2){
 							$Servicio=$this->modelo->eliminar($idServicio) ;
 							include('view/eliminarServicioView.php');
 						}else
-							$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+							$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 						
 					}
 						break;
 				Default:
-					$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+					$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 			}
 			
 		}

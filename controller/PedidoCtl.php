@@ -45,12 +45,12 @@ include_once('ModeloCtl.php');
 						case 'eliminarReservacion':
 							if($_SESSION['privilegio']>0){
 								if(!$idReservacion)
-									$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+									$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 								else{
 									$Pedido=$this->modelo->eliminarReservacion($idReservacion);
 									include('view/eliminarPedidoView.php');}
 							}else
-									$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+									$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 								break;
 						case 'actualizar':
 							
@@ -62,12 +62,12 @@ include_once('ModeloCtl.php');
 								break;
 							break;
 						Default:
-							$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+							$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 							
 					}//fin del switch
 				} 	
 				else 
-					$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+					$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 					
 		}	
 	}

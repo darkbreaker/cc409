@@ -34,28 +34,28 @@ include_once('ModeloCtl.php');
 			} else switch($_REQUEST['hacer']){
 				case 'agregar':
 					if(!$nombre||!$descripcion||!$precio_venta)
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 						else{
 					$Articulo=$this->modelo->agregarArticulo($nombre, $descripcion, $precio_venta) ;
 					include('view/agregarArticuloView.php');}
 					break;
 				case 'consultar':
 					if(!$id)
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 						else{
 					$Articulo=$this->modelo->consultarArticulo($id);
 					include('view/consultarArticuloView.php');}
 					break;
 				case 'eliminar':
 					if(!$idUsuario)
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 						else{
 					$Articulo=$this->modelo->eliminarArticulo($idUsuario);
 					include('view/eliminarArticuloView.php');}
 					break;
 				case 'modificar':
 					if(!$nombre||!$descripcion||!$precio_venta)
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 						else{
 					$Articulo=$this->modelo->modificarArticulo($nombre, $descripcion, $precio_venta) ;
 					include('view/modificarArticuloView.php');}
