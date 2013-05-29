@@ -11,15 +11,14 @@ include_once('ModeloCtl.php');
 		}
 
 		function ejecutar(){
-			//si no tengo parametros se listan los Articulos
-			$hacer=$_REQUEST['hacer'];
+
 			$id=$this->EsId($_REQUEST['id']);
 			$nombre=$this->EsNombre($_REQUEST['nombre']);
 			
 			$precio_venta=$this->EsNo($_REQUEST['precio_venta']);
 			$idUsuario=$this->EsId($_REQUEST['idUsuario']);
 		
-		     if(!isset($hacer) ){
+		     if(!isset($_REQUEST['hacer']) ){
 				 
 				
 				if(isset($_SESSION['usuario'])){
@@ -32,7 +31,7 @@ include_once('ModeloCtl.php');
 					
 					}
 				
-			} else switch($hacer){
+			} else switch($_REQUEST['hacer']){
 				case 'agregar':
 					if(!$nombre||!$descripcion||!$precio_venta)
 						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;

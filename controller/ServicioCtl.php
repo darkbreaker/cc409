@@ -12,17 +12,17 @@ include_once('ModeloCtl.php');
 
 		function ejecutar(){
 			 
-			$hacer=$_REQUEST['hacer'];
+			 
 			$idServicio=$this->EsId($_REQUEST['idServicio']);
 			$precio=$this->EsNo($_REQUEST['precio']);
 			$tiempo=$this->EsNo($_REQUEST['tiempo']);
 			$descripcion=$_REQUEST['descripcion'];
 
-			if(!isset($hacer) ){
+			if(!isset($_REQUEST['hacer']) ){
 				$Servicio = $this->modelo-> listar();
 
 				echo json_encode($Servicio);
-			} else switch($hacer){
+			} else switch($_REQUEST['hacer']){
 				case 'buscarServicio':
 					if(!$idServicio)
 						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;

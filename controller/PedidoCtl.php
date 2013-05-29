@@ -16,12 +16,12 @@ include_once('ModeloCtl.php');
 			 
 				if(isset($_SESSION['usuario'])){ //se valida que una sesion este iniciada para poder usar los pedidos
 					
-				  	$hacer=$_REQUEST['hacer'];
+				  	 
 					$idReservacion=$_REQUEST['idReservacion'];
 					$estado=$_REQUEST['estado'];
 					$descripcion=$_REQUEST['descripcion'];
 
-						switch($hacer){
+						switch($_REQUEST['hacer']){
 						case 'agregar':
 							
 								$Pedido=$this->modelo->agregar($_REQUEST['id'],$_SESSION['usuario']);

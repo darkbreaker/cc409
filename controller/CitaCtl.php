@@ -13,7 +13,7 @@ class CitaCtl extends ModeloCtl{
 		function ejecutar(){
 			//si no tengo parametros se regresa al menu principal
 			 
-			$hacer=$_REQUEST['hacer'];
+			 
 			$idCita=$this->EsId($_REQUEST['idCita']);
 			$fecha=$this->EsFecha($_REQUEST['fecha']);
 			$detalles=$_REQUEST['detalles'];
@@ -23,7 +23,7 @@ class CitaCtl extends ModeloCtl{
 			$descripcion=$_REQUEST['descripcion'];
 			
 			
-			 if(!isset($hacer)){
+			 if(!isset($_REQUEST['hacer'])){
 				if(!isset($_SESSION['usuario'])){
 					$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion'); echo $file;
 					
@@ -41,7 +41,7 @@ class CitaCtl extends ModeloCtl{
 				}
 				
 			}else  
-			switch($hacer){
+			switch($_REQUEST['hacer']){
 				case 'agregarCita':
 					
 					$Cita=$this->modelo->agregarCita($_SESSION['usuario'],$detalles, $_REQUEST['opccion']) ;
