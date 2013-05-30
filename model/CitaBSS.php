@@ -115,7 +115,7 @@ include_once('Cita.php');
 	
 		if($con->conecta()==false)
 			die('error de conexion');
-		$sql="SELECT idcita as Cita,fecha,inicio as Reservacion,detalles,idPersona as Cliente FROM cita WHERE CONCAT(fecha,detalles, inicio) LIKE '%".$descripcion."%'";
+		$sql="SELECT a.idcita as Cita,a.fecha,a.inicio as Reservacion,a.detalles,b.email as Cliente FROM cita as a,usuario as b WHERE b.idPersona=a.idPersona and CONCAT(fecha,detalles, inicio) LIKE '%".$descripcion."%'";
 		//ejecutar el query
 		$fila = $con->consulta($sql);	
 		if($fila==false){
@@ -141,7 +141,7 @@ include_once('Cita.php');
 				}
 		
 			//ejecutar el query
-			$resultado = $conexion->consulta('select  idcita as Cita,fecha, inicio as Reservacion,detalles,idPersona as Cliente from cita');	
+			$resultado = $conexion->consulta('select  a.idcita as Cita,a.fecha, a.inicio as Reservacion,a.detalles,b.email as Cliente from cita as a,usuario as b where a.idPersona=b.idPersona');	
 			if($resultado===false){
 				die('error de resultado');
 				$conexion->cerrar();

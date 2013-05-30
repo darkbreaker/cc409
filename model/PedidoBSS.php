@@ -16,7 +16,7 @@ include_once('Pedido.php');
 				}
 		
 			//ejecutar el query
-			$resultado = $conexion->consulta("select idpedido as pedido,idarticulo as articulo,fecha,idPersona as cliente from pedido");	
+			$resultado = $conexion->consulta("select a.idpedido as pedido,b.nombre as articulo,a.fecha,c.nombre as cliente from pedido as a,articulo as b,usuario as c where b.idarticulo=a.idarticulo and 	c.idPersona=a.idPersona");	
 			if($resultado===false){
 				die('error de resultado');
 				$conexion->cerrar();
@@ -36,9 +36,8 @@ include_once('Pedido.php');
 				$conexion->cerrar();
 				die('error al conectar');
 				}
-		
 			//ejecutar el query
-			$resultado = $conexion->consulta("select fecha,estado,idarticulo from pedido WHERE idPersona = '$id'");	
+			$resultado = $conexion->consulta("select a.fecha,a.estado,b.nombre from pedido as a,articulo as b WHERE idPersona = '$id' and b.idarticulo=a.idarticulo");	
 			if($resultado===false){
 				die('error de resultado');
 				$conexion->cerrar();
@@ -48,12 +47,9 @@ include_once('Pedido.php');
 			while($row = $resultado->fetch_array(MYSQLI_ASSOC))		{
 		$obj[] = $row;		}		
 			return $obj;
-
 		}
 		
 		function ActualizarReservacion($id){
-	
-
 			$con= new Conexion (  );
 			if(!$con->conecta())
 				die('error conexion'.$conexion->errno);
@@ -65,7 +61,6 @@ include_once('Pedido.php');
 				$con->cerrar();
 				return FALSE;
 				}
-
 			return true;
 	}
 	

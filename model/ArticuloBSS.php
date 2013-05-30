@@ -42,12 +42,12 @@ include_once('Articulo.php');
 				return FALSE;
 			}
 				
-			if($fila[0][idarticulo]==$id){
 			$con->cerrar();
-			$clase= new Usuario ($fila[0][idarticulo],$fila[0][nombre],$fila[0][descripcion],$fila[0][precio]);
-
-			return $clase;
-			}	
+				
+			while($row = $fila->fetch_array(MYSQLI_ASSOC)){
+			$obj[] = $row;		}	
+			return $obj;
+			
          }
 		 
          function eliminarArticulo($idArticulo){
