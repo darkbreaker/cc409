@@ -6,11 +6,11 @@
 */
 
 	class Conexion{
-		public $host;
-		public $user;
-		public $pass;
-		public $db;
-		public $cn;
+		private $host;
+		private $user;
+		private $pass;
+		private $db;
+		private $cn;
 		
 		function __construct(){
 		
