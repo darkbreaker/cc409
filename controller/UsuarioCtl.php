@@ -99,7 +99,7 @@ include_once('ModeloCtl.php');
 					break;
 				case 'perfil':
 					if(isset($_SESSION['usuario'])){
-						if($_SESSION['privilegio']==0){
+						if($_SESSION['privilegio']===0){
 							$file = file_get_contents('view/PerfilUsuario.html'); 
 							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
 							$file = str_ireplace('>Login<','>Log out<' , $file); 

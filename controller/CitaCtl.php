@@ -12,17 +12,7 @@ class CitaCtl extends ModeloCtl{
 
 		function ejecutar(){ session_start();
 			//si no tengo parametros se regresa al menu principal
-			 
-			 
-			$idCita=$this->EsId($_REQUEST['idCita']);
-			$fecha=$this->EsFecha($_REQUEST['fecha']);
-			$detalles=$_REQUEST['detalles'];
 
-			$idUsuario=$this->EsId($_REQUEST['idUsuario']);
-            $estado=$_REQUEST['estado'];
-			$descripcion=$_REQUEST['descripcion'];
-			
-			
 			 if(!isset($_REQUEST['hacer'])){
 				if(!isset($_SESSION['usuario'])){
 					$file = file_get_contents('view/Index.html');
@@ -56,35 +46,41 @@ class CitaCtl extends ModeloCtl{
 					break;
 					
 				case 'buscarCita':
-					
+					if(isset($_SESSION['usuario'])){
 					$Cita=$this->modelo->buscarCita($_SESSION['usuario']);
-					echo json_encode($Cita);
+					echo json_encode($Cita);}
 					break;
 				case 'eliminarCita':
+						$idCita=$this->EsId($_REQUEST['idCita']);
+			
 					if(!$idCita){
 						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
 					}else{
 							$Cita=$this->modelo->eliminarCita($idCita);
-							include('eliminarview/CitaView.php');}
+							}
 					break;
 				case 'listar':
+						if(isset($_SESSION['usuario'])){
 						$Cita=$this->modelo->listar() ;
 						echo json_encode($Cita);
-					
+						}
 					break;
 				
 		        case 'ActualizarCita':
+					if(isset($_SESSION['usuario'])){
 					
 			        $Cita=$this->modelo->ActualizarCita($_REQUEST['idCita']) ;
 					$file = file_get_contents('view/Index.html'); //cargo el archivo
 					$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
 					echo $file;
-
+					}
 					break;
 
 				case 'filtrarCita':
+					if(isset($_SESSION['usuario'])){
+					$descripcion=$_REQUEST['descripcion'];
 					$Cita=$this->modelo->filtrarCita($descripcion) ;
-					echo json_encode($Cita);
+					echo json_encode($Cita);}
 					break;
 				
 			}

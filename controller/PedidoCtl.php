@@ -42,12 +42,12 @@ include_once('ModeloCtl.php');
 						case 'eliminarReservacion':
 							$idReservacion=$this->EsId($_REQUEST['idReservacion']);
 							if($_SESSION['privilegio']>0){
-								if(!$idReservacion)
+								if(!$idReservacion){
 									$file = file_get_contents('view/Index.html');
 									$file = str_ireplace('{Username}','sin sesion',$file);
 									$file = str_ireplace('<h5>Hola</h5>','Error',$file); 
 									echo $file;
-								else{
+								}else{
 									
 									$Pedido=$this->modelo->eliminarReservacion($idReservacion);
 									$file = file_get_contents('view/Index.html'); 
