@@ -111,22 +111,18 @@
 			$conexion->cerrar();
 			die('error al conectar');
 			}
-	
-		//ejecutar el query
 		$resultado = $conexion->consulta('SELECT * FROM usuario');	
 		if($resultado===false){
 			die('error de resultado');
 			$conexion->cerrar();
 			return FALSE;
 			}
+			$conexion-> cerrar();
+		while($row = $resultado->fetch_array(MYSQLI_ASSOC))	{
+		$obj[] = $row;		}					
+			return $obj;
+	
 		
-		for ($i=0;$i<count($resultado);$i++) 
-                              { 
-	$obj[$i] = new Usuario($resultado[$i][id],$resultado[$i][nombre],$resultado[$i][telefono],$resultado[$i][direccion],$resultado[$i][password],$resultado[$i][tipo],$resultado[$i][email]); 
-			}	
-			
-		$conexion-> cerrar();
-		return $resultado;
 	}
 	
 	function filtrarUsuario($descripcion){
@@ -143,21 +139,16 @@
 			return FALSE;
 			}
 
-		for ($i=0;$i<count($resultado);$i++) 
-                              { 
-	$obj[$i] = new Usuario($resultado[$i][id],$resultado[$i][nombre],$resultado[$i][telefono],$resultado[$i][direccion],$resultado[$i][password],$resultado[$i][tipo],$resultado[$i][email]); 
-			}	
-			
-		return $obj;
+	$conexion-> cerrar();
+		while($row = $resultado->fetch_array(MYSQLI_ASSOC))	{
+		$obj[] = $row;		}					
+			return $obj;
 
 	}
 	
 		function modificar($nombre,$telefono,$direccion,$password,$email,$idUsuario){
-	
 		//conectarse a la base de datos
 		$con= new Conexion ();
-		
-		
 		if(!$con->conecta())
 			die('error conexion');
 		//crear el query

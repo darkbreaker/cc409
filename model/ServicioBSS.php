@@ -7,7 +7,7 @@ include_once('Servicio.php');
 		$id=$con->escapar($id);
 		if($con->conecta()==false)
 			die('error de conexion');
-		$sql='SELECT * FROM servicio WHERE id= '.$id;
+		$sql="SELECT * FROM servicio WHERE id= '$id'";
 		//ejecutar el query
 		$fila = $con->consulta($sql);	
 		if($fila==false){
@@ -16,10 +16,10 @@ include_once('Servicio.php');
 			return FALSE;
 			}
 			
-		if($fila[0][id]==$id){
-			$con->cerrar();
-			$clase= new Servicio ($fila[0][id],$fila[0][tiempo],$fila[0][descripcion],$fila[0][precio]);
-		}
+			if($fila[0][id]==$id){
+				$con->cerrar();
+				$clase= new Servicio ($fila[0][id],$fila[0][tiempo],$fila[0][descripcion],$fila[0][precio]);
+			}
 		return $clase;
 		}	
 		
@@ -36,12 +36,9 @@ include_once('Servicio.php');
 			$con->cerrar();
 			return FALSE;
 			}
-			
 		$con->cerrar();
 		return TRUE;
 		}
-
-	
 	
 		/**
 	*@return mixed array o FALSE si hay un error
@@ -100,21 +97,5 @@ include_once('Servicio.php');
 		return $this->id;
 	}
 		
-		function filtrarUsuario($descripcion){
-		$con= new Conexion (  );
-		$descripcion=$con->escapar($descripcion);
-		if($con->conecta()==false)
-			die('error de conexion');
-		$sql="SELECT * FROM usuario WHERE CONCAT(tiempo,precio,descripcion) LIKE '%".$descripcion."%'";
-		//ejecutar el query
-		$fila = $con->consulta($sql);	
-		if($fila==false){
-			die('error al consultar');
-			$con->cerrar();
-			return FALSE;
-			}
-		
-		return $fila;
-		}
 	}
 ?>
