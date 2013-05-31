@@ -24,6 +24,11 @@ th{border-bottom-width: 3px ; border-bottom-style: solid;
 
 text-align:center;
 }
+
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
 	 
 	 
       </style>
@@ -165,7 +170,7 @@ data="["+data.substring(data.search("{"));
     // If the returned data is an object do nothing, else try to parse
     var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
  
-    var str = '<table class="table-hover" id="jtable" name="jtable">';
+    var str = '</br><table class="table-hover" id="jtable" name="jtable">';
  
     // table head
         str += '<thead><tr>';

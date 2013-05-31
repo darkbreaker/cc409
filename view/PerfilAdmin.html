@@ -26,6 +26,11 @@ th{border-bottom-width: 3px ; border-bottom-style: solid;
 
 text-align:center;
 }
+
+table {
+    margin-left:auto; 
+    margin-right:auto;
+  }
 	 
       </style>
 </head>
@@ -55,14 +60,16 @@ text-align:center;
 
 <center>
    
-   
-   <form>
-   
+     <div class="container">
+
+      <form class="form-signin" action="index.php" method="GET">
   <button type="button" class="btn btn-inverse" onClick="productos();">Agregar Articulos</button>
  </br>
+  </br>
+   <button type="button" class="btn btn-inverse" onClick="productos();">Agregar Servicios</button>
 </br>
-</br>
-  <button type="button" class="btn btn-inverse" onClick="productos();">Agregar Servicios</button>
+</div>
+
 	
 </form>
 </center>
@@ -126,9 +133,9 @@ text-align:center;
 			function crearCitas(objArray) {
  
     // If the returned data is an object do nothing, else try to parse
-    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+				var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
  
-    var str = '<table class="table-hover" id="jtable" name="jtable">';
+				var str = '</br><table class="table-hover" id="jtable" name="jtable">';
  
     // table head
         str += '<thead><tr>';
@@ -153,7 +160,7 @@ text-align:center;
         str += '</tr>';
     }
     str += '</tbody>'
-    str += '</table>';
+    str += '</table></br>';
     return str;
 }
 		
