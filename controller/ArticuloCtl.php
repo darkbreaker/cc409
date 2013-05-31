@@ -2,6 +2,7 @@
 //controlador requiere tener acceso al modelo
 include_once('model/ArticuloBSS.php');
 include_once('ModeloCtl.php');
+include_once('pdfCtl.php');
 	class ArticuloCtl extends ModeloCtl{
 		public $modelo;
 		
@@ -84,6 +85,11 @@ include_once('ModeloCtl.php');
 							echo json_encode($Articulo);
 						}
 					break;
+				case 'pdf':
+					$pdf= new PDF();
+					
+					$Articulo=$this->modelo->listar();
+					$pdf->run($Articulo);
 				Default:
 					if(isset($_SESSION['usuario'])){
 				$file = file_get_contents('view/BuscarProducto.html'); //cargo el archivo
