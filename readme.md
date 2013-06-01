@@ -84,16 +84,16 @@ control de informacion.
 
 
 
-Demo del desarrollo en alaturing
+## Demo del desarrollo en alaturing
 
 Url de acceso: http://alanturing.cucei.udg.mx/cc409/perrosygatos/
 
-cuenta de acceso
-id=1 pass=1234
-id=6 pass=1234
+cuenta de acceso  
+id=1 pass=1234  
+id=6 pass=1234  
 
 
-Integrantes de Equipo
+## Integrantes de Equipo
 
 
 Hinojosa Valadez Juan Alejandro sección:D04
