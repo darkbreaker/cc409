@@ -89,8 +89,8 @@ control de informacion.
 Url de acceso: http://alanturing.cucei.udg.mx/cc409/perrosygatos/
 
 cuenta de acceso  
-id=1 pass=1234  
-id=6 pass=1234  
+a@mail.com pass=4321 
+
 
 
 ## Integrantes de Equipo
