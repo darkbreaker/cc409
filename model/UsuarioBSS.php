@@ -96,8 +96,7 @@
 				}
 			$fila = $fila->fetch_array(MYSQLI_ASSOC);
 			$con->cerrar();
-			$clase= new Usuario ($fila[idPersona],$fila[nombre],$fila[telefono],$fila[calle],$fila[password],$fila[privilegios],$id);
-			return $clase;
+			return $fila;
 
 
 	}
@@ -125,12 +124,11 @@
 		
 	}
 	
-	function filtrarUsuario($descripcion){
+	function filtrarUsuario($mail){
 		$con= new Conexion (  );
-		$descripcion=$con->escapar($descripcion);
 		if($con->conecta()==false)
 			die('error de conexion');
-		$sql="SELECT * FROM usuario WHERE CONCAT(nombre,calle,telefono) LIKE '%".$descripcion."%'";
+		$sql="SELECT email FROM usuario WHERE email='$mail'";
 		//ejecutar el query
 		$resultado = $con->consulta($sql);	
 		if($resultado===false){
@@ -138,11 +136,9 @@
 			$con->cerrar();
 			return FALSE;
 			}
-
-	$conexion-> cerrar();
-		while($row = $resultado->fetch_array(MYSQLI_ASSOC))	{
-		$obj[] = $row;		}					
-			return $obj;
+		$conexion-> cerrar();
+				
+			return true;
 
 	}
 	

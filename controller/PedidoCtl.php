@@ -44,20 +44,20 @@ include_once('ModeloCtl.php');
 							if($_SESSION['privilegio']>0){
 								if(!$idReservacion){
 									$file = file_get_contents('view/Index.html');
-									$file = str_ireplace('{Username}','sin sesion',$file);
+									$file = str_ireplace('>{Username}<','><',$file);
 									$file = str_ireplace('<h5>Hola</h5>','Error',$file); 
 									echo $file;
 								}else{
 									
 									$Pedido=$this->modelo->eliminarReservacion($idReservacion);
 									$file = file_get_contents('view/Index.html'); 
-									$file = str_ireplace('{Username}','sin sesion',$file); 
+									$file = str_ireplace('>{Username}<','><',$file); 
 									$file = str_ireplace('<h5>Hola</h5>','hecho',$file); 
 									echo $file;
 									}
 							}else{
 									$file = file_get_contents('view/Index.html'); 
-									$file = str_ireplace('{Username}','sin sesion',$file); 
+									$file = str_ireplace('>{Username}<','><',$file); 
 									$file = str_ireplace('<h5>Hola</h5>','Error',$file); 
 									echo $file;
 								}break;
@@ -80,14 +80,14 @@ include_once('ModeloCtl.php');
 							break;
 						Default:
 							$file = file_get_contents('view/Index.html');
-							$file = str_ireplace('{Username}','sin sesion',$file); 
+							$file = str_ireplace('>{Username}<','><',$file); 
 							echo $file;
 							
 					}//fin del switch
 				} 	
 				else {
 					$file = file_get_contents('view/Index.html');
-					$file = str_ireplace('{Username}','sin sesion',$file); 
+					$file = str_ireplace('>{Username}<','><',$file); 
 					echo $file;}
 					
 		}	

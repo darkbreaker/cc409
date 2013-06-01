@@ -21,7 +21,7 @@ include_once('ModeloCtl.php');
 					$idServicio=$this->EsId($_REQUEST['idServicio']);
 					if(!$idServicio){
 						$file = file_get_contents('view/Index.html');
-						$file = str_ireplace('{Username}','sin sesion',$file);
+						$file = str_ireplace('>{Username}<','><',$file);
 						echo $file;
 					}else{
 						$Servicio=$this->modelo->buscarServicio($idServicio);
@@ -35,7 +35,7 @@ include_once('ModeloCtl.php');
 				
 					if(!isset($_SESSION['usuario'])||!$precio||!$tiempo||!$descripcion){
 						$file = file_get_contents('view/Index.html'); 
-						$file = str_ireplace('{Username}','sin sesion',$file); 
+						$file = str_ireplace('>{Username}<','><',$file); 
 						echo $file;
 					}else{
 						if($_SESSION['privilegio']==2){
@@ -43,7 +43,7 @@ include_once('ModeloCtl.php');
 						include('view/agregarServicioView.php');
 						}else
 							$file = file_get_contents('view/Index.html'); 
-							$file = str_ireplace('{Username}','sin sesion',$file); 
+							$file = str_ireplace('>{Username}<','><',$file); 
 							echo $file;
 					}
 					break;
@@ -51,7 +51,7 @@ include_once('ModeloCtl.php');
 					$idServicio=$this->EsId($_REQUEST['idServicio']);
 					if(!isset($_SESSION['nombre']) ){
 							$file = file_get_contents('view/Index.html'); 
-							$file = str_ireplace('{Username}','sin sesion',$file); 
+							$file = str_ireplace('>{Username}<','><',$file); 
 							echo $file;}
 					ELSE if(!$idServicio){
 								$file = file_get_contents('view/Index.html'); //cargo el archivo
@@ -76,7 +76,7 @@ include_once('ModeloCtl.php');
 				Default:
 					if(!isset($_SESSION['nombre']) ){
 								$file = file_get_contents('view/Index.html'); 
-								$file = str_ireplace('{Username}','sin sesion',$file); 
+								$file = str_ireplace('>{Username}<','><',$file); 
 							echo $file;
 							} else {
 								$file = file_get_contents('view/Index.html'); //cargo el archivo

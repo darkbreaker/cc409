@@ -25,7 +25,7 @@ include_once('pdfCtl.php');
 				echo $file;
 				} else{
 					$file = file_get_contents('view/BuscarProducto.html');
-						$file = str_ireplace('{Username}','Sin sesion' , $file); 
+						$file = str_ireplace('>{Username}<','><' , $file); 
 						$file = str_ireplace('>Citas<','><' , $file);
 						echo $file;
 					}
@@ -39,7 +39,7 @@ include_once('pdfCtl.php');
 						$idUsuario=$this->EsId($_REQUEST['idUsuario']);
 					if(!$nombre||!$descripcion||!$precio_venta){
 						$file = file_get_contents('view/Index.html');
-						$file = str_ireplace('{Username}','sin sesion',$file);
+						$file = str_ireplace('>{Username}<','><',$file);
 						echo $file;}
 						else{
 					$Articulo=$this->modelo->agregarArticulo($nombre, $descripcion, $precio_venta) ;
@@ -49,7 +49,7 @@ include_once('pdfCtl.php');
 				case 'consultar':
 								$id=$this->EsId($_REQUEST['id']);
 					if(!$id){
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('>{Username}<','><',$file); echo $file;
 						}else{
 					$Articulo=$this->modelo->consultarArticulo($id);
 					include('view/consultarArticuloView.php');}
@@ -58,7 +58,7 @@ include_once('pdfCtl.php');
 
 			$idUsuario=$this->EsId($_REQUEST['idUsuario']);
 					if(!$idUsuario){
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('>{Username}<','><',$file); echo $file;
 						}else{
 					$Articulo=$this->modelo->eliminarArticulo($idUsuario);
 					include('view/eliminarArticuloView.php');}
@@ -68,7 +68,7 @@ include_once('pdfCtl.php');
 						$precio_venta=$this->EsNo($_REQUEST['precio_venta']);
 					if(!$nombre||!$precio_venta){
 						$file = file_get_contents('view/Index.html');
-						$file = str_ireplace('{Username}','sin sesion',$file); 
+						$file = str_ireplace('>{Username}<','><',$file); 
 						echo $file;
 						}else{
 						$Articulo=$this->modelo->modificarArticulo($nombre, $descripcion, $precio_venta) ;
@@ -98,7 +98,7 @@ include_once('pdfCtl.php');
 				echo $file;
 				} else{
 					$file = file_get_contents('view/BuscarProducto.html');
-						$file = str_ireplace('{Username}','Sin sesion' , $file); 
+						$file = str_ireplace('>{Username}<','><' , $file); 
 						$file = str_ireplace('>Citas<','><' , $file);
 						echo $file;
 					}

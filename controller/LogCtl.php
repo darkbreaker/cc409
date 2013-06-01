@@ -14,7 +14,8 @@ include_once('ModeloCtl.php');
 				if(!isset($_REQUEST['hacer'])){
 					if(!isset($_SESSION['usuario'])){
 						$file = file_get_contents('view/Login.html');
-						$file = str_ireplace('{Username}','Sin sesion' , $file); $file = str_ireplace('>Citas<','><' , $file);
+						$file = str_ireplace('>{Username}<','><' , $file); 
+						$file = str_ireplace('>Citas<','><' , $file);
 						echo $file;
 						}
 					else{
@@ -24,7 +25,8 @@ include_once('ModeloCtl.php');
 						setcookie(session_name(),'',time()-1);
 						
 						$file = file_get_contents('view/Login.html');
-						$file = str_ireplace('{Username}','Sin sesion' , $file); $file = str_ireplace('>Citas<','><' , $file);
+						$file = str_ireplace('>{Username}<','><' , $file); 
+						$file = str_ireplace('>Citas<','><' , $file);
 						echo $file;
 						}
 					}
@@ -38,11 +40,11 @@ include_once('ModeloCtl.php');
 								$pass=$_REQUEST['pass'];
 								$usuario=$this->modelo->login($id,$pass);
 														
-								if(is_object($usuario)){
+								if(isset($usuario)){
 							//si existe
-									$_SESSION['usuario']=$usuario->id;
-									$_SESSION['nombre']=$usuario->email;
-									$_SESSION['privilegio']=$usuario->tipo;				
+									$_SESSION['usuario']=$usuario[id];
+									$_SESSION['nombre']=$usuario[email];
+									$_SESSION['privilegio']=$usuario[tipo];				
 									$file = file_get_contents('view/Index.html'); //cargo el archivo
 									$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
 									$file = str_ireplace('>Login<','>Log out<' , $file);
@@ -50,7 +52,7 @@ include_once('ModeloCtl.php');
 									
 								}else{
 								$file = file_get_contents('view/Login.html');
-								$file = str_ireplace('{Username}','Sin sesion' , $file); $file = str_ireplace('>Citas<','><' , $file);
+								$file = str_ireplace('>{Username}<','><' , $file); $file = str_ireplace('>Citas<','><' , $file);
 								echo $file;
 										}
 						}else
@@ -73,12 +75,12 @@ include_once('ModeloCtl.php');
 						}
 						
 						$file = file_get_contents('view/Index.html');
-						$file = str_ireplace('{Username}','Sin sesion' , $file); $file = str_ireplace('>Citas<','><' , $file);
+						$file = str_ireplace('>{Username}<','><' , $file); $file = str_ireplace('>Citas<','><' , $file);
 						echo $file;
 						break;
 					default:
 						$file = file_get_contents('view/Index.html');
-						$file = str_ireplace('{Username}','Sin sesion' , $file); $file = str_ireplace('>Citas<','><' , $file);
+						$file = str_ireplace('>{Username}<','><' , $file); $file = str_ireplace('>Citas<','><' , $file);
 						echo $file;
 				}	// fin del switch
 

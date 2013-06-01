@@ -19,11 +19,11 @@ include_once('ModeloCtl.php');
 					$NotaVenta = $this->modelo-> listar();
 					include('view/NotaVentaView.php');
 					}else{//no se tienen privilegios sufuicientes
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('{Username}','sin sesion',$file); echo $file;
+						$file = file_get_contents('view/Index.html'); $file = str_ireplace('>{Username}<','><',$file); echo $file;
 					}
 				}else	// si no hay sesion envia al menu principal
 					$file = file_get_contents('view/Index.html');
-					$file = str_ireplace('{Username}','sin sesion',$file);
+					$file = str_ireplace('>{Username}<','><',$file);
 					echo $file;
 		}
 
