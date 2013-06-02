@@ -8,7 +8,7 @@ $body             = "hola <p> mundo </p>";
 
 //$mail->IsSMTP(); // telling the class to use SMTP
 
-$mail->Host       = "mail.yourdomain.com"; // SMTP server
+//$mail->Host       = "mail.yourdomain.com"; // SMTP server
 
 $mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
 
@@ -28,7 +28,7 @@ $mail->Password   = "A1V2M3;@";            // GMAIL password
 
 $mail->SetFrom('admvetmas@gmail.com', 'VeteWebmaster');
 
- 
+ $mail->IsHTML(true);
 
 $mail->AddReplyTo("al_xsnake@hotmail.com","First Last");
 
@@ -36,14 +36,14 @@ $mail->Subject    = "Verificacion de usuario";
 
 $mail->AltBody    = "Se ha registrado"; // optional, comment out and test
 
-
-$address = "al_xsnake@hotmail.com";
+$mail->Subject = "Demo de PHPMailer";
+$address = "f2_@hotmail.com";
 
 $mail->AddAddress($address, "Alex");
-
+echo "1";
 $foo = $mail->Send();
-
-if(!foo) {
+echo "2";
+if(foo==false) {
 
 echo "Mailer Error: " . $mail->ErrorInfo;
 
