@@ -2,8 +2,8 @@
 //controlador requiere tener acceso al modelo
 include_once('model/UsuarioBSS.php');
 include_once('ModeloCtl.php');
-include("class.phpmailer.php");
-include("class.smtp.php"); 
+include("PHPMailer/class.phpmailer.php");
+include("PHPMailer/class.smtp.php"); 
 define('GUSER', 'admvetmas@gmail.com'); // GMail username
 define('GPWD', 'A1V2M3;@'); // GMail password
 	class UsuarioCtl extends ModeloCtl{
@@ -73,7 +73,7 @@ function smtpmailer($to, $from, $from_name, $subject, $body) {
 							echo $file;
 					}
 					
-					function smtpmailer($email, 'mascotamigos webmaster', '', 'Registrado', 'bienvenido a mascotamigos clic para continuar');
+					smtpmailer($email, 'mascotamigos webmaster', '', 'Registrado', 'bienvenido a mascotamigos clic para continuar');
 					break;
 					
 				case 'buscarUsuario':
