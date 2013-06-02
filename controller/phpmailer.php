@@ -8,7 +8,7 @@ $body             = "<p>hola</p>";
 
 $mail->IsSMTP(); // telling the class to use SMTP
 
-$mail->Host       = "mail.yourdomain.com"; // SMTP server
+$mail->Host       = "smtp.gmail.com"; // SMTP server
 
 $mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
 
