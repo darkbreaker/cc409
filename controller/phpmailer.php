@@ -3,10 +3,9 @@
 include("PHPMailer/class.phpmailer.php");
 include("PHPMailer/class.smtp.php"); 
 $mail             = new PHPMailer();
+$mail->body             = "<p>correo</p>";
 
-$body             = file_get_contents('contents.html');
-
-$body             = eregi_replace("[\]",'',$body);
+$mail->body             = eregi_replace("[\]",'',$body);
 
  
 
