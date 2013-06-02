@@ -14,7 +14,7 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 			$this->modelo = new UsuarioBSS();
 		}
 
-function smtpmailer($to, $from, $from_name, $subject, $body) { 
+function smtpmailer($mail, $from, $from_name, $subject, $body) { 
 	global $error;
 	$mail = new PHPMailer();  // create a new object
 	$mail->IsSMTP(); // enable SMTP

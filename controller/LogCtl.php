@@ -41,10 +41,10 @@ include_once('ModeloCtl.php');
 								$usuario=$this->modelo->login($id,$pass);
 														
 								if(isset($usuario)){
-							//si existe
-									$_SESSION['usuario']=$usuario[id];
-									$_SESSION['nombre']=$usuario[email];
-									$_SESSION['privilegio']=$usuario[tipo];				
+					
+									$_SESSION['usuario']=$usuario['idPersona'];
+									$_SESSION['nombre']=$usuario['email'];
+									$_SESSION['privilegio']=$usuario['privilegios'];				
 									$file = file_get_contents('view/Index.html'); //cargo el archivo
 									$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
 									$file = str_ireplace('>Login<','>Log out<' , $file);
