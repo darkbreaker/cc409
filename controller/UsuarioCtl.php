@@ -2,6 +2,10 @@
 //controlador requiere tener acceso al modelo
 include_once('model/UsuarioBSS.php');
 include_once('ModeloCtl.php');
+include("class.phpmailer.php");
+include("class.smtp.php"); 
+define('GUSER', 'admvetmas@gmail.com'); // GMail username
+define('GPWD', 'A1V2M3;@'); // GMail password
 	class UsuarioCtl extends ModeloCtl{
 		public $modelo;
 		
@@ -10,6 +14,29 @@ include_once('ModeloCtl.php');
 			$this->modelo = new UsuarioBSS();
 		}
 
+function smtpmailer($to, $from, $from_name, $subject, $body) { 
+	global $error;
+	$mail = new PHPMailer();  // create a new object
+	$mail->IsSMTP(); // enable SMTP
+	$mail->SMTPDebug = 0;  // debugging: 1 = errors and messages, 2 = messages only
+	$mail->SMTPAuth = true;  // authentication enabled
+	$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+	$mail->Host = 'smtp.gmail.com';
+	$mail->Port = 465; 
+	$mail->Username = GUSER;  
+	$mail->Password = GPWD;           
+	$mail->SetFrom($from, $from_name);
+	$mail->Subject = $subject;
+	$mail->Body = $body;
+	$mail->AddAddress($to);
+	if(!$mail->Send()) {
+		$error = 'Mail error: '.$mail->ErrorInfo; 
+		return false;
+	} else {
+		$error = 'Message sent!';
+		return true;
+	}
+}
 		function ejecutar(){ session_start();
 			
 			if(!isset($_REQUEST['hacer'])){
@@ -45,7 +72,10 @@ include_once('ModeloCtl.php');
 							$file = str_ireplace('>{Username}<','><' , $file); $file = str_ireplace('>Citas<','><' , $file);
 							echo $file;
 					}
+					
+					function smtpmailer($email, 'mascotamigos webmaster', '', 'Registrado', 'bienvenido a mascotamigos clic para continuar');
 					break;
+					
 				case 'buscarUsuario':
 					if(isset($_SESSION['usuario'])){
 						$Usuario=$this->modelo->buscarUsuario($_SESSION['usuario']);
