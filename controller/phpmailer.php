@@ -43,9 +43,7 @@ $address = "al_xsnake@hotmail.com";
 $mail->AddAddress($address, "Alex");
 echo "1";
 
-foo = $mail->Send();
-
-if(!foo) {
+if(!$mail->Send()) {
 
 echo "Mailer Error: " . $mail->ErrorInfo;
 
