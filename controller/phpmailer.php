@@ -3,13 +3,10 @@
 include("PHPMailer/class.phpmailer.php");
 include("PHPMailer/class.smtp.php"); 
 $mail             = new PHPMailer();
-$mail->body             = "<p>correo</p>";
+$mail->Body = "Hola <strong>Jim</strong>, bienvenido!!!";
+$body             = "hola <p> mundo </p>";
 
-$mail->body             = eregi_replace("[\]",'',$body);
-
- 
-
-$mail->IsSMTP(); // telling the class to use SMTP
+//$mail->IsSMTP(); // telling the class to use SMTP
 
 $mail->Host       = "mail.yourdomain.com"; // SMTP server
 
@@ -39,15 +36,14 @@ $mail->Subject    = "Verificacion de usuario";
 
 $mail->AltBody    = "Se ha registrado"; // optional, comment out and test
 
-$mail->MsgHTML($body);
 
 $address = "al_xsnake@hotmail.com";
 
 $mail->AddAddress($address, "Alex");
 
+$foo = $mail->Send();
 
-
-if(!$mail->Send()) {
+if(!foo) {
 
 echo "Mailer Error: " . $mail->ErrorInfo;
 
