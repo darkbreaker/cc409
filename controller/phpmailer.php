@@ -4,39 +4,58 @@ include("PHPMailer/class.phpmailer.php");
 include("PHPMailer/class.smtp.php"); 
 $mail             = new PHPMailer();
 
-$body             = $mail->getFile('contents.html');
+$body             = file_get_contents('contents.html');
+
 $body             = eregi_replace("[\]",'',$body);
 
-$mail->IsSMTP();
+ 
+
+$mail->IsSMTP(); // telling the class to use SMTP
+
+$mail->Host       = "mail.yourdomain.com"; // SMTP server
+
+$mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
+
 $mail->SMTPAuth   = true;                  // enable SMTP authentication
-$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+
+$mail->SMTPSecure = "tls";                 // sets the prefix to the servier
+
 $mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
-$mail->Port       = 465;                   // set the SMTP port
+
+$mail->Port       = 587;                   // set the SMTP port for the GMAIL server
 
 $mail->Username   = "admvetmas@gmail.com";  // GMAIL username
+
 $mail->Password   = "A1V2M3;@";            // GMAIL password
 
-$mail->From       = "replyto@yourdomain.com";
-$mail->FromName   = "MascotaWebmaster";
-$mail->Subject    = "Autentificacion";
-$mail->AltBody    = "Gracias por registrarse como usuario en mascota "; //Text Body
-$mail->WordWrap   = 50; // set word wrap
+ 
+
+$mail->SetFrom('admvetmas@gmail.com', 'VeteWebmaster');
+
+ 
+
+$mail->AddReplyTo("al_xsnake@hotmail.com","First Last");
+
+$mail->Subject    = "Verificacion de usuario";
+
+$mail->AltBody    = "Se ha registrado"; // optional, comment out and test
 
 $mail->MsgHTML($body);
 
-$mail->AddReplyTo("replyto@yourdomain.com","Webmaster");
+$address = "al_xsnake@hotmail.com";
 
-$mail->AddAttachment("/path/to/file.zip");             // attachment
-$mail->AddAttachment("/path/to/image.jpg", "new.jpg"); // attachment
+$mail->AddAddress($address, "Alex");
 
-$mail->AddAddress("al_xsnake@hotmail.com","First Last");
 
-$mail->IsHTML(true); // send as HTML
 
 if(!$mail->Send()) {
-  echo "Mailer Error: " . $mail->ErrorInfo;
+
+echo "Mailer Error: " . $mail->ErrorInfo;
+
 } else {
-  echo "Message has been sent";
+
+echo "Message sent!";
+
 }
 
 ?>
