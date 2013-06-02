@@ -1,56 +1,36 @@
 <?php
 
-include("PHPMailer/class.phpmailer.php");
-include("PHPMailer/class.smtp.php"); 
+-include("PHPMailer/class.phpmailer.php");
+-include("PHPMailer/class.smtp.php"); 
+
 $mail             = new PHPMailer();
-$mail->Body = "Hola <strong>Jim</strong>, bienvenido!!!";
-$body             = "hola <p> mundo </p>";
 
-//$mail->IsSMTP(); // telling the class to use SMTP
+$body             = "<p>hola</p>";
 
-//$mail->Host       = "mail.yourdomain.com"; // SMTP server
-
-$mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
-
+$mail->IsSMTP();
 $mail->SMTPAuth   = true;                  // enable SMTP authentication
-
-$mail->SMTPSecure = "tls";                 // sets the prefix to the servier
-
+$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
 $mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
-
-$mail->Port       = 587;                   // set the SMTP port for the GMAIL server
+$mail->Port       = 465;                   // set the SMTP port
 
 $mail->Username   = "admvetmas@gmail.com";  // GMAIL username
-
 $mail->Password   = "A1V2M3;@";            // GMAIL password
 
- 
+$mail->From       = "admvetmas@gmail.com";
+$mail->FromName   = "Webmaster";
+$mail->Subject    = "This is the subject";
+$mail->AltBody    = "This is the body when user views in plain text format"; //Text Body
+$mail->WordWrap   = 50; // set word wrap
 
-$mail->SetFrom('admvetmas@gmail.com', 'VeteWebmaster');
+$mail->Body=$body;
+$mail->AddAddress("al_xsnake@hotmail.com","alex");
 
- $mail->IsHTML(true);
+$mail->IsHTML(true); // send as HTML
 
-$mail->AddReplyTo("al_xsnake@hotmail.com","First Last");
-
-$mail->Subject    = "Verificacion de usuario";
-
-$mail->AltBody    = "Se ha registrado"; // optional, comment out and test
-
-$mail->Subject = "Demo de PHPMailer";
-$address = "f2_@hotmail.com";
-
-$mail->AddAddress($address, "Alex");
-echo "1";
-$foo = $mail->Send();
-echo "2";
-if(foo==false) {
-
-echo "Mailer Error: " . $mail->ErrorInfo;
-
+if(!$mail->Send()) {
+  echo "Mailer Error: " . $mail->ErrorInfo;
 } else {
-
-echo "Message sent!";
-
+  echo "Message has been sent";
 }
 
 ?>
