@@ -25,6 +25,8 @@ $mail->Username   = "admvetmas@gmail.com";  // GMAIL username
 $mail->Password   = "A1V2M3;@";            // GMAIL password
 
  $mail->Body=$body;
+ 
+ $mail->Port="465";
 
 $mail->SetFrom('admvetmas@gmail.com', 'VeteWebmaster');
 
