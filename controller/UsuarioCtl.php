@@ -14,7 +14,7 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 			$this->modelo = new UsuarioBSS();
 		}
 
-function smtpmailer($mail, $from, $from_name, $subject, $body) { 
+function smtpmailer($to, $from, $from_name, $subject, $body) { 
 	global $error;
 	$mail = new PHPMailer();  // create a new object
 	$mail->IsSMTP(); // enable SMTP
@@ -73,7 +73,7 @@ function smtpmailer($mail, $from, $from_name, $subject, $body) {
 							echo $file;
 					}
 					
-					smtpmailer($email, 'mascotamigos webmaster', '', 'Registrado', 'bienvenido a mascotamigos clic para continuar');
+					smtpmailer($email, 'mascotamigos webmaster', 'mascotamigos', 'Registrado', 'bienvenido a mascotamigos clic para continuar');
 					break;
 					
 				case 'buscarUsuario':
