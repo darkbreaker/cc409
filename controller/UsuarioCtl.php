@@ -46,10 +46,8 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 				else{
 					$this->mostrar(file_get_contents('view/Modificar.html'));
 					}
-			
 			}
-			else
-			switch($_REQUEST['hacer']){
+			else	switch($_REQUEST['hacer']){
 				case 'agregarUsuario':
 					$nombre=$this->EsNombre($_REQUEST['nombre']);
 					$email=$this->EsMail($_REQUEST['email']);
@@ -57,15 +55,10 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 					$calle=$this->EsCalle($_REQUEST['calle']);
 					$telefono=$this->EsTelefono($_REQUEST['telefono']);
 					if(!$nombre||!$telefono||!$calle||!$email){
-						$file = file_get_contents('view/Index.html'); 
-						$file = str_ireplace('>{Username}<','><' , $file);
-						$file = str_ireplace('>Citas<','><' , $file); 
-						echo $file;
+						$this->mostrar(file_get_contents('view/Index.html'));
 					}else if(!isset($_SESSION['usuario'])){
 							$Usuario=$this->modelo->agregarUsuario($nombre, $email, $password, $calle, $telefono);
-							$file = file_get_contents('view/Login.html'); 
-							$file = str_ireplace('>{Username}<','><' , $file); $file = str_ireplace('>Citas<','><' , $file);
-							echo $file;
+							$this->mostrar(file_get_contents('view/Login.html'));
 					}
 					
 					smtpmailer($email, 'mascotamigos webmaster', 'mascotamigos', 'Registrado', 'bienvenido a mascotamigos clic para continuar');
@@ -95,24 +88,16 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 							$calle=$this->EsCalle($_REQUEST['calle']);
 							$telefono=$this->EsTelefono($_REQUEST['telefono']);
 							if(!$nombre||!$telefono||!$calle||!$mail){
-							
-								$file = file_get_contents('view/Index.html'); 
-								$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
-								$file = str_ireplace('>Login<','>Log out<' , $file); 
-								echo $file;
+								$this->mostrar(file_get_contents('view/Index.html'));
 							}else{
 									$Usuario=$this->modelo->modificar($nombre, $telefono, $calle, $password, $mail, $_SESSION['usuario']) ;
 									$file = file_get_contents('view/Index.html'); //cargo el archivo
-									$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file);
-									$file = str_ireplace('>Login<','>Log out<' , $file); 
 									$file = str_ireplace('>Hola<','>Cambios hechos<' , $file); 
+									$this->mostrar($file);
 									echo $file;
 							} 
-					}else{
-						$file = file_get_contents('view/Login.html');
-						$file = str_ireplace('>{Username}<','><' , $file); $file = str_ireplace('>Citas<','><' , $file);
-						echo $file;
-						}
+					}else
+						$this->mostrar(file_get_contents('view/Login.html'));
 					break;
 				case 'listar':
 					if(isset($_SESSION['usuario'])){
@@ -120,21 +105,15 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 							$Usuario=$this->modelo->listar() ;
 							echo $Usuario;
 						}
-						}
+					}
 					break;
 				case 'perfil':
 					if(isset($_SESSION['usuario'])){
 						if($_SESSION['privilegio']==0){
-							$file = file_get_contents('view/PerfilUsuario.html'); 
-							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
-							$file = str_ireplace('>Login<','>Log out<' , $file); 
-							echo $file;
+							$this->mostrar(file_get_contents('view/PerfilUsuario.html'));
 						}else
 							{
-							$file = file_get_contents('view/PerfilAdmin.html'); //cargo el archivo
-							$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file);
-							$file = str_ireplace('>Login<','>Log out<' , $file); 
-							echo $file;
+							$this->mostrar(file_get_contents('view/PerfilAdmin.html'));
 							
 							}
 					}
