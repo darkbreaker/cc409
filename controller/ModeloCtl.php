@@ -72,7 +72,19 @@
 		
 		}
 		
+		function mostrar($file){
+			session_start();
+			if(isset($_SESSION['usuario'])){
+				$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
+				$file = str_ireplace('>Login<','>Log out<' , $file); 
+			}else{
+				$file = str_ireplace('>{Username}<','><' , $file); 
+				$file = str_ireplace('>Citas<','><' , $file);
+			}
+			
+			echo $file;
 		
+		}
 		
 	}
 

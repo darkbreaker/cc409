@@ -12,27 +12,14 @@ include_once('ModeloCtl.php');
 		function ejecutar(){
 				session_start();
 				if(!isset($_REQUEST['hacer'])){
-					if(!isset($_SESSION['usuario'])){
-						$file = file_get_contents('view/Login.html');
-						$file = str_ireplace('>{Username}<','><' , $file); 
-						$file = str_ireplace('>Citas<','><' , $file);
-						echo $file;
-						}
-					else{
+					if(isset($_SESSION['usuario'])){
 						session_unset();
-						//destruye sesion
 						session_destroy();
 						setcookie(session_name(),'',time()-1);
-						
-						$file = file_get_contents('view/Login.html');
-						$file = str_ireplace('>{Username}<','><' , $file); 
-						$file = str_ireplace('>Citas<','><' , $file);
-						echo $file;
 						}
+						$this->mostrar(file_get_contents('view/Login.html'));
 					}
-				else
-
-				switch ($_REQUEST['hacer']){
+				else switch ($_REQUEST['hacer']){
 					case 'in':
 						if(!isset($_SESSION['usuario'])){
 								
@@ -45,43 +32,20 @@ include_once('ModeloCtl.php');
 									$_SESSION['usuario']=$usuario['idPersona'];
 									$_SESSION['nombre']=$usuario['email'];
 									$_SESSION['privilegio']=$usuario['privilegios'];				
-									$file = file_get_contents('view/Index.html'); //cargo el archivo
-									$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
-									$file = str_ireplace('>Login<','>Log out<' , $file);
-									echo $file;
+									$this->mostrar(file_get_contents('view/Index.html'));
 									
 								}else{
-								$file = file_get_contents('view/Login.html');
-								$file = str_ireplace('>{Username}<','><' , $file); $file = str_ireplace('>Citas<','><' , $file);
-								echo $file;
+								$this->mostrar(file_get_contents('view/Login.html'));
 										}
 						}else
 							{
-								$file = file_get_contents('view/Index.html'); 
-								$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file);
-								$file = str_ireplace('>Login<','>Log out<' , $file); 
-								echo $file;
+								$this->mostrar(file_get_contents('view/Index.html'));
 							}
 								
 						break;
-					case 'out':
-						if(isset($_SESSION['usuario'])){
-							//limpiar session
-							session_unset();
-							//destruye sesion
-							session_destroy();
-							setcookie(session_name(),'',time()-1);
-							var_dump ($_SESSION);
-						}
-						
-						$file = file_get_contents('view/Index.html');
-						$file = str_ireplace('>{Username}<','><' , $file); $file = str_ireplace('>Citas<','><' , $file);
-						echo $file;
-						break;
+
 					default:
-						$file = file_get_contents('view/Index.html');
-						$file = str_ireplace('>{Username}<','><' , $file); $file = str_ireplace('>Citas<','><' , $file);
-						echo $file;
+						$this->mostrar(file_get_contents('view/Index.html'));
 				}	// fin del switch
 
 		}// fin de la funcion

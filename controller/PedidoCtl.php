@@ -13,85 +13,62 @@ include_once('ModeloCtl.php');
 		
 		
 		function ejecutar(){ 
-			session_start();
-			 
-				if(isset($_SESSION['usuario'])){ //se valida que una sesion este iniciada para poder usar los pedidos
-					
-						switch($_REQUEST['hacer']){
-						case 'agregar':
-							
-								$Pedido=$this->modelo->agregar($_REQUEST['id'],$_SESSION['usuario']);
-								$file = file_get_contents('view/Index.html'); //cargo el archivo
-									$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
-									$file = str_ireplace('<h5>Hola</h5>','Pedido hecho',$file);
-									echo $file;
-							
-							break;
+			session_start(); 
+			if(isset($_SESSION['usuario'])){ //se valida que una sesion este iniciada para poder usar los pedidos
+				switch($_REQUEST['hacer']){
+					case 'agregar':		
+						$Pedido=$this->modelo->agregar($_REQUEST['id'],$_SESSION['usuario']);
+						$file = str_ireplace('<h5>Hola</h5>','Pedido hecho',file_get_contents('view/Index.html'));
+						$this->mostrar($file);
+						break;
 						
-						case 'listar':
+					case 'listar':
 							$Pedido=$this->modelo->listar();
 							echo json_encode($Pedido);
 							break;
-						case 'buscar':
+					case 'buscar':
 							
-							$Pedido=$this->modelo->buscarReservacion($_SESSION['usuario']);
-							echo json_encode($Pedido);
-					
-							break;
+					$Pedido=$this->modelo->buscarReservacion($_SESSION['usuario']);
+					echo json_encode($Pedido);	
+					break;
 							
-						case 'eliminarReservacion':
+					case 'eliminarReservacion':
 							$idReservacion=$this->EsId($_REQUEST['idReservacion']);
-							if($_SESSION['privilegio']>0){
-								if(!$idReservacion){
-									$file = file_get_contents('view/Index.html');
-									$file = str_ireplace('>{Username}<','><',$file);
-									$file = str_ireplace('<h5>Hola</h5>','Error',$file); 
-									echo $file;
-								}else{
-									
+
+								if($idReservacion!=false&&$_SESSION['privilegio']>0){
 									$Pedido=$this->modelo->eliminarReservacion($idReservacion);
-									$file = file_get_contents('view/Index.html'); 
-									$file = str_ireplace('>{Username}<','><',$file); 
-									$file = str_ireplace('<h5>Hola</h5>','hecho',$file); 
-									echo $file;
+									$file = str_ireplace('<h5>Hola</h5>','hecho',file_get_contents('view/Index.html')); 
+									$this->mostrar($file);
 									}
-							}else{
-									$file = file_get_contents('view/Index.html'); 
-									$file = str_ireplace('>{Username}<','><',$file); 
-									$file = str_ireplace('<h5>Hola</h5>','Error',$file); 
-									echo $file;
-								}break;
+							else{
+									$file = str_ireplace('<h5>Hola</h5>','Error',file_get_contents('view/Index.html')); 
+									$this->mostrar($file);
+								}
+								break;
 						case 'actualizar':
 								$idReservacion=$this->EsId($_REQUEST['idReservacion']);
 								if($idReservacion!=false){
-								$Pedido=$this->modelo-> ActualizarReservacion($idReservacion);
-								$file = file_get_contents('view/Index.html'); //cargo el archivo
-									$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
-									$file = str_ireplace('<h5>Hola</h5>','Reservacion Actulizada',$file); 
-									echo $file;
-									}else{
-									$file = file_get_contents('view/Index.html'); //cargo el archivo
-									$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
-									echo $file;
-								
+									$Pedido=$this->modelo-> ActualizarReservacion($idReservacion);
+									$file = str_ireplace('<h5>Hola</h5>','Reservacion actulizada',file_get_contents('view/Index.html')); 
+									$this->mostrar($file);
+								}else{
+									$file = str_ireplace('<h5>Hola</h5>','Error',file_get_contents('view/Index.html')); 
+									$this->mostrar($file);
 									}
-							
 								break;
-							break;
 						Default:
-							$file = file_get_contents('view/Index.html');
-							$file = str_ireplace('>{Username}<','><',$file); 
-							echo $file;
+							$file = str_ireplace('<h5>Hola</h5>','Error',file_get_contents('view/Index.html')); 
+							$this->mostrar($file);
 							
 					}//fin del switch
 				} 	
 				else {
-					$file = file_get_contents('view/Index.html');
-					$file = str_ireplace('>{Username}<','><',$file); 
-					echo $file;}
+					$file = str_ireplace('<h5>Hola</h5>','Error',file_get_contents('view/Index.html')); 
+					$this->mostrar($file);
+					}
 					
-		}	
-	}
+		}	//fin de funcion	
+	}	// fin de clase
 
 
 

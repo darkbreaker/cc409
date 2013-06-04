@@ -10,21 +10,21 @@ include_once('ModeloCtl.php');
 			$this->modelo = new NotaVentaBSS();
 		}
 
-		function ejecutar(){ session_start();
+		function ejecutar(){ 
+			session_start();
 				 
-				
 				if(isset($_SESSION['usuario'])){
 				
 					if($_SESSION['privilegio']==2){
 					$NotaVenta = $this->modelo-> listar();
-					include('view/NotaVentaView.php');
-					}else{//no se tienen privilegios sufuicientes
+					include('view/Index.html');
+					}else{
 						$file = file_get_contents('view/Index.html'); $file = str_ireplace('>{Username}<','><',$file); echo $file;
 					}
-				}else	// si no hay sesion envia al menu principal
+				}else{	
 					$file = file_get_contents('view/Index.html');
 					$file = str_ireplace('>{Username}<','><',$file);
-					echo $file;
+					echo $file;}
 		}
 
 	}
