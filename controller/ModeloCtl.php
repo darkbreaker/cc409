@@ -77,6 +77,7 @@
 			if(isset($_SESSION['usuario'])){
 				$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
 				$file = str_ireplace('>Login<','>Log out<' , $file); 
+				$file = str_ireplace('>Registro<','>Modificar<' , $file); 
 			}else{
 				$file = str_ireplace('>{Username}<','><' , $file); 
 				$file = str_ireplace('>Citas<','><' , $file);

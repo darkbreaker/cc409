@@ -1,19 +1,9 @@
 <?php
-	class DefaultCtl{
+include_once('ModeloCtl.php');
+	class DefaultCtl extends ModeloCtl{
 		function ejecutar(){
 		session_start();
-			 
-			if(isset($_SESSION['usuario'])){
-						$file = file_get_contents('view/Index.html'); 						
-						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file);
-						$file = str_ireplace('>Login<','>Log out<' , $file); 
-						echo $file;}
-					else{
-						$file = file_get_contents('view/Index.html');
-						$file = str_ireplace('>{Username}<','><',$file);
-						$file = str_ireplace('>Citas<','><',$file);
-						echo $file;}
-						
+			$this->mostrar(file_get_contents('view/Index.html'));		
 		}
 
 	}

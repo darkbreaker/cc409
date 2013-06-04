@@ -20,9 +20,7 @@ include_once('ModeloCtl.php');
 				case 'buscarServicio':
 					$idServicio=$this->EsId($_REQUEST['idServicio']);
 					if(!$idServicio){
-						$file = file_get_contents('view/Index.html');
-						$file = str_ireplace('>{Username}<','><',$file);
-						echo $file;
+						$this->mostrar(file_get_contents('view/Login.html'));
 					}else{
 						$Servicio=$this->modelo->buscarServicio($idServicio);
 						echo json_encode($Servicio);
@@ -34,56 +32,21 @@ include_once('ModeloCtl.php');
 					$descripcion=$_REQUEST['descripcion'];
 				
 					if(!isset($_SESSION['usuario'])||!$precio||!$tiempo||!$descripcion){
-						$file = file_get_contents('view/Index.html'); 
-						$file = str_ireplace('>{Username}<','><',$file); 
-						echo $file;
+						$this->mostrar(file_get_contents('view/Login.html'));
 					}else{
-						if($_SESSION['privilegio']==2){
+						if($_SESSION['privilegio']==2)
 						$Servicio=$this->modelo->agregar($precio, $tiempo, $descripcion);
-						include('view/agregarServicioView.php');
-						}else
-							$file = file_get_contents('view/Index.html'); 
-							$file = str_ireplace('>{Username}<','><',$file); 
-							echo $file;
+						$this->mostrar(file_get_contents('view/Login.html'));
 					}
 					break;
 				case 'eliminar':
 					$idServicio=$this->EsId($_REQUEST['idServicio']);
-					if(!isset($_SESSION['nombre']) ){
-							$file = file_get_contents('view/Index.html'); 
-							$file = str_ireplace('>{Username}<','><',$file); 
-							echo $file;}
-					ELSE if(!$idServicio){
-								$file = file_get_contents('view/Index.html'); //cargo el archivo
-								$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
-								$file = str_ireplace('>Login<','>Log out<' , $file);
-								echo $file;
-							
-							} else {
-							if($_SESSION['privilegio']>0){
-								$Servicio=$this->modelo->eliminar($idServicio) ;
-								$file = file_get_contents('view/Index.html'); //cargo el archivo
-								$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
-								$file = str_ireplace('>Login<','>Log out<' , $file);
-								echo $file;
-							}else{
-								$file = file_get_contents('view/Index.html'); //cargo el archivo
-								$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
-								$file = str_ireplace('>Login<','>Log out<' , $file);
-								echo $file;}
-							}
+					if($_SESSION['privilegio']>0 && $idServicio!=false)
+						$Servicio=$this->modelo->eliminar($idServicio) ;
+						$this->mostrar(file_get_contents('view/Login.html'));	
 						break;
 				Default:
-					if(!isset($_SESSION['nombre']) ){
-								$file = file_get_contents('view/Index.html'); 
-								$file = str_ireplace('>{Username}<','><',$file); 
-							echo $file;
-							} else {
-								$file = file_get_contents('view/Index.html'); //cargo el archivo
-								$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
-								$file = str_ireplace('>Login<','>Log out<' , $file);
-								echo $file;
-							}
+					$this->mostrar(file_get_contents('view/Login.html'));
 			}	// fin del switch
 			
 		}
