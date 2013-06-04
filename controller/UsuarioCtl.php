@@ -119,23 +119,12 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 					}
 					else{
 						$file = file_get_contents('view/Index.html');
-						$file = str_ireplace('>{Username}<','><',$file); 
 						$file = str_ireplace('<h5>Hola</h5>','Requiere Iniciar sesion',$file);
-						echo $file;
+						$this->mostrar($file);
 					}
 					break;
 				default:
-					if(isset($_SESSION['usuario'])){
-						$file = file_get_contents('view/Index.html'); //cargo el archivo
-						$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); 
-						$file = str_ireplace('>Login<','>Log out<' , $file); 
-						$file = str_ireplace('>Hola<','>Un error ocurrio<',$file); 
-						echo $file;}
-					else{
-						$file = file_get_contents('view/Index.html'); 
-						$file = str_ireplace('>{Username}<','><',$file); 
-						$file = str_ireplace('>Hola<','>Un error ocurrio<',$file); 
-						echo $file;}
+					$this->mostrar(file_get_contents('view/Login.html'));
 			} //fin del switch
 			
 		} //fin de la funcion

@@ -10,39 +10,32 @@ class CitaCtl extends ModeloCtl{
 			$this->modelo = new CitaBSS();
 		}
 
-		function ejecutar(){ session_start();
+		function ejecutar(){ 
+		session_start();
 			//si no tengo parametros se regresa al menu principal
 
 			 if(!isset($_REQUEST['hacer'])){
 				if(!isset($_SESSION['usuario'])){
-					$file = file_get_contents('view/Index.html');
-					
-					$file = str_ireplace('>{Username}<','><',$file); 
-					$file = str_ireplace('<h5>Hola</h5>','Requiere Iniciar sesion',$file);
-					echo $file;
-					
-				
-				}else
-				if($_SESSION['privilegio']==0){
-				$file = file_get_contents('view/RegistroCita.html'); //cargo el archivo
-				$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
-				echo $file;
+					$this->mostrar(file_get_contents('view/Index.html'));
 				}else{
-					$file = file_get_contents('view/BuscarCita.html'); //cargo el archivo
-					$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
-					echo $file;
-				
+					if($_SESSION['privilegio']==0)
+						$this->mostrar(file_get_contents('view/RegistroCita.html'));
+					else
+						$this->mostrar(file_get_contents('view/BuscarCita.html'));
 				}
 				
 			}else  
 			switch($_REQUEST['hacer']){
 				case 'agregarCita':
-					
+					if(isset($_SESSION['usuario']))
+					{
 					$Cita=$this->modelo->agregarCita($_SESSION['usuario'],$detalles, $_REQUEST['opccion']) ;
 					$file = file_get_contents('view/Index.html'); //cargo el archivo
-					$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
-					echo $file;
-			
+					$file = str_ireplace('>Hola<','>Se ha registrado su cita<' , $file);  
+					$this->mostrar($file);
+					} else
+						$this->mostrar(file_get_contents('view/Index.html'));
+					
 					break;
 					
 				case 'buscarCita':
@@ -53,11 +46,9 @@ class CitaCtl extends ModeloCtl{
 				case 'eliminarCita':
 						$idCita=$this->EsId($_REQUEST['idCita']);
 			
-					if(!$idCita){
-						$file = file_get_contents('view/Index.html'); $file = str_ireplace('>{Username}<','><',$file); echo $file;
-					}else{
+					if($idCita!=false)
 							$Cita=$this->modelo->eliminarCita($idCita);
-							}
+						$this->mostrar(file_get_contents('view/Index.html'));
 					break;
 				case 'listar':
 						if(isset($_SESSION['usuario'])){
@@ -70,9 +61,7 @@ class CitaCtl extends ModeloCtl{
 					if(isset($_SESSION['usuario'])){
 					
 			        $Cita=$this->modelo->ActualizarCita($_REQUEST['idCita']) ;
-					$file = file_get_contents('view/Index.html'); //cargo el archivo
-					$file = str_ireplace('{Username}',$_SESSION['nombre'] , $file); $file = str_ireplace('>Login<','>Log out<' , $file); 
-					echo $file;
+					$this->mostrar(file_get_contents('view/Index.html'));
 					}
 					break;
 
@@ -82,7 +71,8 @@ class CitaCtl extends ModeloCtl{
 					$Cita=$this->modelo->filtrarCita($descripcion) ;
 					echo json_encode($Cita);}
 					break;
-				
+				default:
+					$this->mostrar(file_get_contents('view/Index.html'));
 			}
 			
 		}
