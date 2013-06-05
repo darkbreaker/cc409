@@ -3,6 +3,7 @@
 include_once('model/ArticuloBSS.php');
 include_once('ModeloCtl.php');
 include_once('pdfCtl.php');
+include_once('excelCtl.php');
 	class ArticuloCtl extends ModeloCtl{
 		public $modelo;
 		
@@ -69,21 +70,25 @@ include_once('pdfCtl.php');
 							echo json_encode($Articulo);
 						}
 					break;
+					
 				case 'pdf':
 					$pdf= new PDF();
-					
 					$Articulo=$this->modelo->listar();
 					$pdf->run($Articulo);
+					break;
+					
 				case 'excel':
-					$pdf= new PDF();
-					
+					$excel= new Excel();
 					$Articulo=$this->modelo->listar();
-					$pdf->run($Articulo);
+					$excel->run($Articulo);
+					break;
 				case 'alta':
 					if(isset($_SESSION['nombre']))
 						$this->mostrar(file_get_contents('view/RegistroProducto.html'));
 					else
 						$this->mostrar(file_get_contents('view/BuscarProducto.html'));
+						
+						break;
 				Default:
 					$this->mostrar(file_get_contents('view/Login.html'));
 				}

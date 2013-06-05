@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //controlador requiere tener acceso al modelo
 
 
