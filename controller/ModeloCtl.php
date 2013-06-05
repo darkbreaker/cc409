@@ -1,9 +1,5 @@
 ﻿<?php
-//controlador requiere tener acceso al modelo
-
-
 	class ModeloCtl {
-
 		/**
 		*funciones que comprueban la valides de las cadenas
 		*$string si cumple, false sino
@@ -73,7 +69,7 @@
 		}
 		
 		function mostrar($file){
-
+		if(@session_start() == false){session_destroy();session_start();}
 			if(isset($_SESSION['usuario'])){
 				$file = str_ireplace('{Username}',$_SESSION['nombre'], $file); 
 				$file = str_ireplace('>Login<','>Log out<' , $file); 
@@ -82,14 +78,10 @@
 				$file = str_ireplace('>{Username}<','><' , $file); 
 				$file = str_ireplace('>Citas<','><' , $file);
 			}
-			
 			echo $file;
 		
 		}
 		
 	}
-
-
-
 
 ?>

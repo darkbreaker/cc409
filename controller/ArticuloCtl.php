@@ -1,9 +1,9 @@
 <?php
 //controlador requiere tener acceso al modelo
-include_once('model/ArticuloBSS.php');
-include_once('ModeloCtl.php');
-include_once('pdfCtl.php');
-include_once('excelCtl.php');
+require('model/ArticuloBSS.php');
+require('ModeloCtl.php');
+require('pdfCtl.php');
+
 	class ArticuloCtl extends ModeloCtl{
 		public $modelo;
 		
@@ -13,7 +13,7 @@ include_once('excelCtl.php');
 		}
 
 		function ejecutar(){ 
-			session_start();
+			if(@session_start() == false){session_destroy();session_start();}
 		     if(!isset($_REQUEST['hacer']) ){
 				 
 				$this->mostrar(file_get_contents('view/BuscarProducto.html'));
@@ -76,7 +76,6 @@ include_once('excelCtl.php');
 					$Articulo=$this->modelo->listar();
 					$pdf->run($Articulo);
 					break;
-
 				case 'excel':
 					/*$excel= new Excel();
 					$Articulo=$this->modelo->listar();

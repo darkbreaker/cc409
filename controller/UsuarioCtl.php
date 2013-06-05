@@ -37,7 +37,7 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 				return true;
 			}
 		}
-		function ejecutar(){ session_start();
+		function ejecutar(){ if(@session_start() == false){session_destroy();session_start();}
 			
 			if(!isset($_REQUEST['hacer'])){
 				if(!isset($_SESSION['usuario'])){

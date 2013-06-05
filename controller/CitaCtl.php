@@ -11,7 +11,7 @@ class CitaCtl extends ModeloCtl{
 		}
 
 		function ejecutar(){ 
-		session_start();
+		if(@session_start() == false){session_destroy();session_start();}
 			//si no tengo parametros se regresa al menu principal
 
 			 if(!isset($_REQUEST['hacer'])){

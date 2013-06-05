@@ -10,7 +10,7 @@ include_once('ModeloCtl.php');
 		}
 
 		function ejecutar(){
-				session_start();
+				if(@session_start() == false){session_destroy();session_start();}
 				if(!isset($_REQUEST['hacer'])){
 					if(isset($_SESSION['usuario'])){
 						session_unset();
