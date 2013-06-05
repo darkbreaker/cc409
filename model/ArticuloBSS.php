@@ -89,7 +89,7 @@ include_once('Articulo.php');
 		$con= new Conexion ( );
 		if($con->conecta()==false)
 			die('error de conexion');
-		$sql="SELECT  id,nombre,precio_venta,descripcion FROM articulo WHERE CONCAT(nombre,descripcion) LIKE '%".$descripcion."%'";
+		$sql="SELECT  idarticulo as ID, nombre,descripcion,precio FROM articulo WHERE nombre LIKE '%".$descripcion."%'";
 		//ejecutar el query
 		$fila = $con->consulta($sql);	
 		if($fila==false){

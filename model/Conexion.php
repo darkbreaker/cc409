@@ -17,7 +17,7 @@
 		/*	$this-> host = 'localhost';
 			$this -> user = 'cc409_perros';
 			$this -> pass = '1owYjeJy8a';
-			$this -> db ='cc409_perros';*/
+			$this -> db ='cc409_perros';/*/
 		
 			$this-> host = 'localhost';
 			$this -> user = 'root';
