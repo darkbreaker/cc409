@@ -2,45 +2,42 @@
 <script src="view/js/ajax.js">		</script>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+     <meta charset="utf-8">
     <title>Veterinaria</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-   
+
+    <!-- Le styles -->
+    <link href="view/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
-        padding-top: 9%;
-        padding-bottom: 10%;
+        padding-top: 10%;
+        padding-bottom: 20px;
         background-image:url('view/fondo.png');
         color: black;
-
+		font-size: 80%;
 
       }
 
       .sidebar-nav {
-        padding: 1% 0;
+        padding: 5px 0;
       }   
 
  
-           @media (max-width: 980px) {
+           @media (max-width: 80px) {
         /* Enable use of floated navbar text */
         .navbar-text.pull-right {
           float: none;
-          padding-left: 1%;
-          padding-right: 1%;
+          padding-left: 1px;
+          padding-right: 1px;
         }
 
 
       }
-    </style>
-    <link href="view/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
- 
-    <link  href="view/css/bootstrap.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="view/css/bootstrap-responsive.min">
 
+    </style>
+     <link href="view/css/bootstrap-responsive.css" rel="stylesheet">
 
   </head>
 
@@ -54,7 +51,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand"><img src="view/mascota.jpg" width="40px" height="40px"  border="1"</a>
+        
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               Se autentifico como: <a href="index.php?accion=usuario&hacer=perfil" class="navbar-link">{Username}</a>
