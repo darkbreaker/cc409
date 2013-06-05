@@ -19,13 +19,9 @@ include_once('Cita.php');
 				die('error conexion');
 			//crear el query
 			$sql="INSERT INTO cita(idPersona,fecha,detalles,inicio,estado) VALUES ('$id',CURRENT_DATE(),'$detalles',CURTIME(),'reservado') ";
-	
 			$resultado=$con->consulta($sql);
-			
 			$sql="INSERT INTO detalle_cita(idcita,idservicio) VALUES ('$resultado','$servicio') ";
-	
 			$resultado=$con->consulta($sql);
-			
 			if($resultado===false){
 				die('error insercion');
 				$con->cerrar();
@@ -115,7 +111,7 @@ include_once('Cita.php');
 	
 		if($con->conecta()==false)
 			die('error de conexion');
-		$sql="SELECT a.idcita as Cita,a.fecha,a.inicio as Reservacion,a.detalles,b.email as Cliente FROM cita as a,usuario as b WHERE b.idPersona=a.idPersona and CONCAT(fecha,detalles, inicio) LIKE '%".$descripcion."%'";
+		$sql="SELECT a.idcita as Cita,a.fecha,a.inicio as Reservacion,a.detalles,b.email as Cliente FROM cita as a,usuario as b WHERE b.idPersona=a.idPersona and a.estado='reservado' and idCita='$descripcion'";
 		//ejecutar el query
 		$fila = $con->consulta($sql);	
 		if($fila==false){
@@ -141,7 +137,7 @@ include_once('Cita.php');
 				}
 		
 			//ejecutar el query
-			$resultado = $conexion->consulta('select  a.idcita as Cita,a.fecha, a.inicio as Reservacion,a.detalles,b.email as Cliente from cita as a,usuario as b where a.idPersona=b.idPersona');	
+			$resultado = $conexion->consulta("select  a.idcita as Cita,a.fecha, a.inicio as Reservacion,a.detalles,b.email as Cliente from cita as a,usuario as b where a.idPersona=b.idPersona and a.estado='reservado'");	
 			if($resultado===false){
 				die('error de resultado');
 				$conexion->cerrar();

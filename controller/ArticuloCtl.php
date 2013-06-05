@@ -24,7 +24,7 @@ include_once('pdfCtl.php');
 						$precio_venta=$this->EsNo($_REQUEST['precio_venta']);
 						$idUsuario=$this->EsId($_REQUEST['idUsuario']);
 					if(!$nombre||!$descripcion||!$precio_venta){
-						$this->mostrar(file_get_contents('view/Login.html'));
+						$this->mostrar(file_get_contents('view/BuscarProducto.html'));
 						}
 					else{
 						$Articulo=$this->modelo->agregarArticulo($nombre, $descripcion, $precio_venta) ;
@@ -74,6 +74,11 @@ include_once('pdfCtl.php');
 					
 					$Articulo=$this->modelo->listar();
 					$pdf->run($Articulo);
+				case 'alta':
+					if(isset($_SESSION['nombre']))
+						$this->mostrar(file_get_contents('view/RegistroProducto.html'));
+					else
+						$this->mostrar(file_get_contents('view/BuscarProducto.html'));
 				Default:
 					$this->mostrar(file_get_contents('view/Login.html'));
 				}
