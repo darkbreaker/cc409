@@ -49,8 +49,8 @@ function BasicTable($header, $data)
 		$pdf->SetFont('Arial','',14);
 		$pdf->AddPage();
 		$pdf->BasicTable($header,$datos);
-		//@$pdf->Output();
-		@$pdf->Output('catalogo.pdf','F');
+		@$pdf->Output();
+	//	@$pdf->Output('catalogo.pdf','F');
 		/*$mi_pdf = 'catalogo.pdf';
 					header('Content-type: application/pdf'); 
 					header('Content-Disposition: attachment; filename="'.$mi_pdf.'"'); 

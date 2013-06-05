@@ -13,25 +13,30 @@ class Excel {
 	$objPHPExcel->getProperties()->setSubject("Asunto");
 	$objPHPExcel->getProperties()->setDescription("Descripcion");
 	$objPHPExcel->setActiveSheetIndex(0);
-
-	//foreach($arreglo as $row ){
-		$objPHPExcel->getActiveSheet()->SetCellValue('A1','value');
-		//$objPHPExcel->getActiveSheet()->SetCellValue("C".$row["id_cli"], $row["nombre_cli"]);
-		//$objPHPExcel->getActiveSheet()->setCellValue("D".$row["id_cli"], $row["correo_cli"]);
+	$i=1;
+		$objPHPExcel->getActiveSheet()->SetCellValue('A'.$i,"nombre");
+		$objPHPExcel->getActiveSheet()->SetCellValue("C".$i,"precio");
+		$objPHPExcel->getActiveSheet()->setCellValue("D".$i,"descripcion");
+	foreach($arreglo as $row ){
+		$i++;
+		$objPHPExcel->getActiveSheet()->SetCellValue('A'.$i,$row["nombre"]);
+		$objPHPExcel->getActiveSheet()->SetCellValue("C".$i, $row["precio"]);
+		$objPHPExcel->getActiveSheet()->setCellValue("D".$i, $row["descripcion"]);
 		//$objPHPExcel->getActiveSheet()->setCellValue("E".$row["id_cli"], $row["telefono_cli"]);
 		//$objPHPExcel->getActiveSheet()->setCellValue("F".$row["id_cli"], $row["pais_cli"]);
-//	}
+		
+	}
 
 	//Titulo del libro y seguridad 
 	$objPHPExcel->getActiveSheet()->setTitle('Reporte');
 	 
-
+header('Content-Type: application/vnd.ms-excel');
+header('Content-Disposition: attachment;filename="your_name.xls"');
+header('Cache-Control: max-age=0');
 	//Creamos el Archivo .xlsx
-	//$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2003');
-	$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-	$objWriter->save(str_replace('.php', '.xlsx', __FILE__));
-	
-	//$objWriter->save('php://output');
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+
+	$objWriter->save('php://output');
 	}
 
 }

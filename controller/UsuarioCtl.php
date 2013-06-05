@@ -25,11 +25,15 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 			$mail->Host = 'smtp.gmail.com';
 			$mail->Port = 465; 
 			$mail->Username = GUSER;  
-			$mail->Password = GPWD;           
+			$mail->Password = GPWD;
+			$mail->Subject = "Bienvenido";
 			$mail->SetFrom('admvetmas@gmail.com', 'VeteWebmaster');
 			$mail->AddReplyTo("al_xsnake@hotmail.com","First Last");
-			$mail->Body="bienbenido";
+			$body =file_get_contents('view/correo.html');
+			$mail->Body=$body;
+			$mail->IsHTML(true);	
 			$mail->AddAddress($to);
+			
 			if(!$mail->Send()) {
 				$error = 'Mail error: '.$mail->ErrorInfo; 
 				return false;
