@@ -76,11 +76,11 @@ include_once('excelCtl.php');
 					$Articulo=$this->modelo->listar();
 					$pdf->run($Articulo);
 					break;
-					
+
 				case 'excel':
-					$excel= new Excel();
+					/*$excel= new Excel();
 					$Articulo=$this->modelo->listar();
-					$excel->run($Articulo);
+					$excel->run($Articulo);*/
 					break;
 				case 'alta':
 					if(isset($_SESSION['nombre']))
