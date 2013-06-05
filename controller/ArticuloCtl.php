@@ -74,6 +74,11 @@ include_once('pdfCtl.php');
 					
 					$Articulo=$this->modelo->listar();
 					$pdf->run($Articulo);
+				case 'excel':
+					$pdf= new PDF();
+					
+					$Articulo=$this->modelo->listar();
+					$pdf->run($Articulo);
 				case 'alta':
 					if(isset($_SESSION['nombre']))
 						$this->mostrar(file_get_contents('view/RegistroProducto.html'));
