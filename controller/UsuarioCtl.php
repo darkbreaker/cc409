@@ -6,6 +6,7 @@ include("PHPMailer/class.phpmailer.php");
 include("PHPMailer/class.smtp.php"); 
 define('GUSER', 'admvetmas@gmail.com'); // GMail username
 define('GPWD', 'A1V2M3;@'); // GMail password
+
 	class UsuarioCtl extends ModeloCtl{
 		public $modelo;
 		
@@ -14,7 +15,7 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 			$this->modelo = new UsuarioBSS();
 		}
 
-			function smtpmailer($to, $from, $from_name, $subject, $body) { 
+			function smtpmailer($to) { 
 			global $error;
 			$mail = new PHPMailer();  // create a new object
 			$mail->IsSMTP(); // enable SMTP
@@ -25,9 +26,9 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 			$mail->Port = 465; 
 			$mail->Username = GUSER;  
 			$mail->Password = GPWD;           
-			$mail->SetFrom($from, $from_name);
-			$mail->Subject = $subject;
-			$mail->Body = $body;
+			$mail->SetFrom('admvetmas@gmail.com', 'VeteWebmaster');
+			$mail->AddReplyTo("al_xsnake@hotmail.com","First Last");
+			$mail->Body="bienbenido";
 			$mail->AddAddress($to);
 			if(!$mail->Send()) {
 				$error = 'Mail error: '.$mail->ErrorInfo; 
@@ -59,9 +60,8 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 					}else if(!isset($_SESSION['usuario'])){
 							$Usuario=$this->modelo->agregarUsuario($nombre, $email, $password, $calle, $telefono);
 							$this->mostrar(file_get_contents('view/Login.html'));
-					}
-					
-					smtpmailer($email, 'mascotamigos webmaster', 'mascotamigos', 'Registrado', 'bienvenido a mascotamigos clic para continuar');
+					}					
+					$this->smtpmailer($email);
 					break;
 					
 				case 'buscarUsuario':
@@ -132,8 +132,6 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 		
 		
 	}	//fin de la clase
-
-
 
 
 ?>

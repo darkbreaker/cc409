@@ -1,11 +1,11 @@
-ï»¿<?php
+<?php
 	class ModeloCtl {
 		/**
 		*funciones que comprueban la valides de las cadenas
 		*$string si cumple, false sino
 		**/
 		function EsNombre($string){
-			$expresion='/[a-zA-ZÃ€-Ã–Ã˜-Ã¶Ã¸-Ã¿]+\.?(( |\-)[a-zA-ZÃ€-Ã–Ã˜-Ã¶Ã¸-Ã¿]+\.?)*/';
+			$expresion='/[a-zA-ZÀ-ÖØ-öø-ÿ]+\.?(( |\-)[a-zA-ZÀ-ÖØ-öø-ÿ]+\.?)*/';
 			if (preg_match($expresion, $string)) {
 				return $string;
 			}else
@@ -29,7 +29,7 @@
 		}
 		
 		function EsCalle($string){
-			$expresion='/[a-zA-Z1-9Ã€-Ã–Ã˜-Ã¶Ã¸-Ã¿]+\.?(( |\-)[a-zA-Z1-9Ã€-Ã–Ã˜-Ã¶Ã¸-Ã¿]+\.?)* (((#|[nN][oO]\.?) ?)?\d{1,4}(( ?[a-zA-Z0-9\-]+)+)?)/';
+			$expresion='/[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?(( |\-)[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?)* (((#|[nN][oO]\.?) ?)?\d{1,4}(( ?[a-zA-Z0-9\-]+)+)?)/';
 			if (preg_match($expresion, $string)) {
 				return $string;
 			}else
@@ -78,10 +78,8 @@
 				$file = str_ireplace('>{Username}<','><' , $file); 
 				$file = str_ireplace('>Citas<','><' , $file);
 			}
-			echo $file;
-		
+			echo $file;	
 		}
-		
-	}
 
+	}
 ?>

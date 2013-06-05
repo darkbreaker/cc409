@@ -53,5 +53,4 @@ include_once('ModeloCtl.php');
 	}// fin de la clase
 
 
-
 ?>

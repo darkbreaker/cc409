@@ -1,5 +1,5 @@
 <?php
-require('fpdf17/fpdf1.php');
+require('fpdf17/fpdf.php');
 class PDF extends FPDF
 {
 function LoadData($file)
@@ -40,22 +40,21 @@ function BasicTable($header, $data)
     }
 }
 
-
 	function run($datos){
-		/*$pdf = new PDF();
+		$pdf = new PDF();
 		// Títulos de las columnas
-		$header = array('id', 'articulo', 'descripcion', 'precio');
+		$header = array('ID ', 'articulo', 'descripcion', 'precio');
 		//Carga de datos
 		//$data = $pdf->LoadData($datos);
 		$pdf->SetFont('Arial','',14);
 		$pdf->AddPage();
 		$pdf->BasicTable($header,$datos);
-		$pdf->Output();*/
-		$pdf = new FPDF();
-		$pdf->AddPage();
-		$pdf->SetFont('Arial','B',16);
-		$pdf->Cell(40,10,'Hello World!');
-		$pdf->Output();
+		//@$pdf->Output();
+		@$pdf->Output('catalogo.pdf','F');
+		/*$mi_pdf = 'catalogo.pdf';
+					header('Content-type: application/pdf'); 
+					header('Content-Disposition: attachment; filename="'.$mi_pdf.'"'); 
+					readfile($mi_pdf);*/
 	}
 }
 ?>

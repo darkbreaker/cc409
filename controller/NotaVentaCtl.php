@@ -30,6 +30,4 @@ include_once('ModeloCtl.php');
 	}
 
 
-
-
 ?>

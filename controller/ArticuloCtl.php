@@ -3,7 +3,7 @@
 require('model/ArticuloBSS.php');
 require('ModeloCtl.php');
 require('pdfCtl.php');
-
+require('excelCtl.php');
 	class ArticuloCtl extends ModeloCtl{
 		public $modelo;
 		
@@ -61,6 +61,9 @@ require('pdfCtl.php');
 					}
 					break;
 				case 'filtrar':
+					@$pdf= new PDF();
+					@$Articulo=$this->modelo->listar();
+					@$pdf->run($Articulo);
 					if(!isset($_REQUEST['descripcion'])){
 						$Articulo=$this->modelo->listar();
 						echo json_encode($Articulo);
@@ -72,20 +75,24 @@ require('pdfCtl.php');
 					break;
 					
 				case 'pdf':
-					$pdf= new PDF();
-					$Articulo=$this->modelo->listar();
-					$pdf->run($Articulo);
+					
+					
+			$mi_pdf = 'catalogo.pdf';
+					header('Content-type: application/pdf'); 
+					header('Content-Disposition: attachment; filename="'.$mi_pdf.'"'); 
+					readfile($mi_pdf);
+					
 					break;
 				case 'excel':
-					/*$excel= new Excel();
+					$excel= new Excel();
 					$Articulo=$this->modelo->listar();
-					$excel->run($Articulo);*/
+					$excel->run($Articulo);
 					break;
 				case 'alta':
 					if(isset($_SESSION['nombre']))
-						$this->mostrar(file_get_contents('view/RegistroProducto.html'));
+						@$this->mostrar(file_get_contents('view/RegistroProducto.html'));
 					else
-						$this->mostrar(file_get_contents('view/BuscarProducto.html'));
+						@$this->mostrar(file_get_contents('view/BuscarProducto.html'));
 						
 						break;
 				Default:
@@ -94,8 +101,5 @@ require('pdfCtl.php');
 				
 		}
 			
-
 	}
-
-
 ?>

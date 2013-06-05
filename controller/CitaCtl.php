@@ -80,6 +80,4 @@ class CitaCtl extends ModeloCtl{
 	}
 
 
-
-
 ?>
