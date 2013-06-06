@@ -4,9 +4,7 @@
 <head>
   <title>RegistroProducto</title>
   <link rel="stylesheet" type="text/css" href="view/css/bootstrap.css"/>
-  
-  <script src="view/http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-  <script src="view/js/bootstrap.js"></script>
+
 
  <style type="text/css">
       body {
@@ -70,21 +68,46 @@ p{color:black;}
 
  <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" name="form" id="form" action="index.php" method="GET" >
         <h2 class="form-signin-heading">Registrar Producto</h2>
-
+		
+		<input type="hidden" id="accion" name="accion" value="articulo">
+		<input type="hidden" id="hacer" name="hacer" value="agregar">
         <label for="nombre">Nombre</label>
          <input type="text" id="nombre" name="nombre" Required class="input-block-level">
          <label for="nombre">Descripcion</label>
          <input type="text" id="descripcion" name="descripcion" Required class="input-block-level">
          <label for="nombre">Precio</label>
-         <input type="text" id="precio" name="precio" Required class="input-block-level">
+         <input type="text" id="precio_venta" name="precio_venta" Required class="input-block-level">
        </br>
-        <button class="btn btn-large btn-primary" type="submit">Guardar</button>
+        <button class="btn btn-large btn-primary" type="button" onclick="enviar()">Guardar</button>
       </form>
 
   
 
 
 </body>
+  <script  >
+			function enviar(){
+			
+					
+				if(document.form.nombre.value.match(/[a-zA-ZÀ-ÖØ-öø-ÿ]+\.?(( |\-)[a-zA-ZÀ-ÖØ-öø-ÿ]+\.?)*/)&&document.form.nombre.value.length>5){
+					if(document.form.descripcion.value.length>6){
+						if((document.form.precio_venta.value)>0){
+						
+									document.form.submit();
+									return true;}
+								else{
+									document.form.pass.focus();}
+					}else{
+								document.form.descripcion.focus();}
+				}else{
+							document.form.nombre.focus();}
+		
+
+		
+				return false;	
+			}
+			
+			</script>
 </html>

@@ -15,22 +15,24 @@ require('excelCtl.php');
 		function ejecutar(){ 
 			if(@session_start() == false){session_destroy();session_start();}
 		     if(!isset($_REQUEST['hacer']) ){
-				 
+				if(isset($_SESSION['privilegio'])){
+					if($_SESSION['privilegio']>0){
+						$this->mostrar(file_get_contents('view/RegistroProducto.html'));
+					}else
+						$this->mostrar(file_get_contents('view/BuscarProducto.html'));
+				
+				}
+				else
 				$this->mostrar(file_get_contents('view/BuscarProducto.html'));
 				
 			} else switch($_REQUEST['hacer']){
 				case 'agregar':
-						
-						$nombre=$this->EsNombre($_REQUEST['nombre']);
-						$precio_venta=$this->EsNo($_REQUEST['precio_venta']);
-						$idUsuario=$this->EsId($_REQUEST['idUsuario']);
-					if(!$nombre||!$descripcion||!$precio_venta){
-						$this->mostrar(file_get_contents('view/BuscarProducto.html'));
-						}
-					else{
-						$Articulo=$this->modelo->agregarArticulo($nombre, $descripcion, $precio_venta) ;
-						$this->mostrar(file_get_contents('view/BuscarProducto.html'));
-					}
+					if(isset($_SESSION['privilegio']))
+						if($_SESSION['privilegio']>0)
+							$Articulo=$this->modelo->agregarArticulo($_REQUEST['nombre'], $_REQUEST['descripcion'], $_REQUEST['precio_venta']) ;
+
+				$this->mostrar(file_get_contents('view/BuscarProducto.html'));
+
 					break;
 				case 'consultar':
 					$id=$this->EsId($_REQUEST['id']);

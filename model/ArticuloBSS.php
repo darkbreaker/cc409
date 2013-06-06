@@ -12,12 +12,8 @@ include_once('Articulo.php');
 			$con= new Conexion ( );
 			if(!$con->conecta())
 				die('error conexion');
-				
-			$this->nombre		=$con->escapar($nombre);
-			$this->descripcion	=$con->escapar($descripcion);
-			$this->precio_venta	=$con->escapar($precio_venta);
-		
-			$sql="INSERT INTO articulo(nombre,descripcion,precio) VALUES ('$this->nombre','$this->descripcion','$this->precio_venta') ";
+						
+			$sql="INSERT INTO articulo(nombre,descripcion,precio) VALUES ('$nombre','$descripcion','$precio_venta') ";
 			$resultado=$con->consulta($sql);
 			if($resultado===false){
 				die('error insercion');
