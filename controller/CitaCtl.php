@@ -29,7 +29,7 @@ class CitaCtl extends ModeloCtl{
 				case 'agregarCita':
 					if(isset($_SESSION['usuario']))
 					{
-					$Cita=$this->modelo->agregarCita($_SESSION['usuario'],$detalles, $_REQUEST['opccion']) ;
+					$Cita=$this->modelo->agregarCita($_SESSION['usuario'],$_REQUEST['detalles'], $_REQUEST['opccion']) ;
 					$file = file_get_contents('view/Index.html'); //cargo el archivo
 					$file = str_ireplace('>Hola<','>Se ha registrado su cita<' , $file);  
 					$this->mostrar($file);

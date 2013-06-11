@@ -27,16 +27,13 @@ include_once('ModeloCtl.php');
 						}
 					break;
 				case 'agregar':
-					$precio=$this->EsNo($_REQUEST['precio']);
-					$tiempo=$this->EsNo($_REQUEST['tiempo']);
-					$descripcion=$_REQUEST['descripcion'];
 				
-					if(!isset($_SESSION['usuario'])||!$precio||!$tiempo||!$descripcion){
-						$this->mostrar(file_get_contents('view/Login.html'));
+					if(!isset($_SESSION['usuario'])){
+						$this->mostrar(file_get_contents('view/Index.html'));
 					}else{
-						if($_SESSION['privilegio']==2)
-						$Servicio=$this->modelo->agregar($precio, $tiempo, $descripcion);
-						$this->mostrar(file_get_contents('view/Login.html'));
+						if($_SESSION['privilegio']!=0)
+						$Servicio=$this->modelo->agregar($_REQUEST['precio'], $_REQUEST['tiempo'], $_REQUEST['descripcion']);
+						$this->mostrar(file_get_contents('view/PerfilAdmin.html'));
 					}
 					break;
 				case 'eliminar':
@@ -45,7 +42,14 @@ include_once('ModeloCtl.php');
 						$Servicio=$this->modelo->eliminar($idServicio) ;
 						$this->mostrar(file_get_contents('view/Login.html'));	
 						break;
+				case 'alta':
+					if($_SESSION['privilegio']>0)
+						$this->mostrar(file_get_contents('view/RegistroServicio.html'));
+					else
+						$this->mostrar(file_get_contents('view/Login.html'));
+					break;
 				Default:
+					
 					$this->mostrar(file_get_contents('view/Login.html'));
 			}	// fin del switch
 			

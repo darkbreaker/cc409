@@ -56,14 +56,11 @@
 					return FALSE;
 				
 			}
-			
-				return $this->cn -> insert_id;
-			
-
+					return $this->cn -> insert_id;
+		
 		}
 	
 		function escapar($query){
-			
 			return $this->cn->real_escape_string($query);
 	
 		}

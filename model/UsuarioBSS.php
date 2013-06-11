@@ -110,7 +110,7 @@
 			$conexion->cerrar();
 			die('error al conectar');
 			}
-		$resultado = $conexion->consulta('SELECT * FROM usuario');	
+		$resultado = $conexion->consulta('SELECT nombre,calle,email,telefono FROM usuario');	
 		if($resultado===false){
 			die('error de resultado');
 			$conexion->cerrar();
@@ -125,21 +125,23 @@
 	}
 	
 	function filtrarUsuario($mail){
-		$con= new Conexion (  );
-		if($con->conecta()==false)
-			die('error de conexion');
-		$sql="SELECT email FROM usuario WHERE email='$mail'";
-		//ejecutar el query
-		$resultado = $con->consulta($sql);	
+			$conexion= new Conexion (  );
+		if($conexion->conecta()==false){
+			$conexion->cerrar();
+			die('error al conectar');
+			}
+		$resultado = $conexion->consulta("SELECT nombre,calle,email,telefono FROM usuario where  concat(nombre,calle) like '%".$mail."%' ");	
 		if($resultado===false){
-			die('error al consultar');
-			$con->cerrar();
+			die('error de resultado');
+			$conexion->cerrar();
 			return FALSE;
 			}
-		$conexion-> cerrar();
-				
-			return true;
-
+			$conexion-> cerrar();
+		while($row = $resultado->fetch_array(MYSQLI_ASSOC))	{
+		$obj[] = $row;		}					
+			return $obj;
+	
+		
 	}
 	
 		function modificar($nombre,$telefono,$direccion,$password,$email,$idUsuario){

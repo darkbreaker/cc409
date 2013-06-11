@@ -1,8 +1,8 @@
-<!DOCTYPE html> <script language=""="text/JavaScript" src="view/js/ajax.js">		</script>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>RegistroServicio</title>
+    <title>Registro Servicio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -44,16 +44,19 @@
 
 p{color:black;}
 
+    </style>
+    <link href="view/css/bootstrap-responsive.css" rel="stylesheet">
+
 
   </head>
 
-  <body>
+  <body >
 <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
 
            <a class="brand"><img src="view/mascota.jpg" width="40" height="40"  border="3"</a>
-       
+
             <p class="navbar-text pull-right">
               Se autentifico como: <a href="index.php?accion=usuario&hacer=perfil" class="navbar-link">{Username}</a>
             </p>
@@ -69,24 +72,57 @@ p{color:black;}
       </div>
     </div>
 
-   <div class="container">
+ <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" name="form" id="form" method="get">
         <h2 class="form-signin-heading">Registrar Servicio</h2>
+		<input type="hidden" id="accion" name="accion" value="servicio">
+		<input type="hidden" id="hacer" name="hacer" value="agregar">
+		
 
-        <label for="nombre">Nombre</label>
-         <input type="text" id="nombre" name="nombre" Required class="input-block-level">
-         <label for="nombre">Descripcion</label>
+		<label for="descripcion">descripcion</label>
          <input type="text" id="descripcion" name="descripcion" Required class="input-block-level">
-         <label for="nombre">Precio</label>
+		 
+		  <label for="precio">precio</label>
          <input type="text" id="precio" name="precio" Required class="input-block-level">
-         <label for="nombre">Tiempo</label>
+		 
+		  <label for="tiempo">Tiempo aproximado(minutos)</label>
          <input type="text" id="tiempo" name="tiempo" Required class="input-block-level">
+         
        </br>
-        <button class="btn btn-large btn-primary" type="submit">Guardar</button>
+        <button type="button" class="btn btn-large btn-primary" onClick="enviar();" >Guardar</button>
       </form>
 
 
 
+
+    </div> <!-- /container -->
+
+	
+	
+
   </body>
+
+	 <script  >
+			function enviar(){
+				if(document.form.descripcion.value.length>0){
+								if(document.form.precio.value>0){
+									if(document.form.tiempo.value>0){
+										document.form.submit();
+										return true;
+										}else
+											document.getElementById("tiempo").focus();
+									}
+								else
+									document.getElementById("precio").focus();
+				}else
+					document.getElementById("descripcion").focus();
+		
+		
+				return false;	
+			}
+
+	 
+			
+	 </script>
 </html>

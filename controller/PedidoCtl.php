@@ -14,7 +14,11 @@ include_once('ModeloCtl.php');
 		
 		function ejecutar(){ 
 			if(@session_start() == false){session_destroy();session_start();} 
-			if(isset($_SESSION['usuario'])){ //se valida que una sesion este iniciada para poder usar los pedidos
+			if(isset($_SESSION['usuario'])){
+				if(!isset($_REQUEST['hacer'])){
+					$this->mostrar(file_get_contents('view/Pedidos.html'));
+					
+				}else
 				switch($_REQUEST['hacer']){
 					case 'agregar':		
 						$Pedido=$this->modelo->agregar($_REQUEST['id'],$_SESSION['usuario']);

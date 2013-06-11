@@ -70,20 +70,21 @@ include_once('Servicio.php');
 		
 		//conectarse a la base de datos
 		$con= new Conexion (  );
+	
+
+		
+		if(!$con->conecta())
+			die('error conexion');
+		//crear el query
 		$precio=$con->escapar($precio);
 		$tiempo=$con->escapar($tiempo);
 		$descripcion=$con->escapar($descripcion);
 		
 		//asignar variables al objeto
 		$this -> tiempo = $tiempo;
-		$this -> descripcion = $decripcion;
+		$this -> descripcion = $descripcion;
 		$this -> precio = $precio;
-
-		
-		if(!$con->conecta())
-			die('error conexion');
-		//crear el query
-		$sql="INSERT INTO servicio(tiempo,descripcion,precio) VALUES ('$this->tiempo','$this->precio','$this->descripcion') ";
+		$sql="INSERT INTO servicio(tiempo,descripcion,precio) VALUES ('$this->tiempo','$this->descripcion','$this->precio') ";
 		//$sql=$con->escapar($sql);
 		//ejecutar el query
 		$resultado=$con->consulta($sql);

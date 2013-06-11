@@ -61,10 +61,10 @@
 		}
 			
 		function EsNo($string){
-			if(is_numeric($tring))
+			if(isset($string))
 				return $string;
 			else
-				return false;
+				return $string;
 		
 		}
 		

@@ -94,9 +94,7 @@ table {
      <div class="container">
 
     <form class="form-signin" >
-	<a href="index.php?accion=servicio&hacer=alta">Registrar Servicio</a>
-	</br><a href="index.php?accion=pedido">Pedidos</a>
-	</br><a href="index.php?accion=usuario&hacer=agenda">Agenda</a>
+	<br><p class="titulo">Pedidos</p>
       </form>
 	  </div>
 </center>
@@ -105,7 +103,67 @@ table {
 	 <footer>
 			<p>&copy; Mascota</p>
 		  </footer> 
+	  <script  src="view/js/ajax.js">		</script>
+	 <script  >
+			
+	 
+			function carga(){
+				var ajax= new nuevoAjax();
+				var form=document.getElementById('form');
+				ajax.open("get","index.php?accion=pedido&hacer=listar",true);
+				ajax.onreadystatechange = function (){
+					if(ajax.readyState == 4){						
+								var data=ajax.responseText;
+								console.log(data);
+								 data="["+data.substring(data.search("{"));
+								
+								data = JSON.parse(data);
+								data = crearCitas(data);
+								
+								$('form').append(data);
+					}
+				}
+				
+			ajax.send(null);
 
+			}
+			
+			
+			function crearCitas(objArray) {
+ 
+    // If the returned data is an object do nothing, else try to parse
+				var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+ 
+				var str = '</br><table class="table-hover" id="jtable" name="jtable">';
+ 
+    // table head
+        str += '<thead><tr>';
+        for (var index in array[0]) {
+            str += '<th scope="col">' + index + '</th>';
+        }
+        str += '</tr></thead>';
+    
+ 
+    // table body
+    str += '<tbody>';
+    for (var i = 0; i < array.length; i++) {
+        str += (i % 2 == 0) ? '<tr class="alt">' : '<tr>';
+		var id=0;
+        for (var index in array[i]) {
+			if(id==0)
+				str += "<td><a href='index.php?accion=pedido&hacer=actualizar&idReservacion=" +array[i][index]+"'>"+ array[i][index] + '</a></td>';
+			else
+				str += '<td>' + array[i][index] + '</td>';
+				id++;
+        }
+        str += '</tr>';
+    }
+    str += '</tbody>'
+    str += '</table></br>';
+    return str;
+}
+		
+	 </script>
 	  
 </body>
 </html>

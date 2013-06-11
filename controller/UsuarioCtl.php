@@ -52,7 +52,8 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 					$this->mostrar(file_get_contents('view/Modificar.html'));
 					}
 			}
-			else	switch($_REQUEST['hacer']){
+			else	
+			switch($_REQUEST['hacer']){
 				case 'agregarUsuario':
 					$nombre=$this->EsNombre($_REQUEST['nombre']);
 					$email=$this->EsMail($_REQUEST['email']);
@@ -75,15 +76,14 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 					}
 	
 					break;
-				case 'email':
+				case 'filtro':
+						if(isset($_SESSION['usuario'])){
 
-					if(isset($_REQUEST['email'])){
-								$Usuario=$this->modelo->filtrarUsuario($_REQUEST['email']);
-								echo $Usuario;
+										$Usuario=$this->modelo->filtrarUsuario($_REQUEST['descripcion']);
+										echo json_encode($Usuario);
 
-					}
-					break;
-				
+						}
+					break;			
 				case 'modificar':
 					if(isset($_SESSION['usuario'])){
 							$nombre=$this->EsNombre($_REQUEST['nombre']);
@@ -105,10 +105,12 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 					break;
 				case 'listar':
 					if(isset($_SESSION['usuario'])){
-						if($_SESSION['privilegio']>0){
+						if($_SESSION['privilegio']!=0){
 							$Usuario=$this->modelo->listar() ;
-							echo $Usuario;
+							echo json_encode($Usuario);
 						}
+						else
+						$this->mostrar(file_get_contents('view/Index.html'));
 					}
 					break;
 				case 'perfil':
@@ -127,8 +129,20 @@ define('GPWD', 'A1V2M3;@'); // GMail password
 						$this->mostrar($file);
 					}
 					break;
+				case 'agenda':
+					if(isset($_SESSION['usuario'])){
+						if($_SESSION['privilegio']!=0)
+							$this->mostrar(file_get_contents('view/Agenda.html'));
+						else
+							$this->mostrar(file_get_contents('view/Index.html'));
+					}else{
+						$file = file_get_contents('view/Index.html');
+						$file = str_ireplace('<h5>Hola</h5>','no no no',$file);
+						$this->mostrar($file);
+						}
+					break;
 				default:
-					$this->mostrar(file_get_contents('view/Login.html'));
+					$this->mostrar(file_get_contents('view/Index.html'));
 			} //fin del switch
 			
 		} //fin de la funcion

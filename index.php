@@ -18,10 +18,6 @@
 		include('controller/CitaCtl.php');
 		$controlador = new CitaCtl();
 	        break;
-	case 'notaVenta':
-		include('controller/NotaVentaCtl.php');
-		$controlador = new NotaVentaCtl();
-           	break;
 	case 'pedido':
 		include('controller/PedidoCtl.php');
 		$controlador = new PedidoCtl();
