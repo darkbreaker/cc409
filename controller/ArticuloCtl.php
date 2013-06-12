@@ -23,7 +23,7 @@ require('excelCtl.php');
 				
 				}
 				else
-				$this->mostrar(file_get_contents('view/BuscarProducto.html'));
+				$this->mostrar(file_get_contents('view/Producto.html'));
 				
 			} else switch($_REQUEST['hacer']){
 				case 'agregar':

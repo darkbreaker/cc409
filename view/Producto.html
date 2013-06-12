@@ -171,7 +171,7 @@ function crearTabla(objArray) {
 		var id=0;
         for (var index in array[i]) {
 			if(id==0)
-				str += "<td><a href='index.php?accion=pedido&hacer=agregar&id=" +array[i][index]+"'>"+ array[i][index] + '</a></td>';
+				str += "<td>"+ array[i][index] + '</a></td>';
 			else
 				str += '<td>' + array[i][index] + '</td>';
 				id++;
